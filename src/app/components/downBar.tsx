@@ -68,18 +68,24 @@ function DownBar() {
           {/* Dark/Light mode button */}
           <div className="relative group">
             <button
-              type="button"
-              className="downbar-button cursor-pointer p-2 rounded-full hover:bg-gray-200/50 transition-all duration-300 hover:scale-110 active:scale-95 sm:p-1"
-              onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
-              aria-label={mounted && (resolvedTheme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode")}
-            >
-              {mounted &&
-                (resolvedTheme === "dark" ? (
-                  <Sun size={20} className="downbar-sun-icon text-yellow-300" />
-                ) : (
-                  <Moon size={20} className="downbar-moon-icon" />
-                ))}
-            </button>
+            type="button"
+            className="downbar-button cursor-pointer p-2 rounded-full hover:bg-gray-200/50 transition-all duration-300 hover:scale-110 active:scale-95 sm:p-1"
+            onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
+            aria-label={
+              mounted
+                ? resolvedTheme === "dark"
+                ? "Switch to Light Mode"
+              : "Switch to Dark Mode"
+                : undefined
+  }
+>
+  {mounted &&
+    (resolvedTheme === "dark" ? (
+      <Sun size={20} className="downbar-sun-icon text-yellow-300" />
+    ) : (
+      <Moon size={20} className="downbar-moon-icon" />
+    ))}
+</button>
             <span className="downbar-tooltip absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
               {mounted && resolvedTheme === "dark" ? "Light" : "Dark"}
             </span>
