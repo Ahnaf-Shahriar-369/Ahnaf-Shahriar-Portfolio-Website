@@ -861,7 +861,7 @@
 .sphereGlassContainer {
   position: relative;
   width: 450px;
-  height: 450px;
+  height: 350px;
   border-radius: 50%;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);

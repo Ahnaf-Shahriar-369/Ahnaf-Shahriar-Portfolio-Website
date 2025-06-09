@@ -1,7 +1,7 @@
 /* Enhanced Glassmorphic DownBar Styles with Advanced Effects */
 
 /* Float animation keyframes */
-@keyframes float {
+/* @keyframes float {
   0%,
   100% {
     transform: translateY(0px);
@@ -9,12 +9,12 @@
   50% {
     transform: translateY(-6px);
   }
-}
+} */
 
 /* Container with float animation */
-.downbar-container {
+/* .downbar-container {
   animation: float 3s ease-in-out infinite;
-}
+} */
 
 /* Enhanced glassmorphic background */
 .downbar-bg {
