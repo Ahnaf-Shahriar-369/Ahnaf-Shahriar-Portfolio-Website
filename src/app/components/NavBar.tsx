@@ -1,4 +1,5 @@
 "use client"
+import { useTranslation } from "react-i18next"
 
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
@@ -7,6 +8,10 @@ import { Menu, X } from "lucide-react"
 import "./NavBar.css"
 
 export default function Navbar() {
+
+    const { t } = useTranslation()
+
+
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeLink, setActiveLink] = useState("home")
@@ -185,23 +190,23 @@ export default function Navbar() {
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-purple-500/30 to-purple-500/0 opacity-0 group-hover:opacity-100 animate-shine"></div>
               </div>
               <h1 className="text-lg md:text-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient truncate">
-                Ahnaf Shahriar
-              </h1>
+      {t("navbarName")}
+    </h1>
             </div>
 
             <div className="hidden md:flex items-center space-x-3">
               {["home", "about", "skills", "projects"].map((link) => (
-                <div key={link} className="nav-link-container">
-                  <Link
-                    href={`#${link}`}
-                    onClick={() => handleLinkClick(link)}
-                    className={`navbar-link ${activeLink === link ? "navbar-link-active" : ""}`}
-                  >
-                    <span className="capitalize">{link}</span>
-                  </Link>
-                  <div className={`nav-link-bg ${activeLink === link ? "nav-link-active-bg" : ""}`}></div>
-                </div>
-              ))}
+  <div key={link} className="nav-link-container">
+    <Link
+      href={`#${link}`}
+      onClick={() => handleLinkClick(link)}
+      className={`navbar-link ${activeLink === link ? "navbar-link-active" : ""}`}
+    >
+      <span>{t(`nav.${link}`)}</span>
+    </Link>
+    <div className={`nav-link-bg ${activeLink === link ? "nav-link-active-bg" : ""}`}></div>
+  </div>
+))}
             </div>
 
             <div className="md:hidden">
@@ -233,8 +238,9 @@ export default function Navbar() {
                     className={`navbar-dropdown-link px-3 py-2 rounded-md transition-all duration-300 relative z-10 cursor-pointer ${
                       activeLink === link ? "text-white" : "hover:bg-white/20 hover:scale-105"
                     }`}
+            
                   >
-                    <span className="capitalize">{link}</span>
+                    <span>{t(`nav.${link}`)}</span>
                   </Link>
                   <div
                     className={`absolute inset-0 rounded-md transition-all duration-300 ${

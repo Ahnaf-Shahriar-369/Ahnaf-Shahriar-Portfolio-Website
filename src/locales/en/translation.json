@@ -1,0 +1,47 @@
+{
+
+  "Description" : "Passionate Full-Stack Developer with expertise in React, Next.js, Node.js, and MongoDB. Dedicated to writing clean and scalable code, optimizing application performance, and mentoring aspiring developers. With a strong foundation in both frontend and backend technologies, I strive to create seamless user experiences while ensuring robust and maintainable codebases.",
+
+
+  "Name": "Name",
+  "NameValue": "Ahnaf Shahriar",
+  "Age": "Age",
+  "AgeValue": "14",
+  "Location": "Location",
+  "LocationValue": "Dhaka/Bangladesh",
+  "Education": "Education",
+  "EducationValue": "Still studying in 8th Class",
+  "Languages": "Languages",
+  "LanguagesValue": "English/Bengali/Hindi",
+
+
+  "heroTitle": "Hello there!\nI'm Ahnaf\nShahriar",
+
+
+  "rotatingTexts": [
+    "Full-stack Developer",
+    "Front-end Developer",
+    "Backend Developer",
+    "Tech Enthusiast",
+    "Open Source Contributor",
+    "Web Developer",
+    "Software Engineer"
+  ],
+
+
+  "heroSubtitle": "Full Stack Developer • Next.JS | React | Tailwind CSS | TypeScript | Node.JS | MongoDB | Express.JS | Prisma",
+
+
+  "navbarName": "Ahnaf Shahriar",
+
+
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects"
+  }
+
+
+
+}

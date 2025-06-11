@@ -1,4 +1,7 @@
 "use client"
+
+import { useTranslation } from "react-i18next"
+
 import { useState, useEffect, useCallback, useMemo } from "react"
 import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
@@ -6,6 +9,11 @@ import LogoSphere from "./LogoSphere"
 import "./Hero.css"
 
 export default function Hero() {
+  
+  const { t } = useTranslation()
+  
+
+
   const [isGithubHovered, setIsGithubHovered] = useState(false)
   const [isResumeHovered, setIsResumeHovered] = useState(false)
   const [isGithubClicked, setIsGithubClicked] = useState(false)
@@ -15,18 +23,13 @@ export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
 
+  
+
   const rotatingTexts = useMemo(
-    () => [
-      "Full-stack Developer",
-      "Front-end Developer",
-      "Backend Developer",
-      "Tech Enthusiast",
-      "Open Source Contributor",
-      "Web Developer",
-      "Software Engineer",
-    ],
-    [],
-  )
+  () =>
+    t("rotatingTexts", { returnObjects: true }) as string[],
+  [t]
+)
 
   // Optimized loading animation effect
   useEffect(() => {
@@ -123,7 +126,7 @@ export default function Hero() {
           </div>
           <div className="loadingText">
             <span className="block text-2xl font-semibold mb-6 bg-gradient-to-r from-[#ec4899] via-[#8b5cf6] to-[#3b82f6] bg-clip-text text-transparent animate-pulse">
-              Loading Experience
+              Welcome to My Portfolio!
             </span>
             <div className="progressBar w-[220px] h-1 rounded-full mx-auto mb-4 overflow-hidden">
               <div
@@ -251,11 +254,12 @@ export default function Hero() {
             <div className="cardGlow" />
 
             <h1 className="nameGradient text-5xl md:text-7xl leading-tight font-extrabold mb-6">
-              Hello there!
+              {t("heroTitle").split("\n").map((line, idx) => (
+              <span key={idx}>
+              {line}
               <br />
-              I&apos;m Ahnaf
-              <br />
-              Shahriar
+              </span>
+              ))}
             </h1>
 
             <div
@@ -273,12 +277,11 @@ export default function Hero() {
             </div>
 
             <p
-              className="subtitleText text-lg leading-7 mb-8 font-normal animate-fadeInUp"
-              style={{ animationDelay: "0.4s", opacity: 0, animationFillMode: "forwards" }}
-            >
-              Full Stack Developer • Next.JS | React | Tailwind CSS | TypeScript | Node.JS | MongoDB | Express.JS |
-              Prisma
-            </p>
+  className="subtitleText text-lg leading-7 mb-8 font-normal animate-fadeInUp"
+  style={{ animationDelay: "0.4s", opacity: 0, animationFillMode: "forwards" }}
+>
+  {t("heroSubtitle")}
+</p>
 
             <div
               className="flex gap-6 flex-wrap animate-fadeInUp"

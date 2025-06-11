@@ -1,5 +1,8 @@
 "use client"
 
+import { useTranslation } from "react-i18next"
+import '../../i18n'
+
 import { useState, useRef, useEffect } from "react"
 import { Play, CirclePause, Moon, Sun } from "lucide-react"
 import Image from "next/image"
@@ -7,6 +10,12 @@ import { useTheme } from "next-themes"
 import "./downBar.css"
 
 function DownBar() {
+
+  const { i18n } = useTranslation()
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng)
+  }
+
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -24,6 +33,11 @@ function DownBar() {
     return () => clearTimeout(loadingTimer)
   }, [])
 
+  // Sync isEnglish with i18n.language
+  useEffect(() => {
+    setIsEnglish(i18n.language === "en")
+  }, [i18n.language])
+
   const togglePlayPause = () => {
     if (!audioRef.current) return
     if (isPlaying) {
@@ -34,7 +48,14 @@ function DownBar() {
     setIsPlaying(!isPlaying)
   }
 
-  const toggleLanguage = () => setIsEnglish(!isEnglish)
+  // Toggle language and call i18n.changeLanguage
+  const toggleLanguage = () => {
+    if (isEnglish) {
+      changeLanguage("bn")
+    } else {
+      changeLanguage("en")
+    }
+  }
 
   return (
     <>
@@ -68,24 +89,24 @@ function DownBar() {
           {/* Dark/Light mode button */}
           <div className="relative group">
             <button
-            type="button"
-            className="downbar-button cursor-pointer p-2 rounded-full hover:bg-gray-200/50 transition-all duration-300 hover:scale-110 active:scale-95 sm:p-1"
-            onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
-            aria-label={
-              mounted
-                ? resolvedTheme === "dark"
-                ? "Switch to Light Mode"
-              : "Switch to Dark Mode"
-                : undefined
-  }
->
-  {mounted &&
-    (resolvedTheme === "dark" ? (
-      <Sun size={20} className="downbar-sun-icon text-yellow-300" />
-    ) : (
-      <Moon size={20} className="downbar-moon-icon" />
-    ))}
-</button>
+              type="button"
+              className="downbar-button cursor-pointer p-2 rounded-full hover:bg-gray-200/50 transition-all duration-300 hover:scale-110 active:scale-95 sm:p-1"
+              onClick={() => setTheme(resolvedTheme === "light" ? "dark" : "light")}
+              aria-label={
+                mounted
+                  ? resolvedTheme === "dark"
+                    ? "Switch to Light Mode"
+                    : "Switch to Dark Mode"
+                  : undefined
+              }
+            >
+              {mounted &&
+                (resolvedTheme === "dark" ? (
+                  <Sun size={20} className="downbar-sun-icon text-yellow-300" />
+                ) : (
+                  <Moon size={20} className="downbar-moon-icon" />
+                ))}
+            </button>
             <span className="downbar-tooltip absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
               {mounted && resolvedTheme === "dark" ? "Light" : "Dark"}
             </span>
@@ -99,16 +120,17 @@ function DownBar() {
               onClick={toggleLanguage}
               aria-label={`Switch to ${isEnglish ? "Bangla" : "English"}`}
             >
+              {/* Show Bangladesh flag when language is English, and UK/US flag when language is Bangla */}
               <Image
-                src={isEnglish ? "/eng.png" : "/bang.png"}
-                alt={isEnglish ? "English" : "Bangla"}
+                src={isEnglish ? "/bang.png" : "/eng.png"}
+                alt={isEnglish ? "Bangla" : "English"}
                 width={20}
                 height={20}
                 className="rounded-full"
               />
             </button>
             <span className="downbar-tooltip absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
-              {isEnglish ? "English" : "Bangla"}
+              {isEnglish ? "Bangla" : "English"}
             </span>
           </div>
         </div>

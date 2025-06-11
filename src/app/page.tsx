@@ -64,6 +64,10 @@ import Contact from "./components/Contact";
 
 
 
+  
+
+
+
 
 export default function Home() {
   // Fix for the right side background issue
@@ -79,6 +83,8 @@ export default function Home() {
   //   setMounted(true)
   // }
 
+
+  
   
 
 

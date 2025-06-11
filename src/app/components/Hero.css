@@ -586,7 +586,7 @@
   }
 }
 
-@keyframes float {
+/* @keyframes float {
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -596,9 +596,9 @@
     transform: translateY(-12px) rotate(180deg);
     opacity: 0.7;
   }
-}
+} */
 
-@keyframes rotate {
+/* @keyframes rotate {
   0% {
     transform: rotate(0deg) scale(1);
   }
@@ -608,7 +608,7 @@
   100% {
     transform: rotate(360deg) scale(1);
   }
-}
+} */
 
 @keyframes innerGlow {
   0% {

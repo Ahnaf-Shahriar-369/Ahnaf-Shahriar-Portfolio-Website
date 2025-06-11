@@ -130,6 +130,9 @@ export default function FooterSection() {
                   {/* Actual GIF */}
                   <div className="absolute inset-0 flex items-center justify-center bg-transparent">
                     <Image  
+                      
+                      loading="eager"
+                      
                       src="/sphere (1).gif"
                       width={200}
                       height={200}
