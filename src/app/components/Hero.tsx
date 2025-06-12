@@ -1,12 +1,13 @@
 "use client"
 
 import { useTranslation } from "react-i18next"
-
+import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect, useCallback, useMemo } from "react"
 import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
 import LogoSphere from "./LogoSphere"
 import "./Hero.css"
+
 
 export default function Hero() {
   
@@ -287,41 +288,65 @@ export default function Hero() {
               className="flex gap-6 flex-wrap animate-fadeInUp"
               style={{ animationDelay: "0.6s", opacity: 0, animationFillMode: "forwards" }}
             >
-              <Link
-                href="https://github.com/Ahnaf-Shahriar-369"
-                className={`githubButton buttonEffect group/github ${isGithubClicked ? "buttonClicked" : ""}`}
-                onMouseEnter={() => handleGithubInteraction("hover")}
-                onMouseLeave={() => handleGithubInteraction("leave")}
-                onMouseDown={() => handleGithubInteraction("down")}
-                onMouseUp={() => handleGithubInteraction("up")}
-                onTouchStart={() => handleGithubInteraction("down")}
-                onTouchEnd={() => handleGithubInteraction("up")}
-              >
-                <div className="buttonGlow" />
-                GitHub{" "}
-                <ArrowRight
-                  size={18}
-                  className={`transition-all duration-300 ${isGithubHovered ? "transform translate-x-1.5" : ""}`}
-                />
-              </Link>
+              
 
-              <Link
-                href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
-                className={`resumeButton buttonEffect group/resume ${isResumeClicked ? "buttonClicked" : ""}`}
-                onMouseEnter={() => handleResumeInteraction("hover")}
-                onMouseLeave={() => handleResumeInteraction("leave")}
-                onMouseDown={() => handleResumeInteraction("down")}
-                onMouseUp={() => handleResumeInteraction("up")}
-                onTouchStart={() => handleResumeInteraction("down")}
-                onTouchEnd={() => handleResumeInteraction("up")}
-              >
-                <div className="buttonGlow" />
-                Get Resume{" "}
-                <Download
-                  size={18}
-                  className={`transition-all duration-300 ${isResumeHovered ? "transform translate-y-1" : ""}`}
-                />
-              </Link>
+<Link
+  href="https://github.com/Ahnaf-Shahriar-369"
+  className={`githubButton buttonEffect group/github ${isGithubClicked ? "buttonClicked" : ""}`}
+  onMouseEnter={() => handleGithubInteraction("hover")}
+  onMouseLeave={() => handleGithubInteraction("leave")}
+  onMouseDown={() => handleGithubInteraction("down")}
+  onMouseUp={() => handleGithubInteraction("up")}
+  onTouchStart={() => handleGithubInteraction("down")}
+  onTouchEnd={() => handleGithubInteraction("up")}
+>
+  <div className="buttonGlow" />
+  <AnimatePresence mode="wait" initial={false}>
+    <motion.span
+      key={t("githubButton")}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.25 }}
+      className="inline-block"
+    >
+      {t("githubButton")}
+    </motion.span>
+  </AnimatePresence>
+  <ArrowRight
+    size={18}
+    className={`transition-all duration-300 ${isGithubHovered ? "transform translate-x-1.5" : ""}`}
+  />
+</Link>
+
+<Link
+  href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
+  className={`resumeButton buttonEffect group/resume ${isResumeClicked ? "buttonClicked" : ""}`}
+  onMouseEnter={() => handleResumeInteraction("hover")}
+  onMouseLeave={() => handleResumeInteraction("leave")}
+  onMouseDown={() => handleResumeInteraction("down")}
+  onMouseUp={() => handleResumeInteraction("up")}
+  onTouchStart={() => handleResumeInteraction("down")}
+  onTouchEnd={() => handleResumeInteraction("up")}
+>
+  <div className="buttonGlow" />
+  <AnimatePresence mode="wait" initial={false}>
+    <motion.span
+      key={t("resumeButton")}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.25 }}
+      className="inline-block"
+    >
+      {t("resumeButton")}
+    </motion.span>
+  </AnimatePresence>
+  <Download
+    size={18}
+    className={`transition-all duration-300 ${isResumeHovered ? "transform translate-y-1" : ""}`}
+  />
+</Link>
             </div>
           </div>
         </div>

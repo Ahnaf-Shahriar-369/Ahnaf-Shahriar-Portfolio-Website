@@ -40,8 +40,13 @@
     "about": "About",
     "skills": "Skills",
     "projects": "Projects"
-  }
+  },
 
+  
+  
+  "githubButton": "GitHub",
+  "resumeButton": "Get Resume",
 
+  "AboutMe": "About Me"
 
 }

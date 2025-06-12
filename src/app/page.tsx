@@ -134,6 +134,8 @@ export default function Home() {
         >
           
           <About></About>
+
+          {/* <IconCloud></IconCloud> */}
           
           {/* <AboutImg></AboutImg> */}
 

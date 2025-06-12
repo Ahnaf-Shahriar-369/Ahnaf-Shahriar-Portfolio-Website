@@ -101,7 +101,7 @@ export default function FooterSection() {
           {/* Quote */}
           <div className="text-center mb-12 sm:mb-16 animate-[fadeInUp_0.8s_ease-out_forwards]">
             <p className="text-yellow-400 text-lg sm:text-xl lg:text-2xl font-medium italic transform transition-all duration-500 hover:scale-105">
-              <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient truncate">`If you can see the stars from the gutter,  you can see the universe from your inside.`</span>
+              <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient truncate">`If you can see stars from gutter,<br />  you are the one brother!.`</span>
             </p>
           </div>
 
