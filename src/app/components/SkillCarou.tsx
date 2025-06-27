@@ -18,7 +18,7 @@ export default function SkillsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [progress, setProgress] = useState(0);
+  // const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const progressTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -69,14 +69,14 @@ export default function SkillsCarousel() {
     if (!isPaused && isLoaded) {
       if (timerRef.current) clearTimeout(timerRef.current);
       if (progressTimerRef.current) clearInterval(progressTimerRef.current);
-      setProgress(0);
+      // setProgress(0);
       const progressInterval = 40;
-      const steps = 4000 / progressInterval;
+      // const steps = 4000 / progressInterval;
       progressTimerRef.current = setInterval(() => {
-        setProgress((prev) => {
-          const newProgress = prev + 100 / steps;
-          return newProgress > 100 ? 100 : newProgress;
-        });
+        // setProgress((prev) => {
+        //   const newProgress = prev + 100 / steps;
+        //   return newProgress > 100 ? 100 : newProgress;
+        // });
       }, progressInterval);
       timerRef.current = setTimeout(() => {
         setCurrentIndex((prev) => (prev + 1) % totalSlides);

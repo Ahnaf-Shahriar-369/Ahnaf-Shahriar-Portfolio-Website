@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 
 import { useEffect } from "react";
 import Navbar from "./components/NavBar";
@@ -74,7 +74,7 @@ import SkillsCarousel from "./components/SkillCarou";
 
 export default function Home() {
 
-const { t } = useTranslation();
+// const { t } = useTranslation();
 
 
 
