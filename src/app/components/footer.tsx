@@ -216,7 +216,7 @@ export default function FooterSection() {
           {/* Copyright */}
           <div className="text-center mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-gray-700 animate-[fadeInUp_0.8s_1s_ease-out_forwards]">
             <p className="text-gray-400 text-sm transform transition-all duration-300 hover:text-gray-300">
-              ©All Rights Reserved 2025 | Made with ❤️ by - Ahnaf Shahriar
+              ©All Rights Reserved 2025 | Made with ❤️ by <br /> - Ahnaf Shahriar
             </p>
           </div>
         </div>

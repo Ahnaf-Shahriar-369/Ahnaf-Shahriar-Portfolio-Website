@@ -479,6 +479,24 @@ body {
   width: 1.5rem; height: 1.5rem;
   background: rgba(218, 13, 112, 0.4);
 }
+
+
+
+/* pages/globals.css */
+
+body {
+  cursor: url('/cursor.png'), auto !important;
+}
+
+button,  select, textarea, option , a, link, button,img,.skill-card, .project-card, .project-card:hover, .project-card:active, .project-card:focus {
+  cursor: url('/pointer.cur'), pointer !important;
+}
+
+h1, h2, h3, h4, h5, h6, p, input, textarea {
+  cursor: url('/text.png'), text !important;
+}
+
+
 /* ========================================================================
    (End of 75+ lines – add your own to reach 169 as needed)
    ======================================================================== */

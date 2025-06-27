@@ -34,7 +34,7 @@ export default function ProjectCard() {
   return (
     <TooltipProvider>
       <div className="w-full max-w-xs mx-auto">
-        <Card className="group relative overflow-hidden border-0 bg-[#1a1a2e]/80 backdrop-blur-xl shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+        <Card className="group relative overflow-hidden border-0 bg-[#1a1a2e]/80 backdrop-blur-xl shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 hover:scale-[1.02] cursor-pointer project-card">
           {/* Static Glassmorphism border */}
           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/20 via-violet-500/15 to-purple-500/20 p-[1px]">
             <div className="h-full w-full rounded-lg bg-[#1a1a2e]/95 backdrop-blur-xl" />
