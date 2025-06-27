@@ -1,8 +1,5 @@
 {
-
-  "Description" : "Passionate Full-Stack Developer with expertise in React, Next.js, Node.js, and MongoDB. Dedicated to writing clean and scalable code, optimizing application performance, and mentoring aspiring developers. With a strong foundation in both frontend and backend technologies, I strive to create seamless user experiences while ensuring robust and maintainable codebases.",
-
-
+  "Description": "Passionate Full-Stack Developer with expertise in React, Next.js, Node.js, and MongoDB. Dedicated to writing clean and scalable code, optimizing application performance, and mentoring aspiring developers. With a strong foundation in both frontend and backend technologies, I strive to create seamless user experiences while ensuring robust and maintainable codebases.",
   "Name": "Name",
   "NameValue": "Ahnaf Shahriar",
   "Age": "Age",
@@ -13,11 +10,7 @@
   "EducationValue": "Still studying in 8th Class",
   "Languages": "Languages",
   "LanguagesValue": "English/Bengali/Hindi",
-
-
   "heroTitle": "Hello there!\nI'm Ahnaf\nShahriar",
-
-
   "rotatingTexts": [
     "Full-stack Developer",
     "Front-end Developer",
@@ -27,26 +20,90 @@
     "Web Developer",
     "Software Engineer"
   ],
-
-
   "heroSubtitle": "Full Stack Developer • Next.JS | React | Tailwind CSS | TypeScript | Node.JS | MongoDB | Express.JS | Prisma",
-
-
   "navbarName": "Ahnaf Shahriar",
-
-
   "nav": {
     "home": "Home",
     "about": "About",
     "skills": "Skills",
     "projects": "Projects"
   },
-
-  
-  
   "githubButton": "GitHub",
   "resumeButton": "Get Resume",
-
-  "AboutMe": "About Me"
-
+  "AboutMe": "About Me",
+  "skills_section_description": "I specialize in these key areas to deliver exceptional digital experiences that bring value to your business and delight your users.",
+  "skills": {
+    "github": {
+      "name": "GitHub",
+      "description": "A developer platform for storing, managing, and sharing code, combining Git's distributed version control with access control features."
+    },
+    "react": {
+      "name": "React",
+      "description": "JavaScript library for building user interfaces with component‑based architecture."
+    },
+    "nextjs": {
+      "name": "NextJS",
+      "description": "React framework for server‑side rendering, static sites, and API routes."
+    },
+    "nodejs": {
+      "name": "NodeJS",
+      "description": "JavaScript runtime built on Chrome's V8 engine for server‑side code."
+    },
+    "expressjs": {
+      "name": "ExpressJS",
+      "description": "Fast, unopinionated, minimalist web framework for Node.js."
+    },
+    "mongodb": {
+      "name": "MongoDB",
+      "description": "Document‑oriented NoSQL database for high‑volume data storage."
+    },
+    "tailwind": {
+      "name": "Tailwind CSS",
+      "description": "Utility‑first CSS framework for rapid UI development."
+    },
+    "typescript": {
+      "name": "TypeScript",
+      "description": "A strongly typed programming language built on JavaScript."
+    },
+    "git": {
+      "name": "Git",
+      "description": "A distributed version control system for tracking changes in source code."
+    },
+    "prisma": {
+      "name": "Prisma",
+      "description": "A modern database toolkit for Node.js and TypeScript."
+    },
+    "redux": {
+      "name": "Redux",
+      "description": "A predictable state container for JavaScript applications."
+    },
+    "framermotion": {
+      "name": "Framer Motion",
+      "description": "A production-ready motion library for React."
+    },
+    "figma": {
+      "name": "Figma",
+      "description": "A web-based UI/UX design tool for collaborative design."
+    },
+    "vercel": {
+      "name": "Vercel",
+      "description": "A cloud platform for web development and deployment."
+    },
+    "shadcn": {
+      "name": "ShadCN",
+      "description": "Unstyled, accessible UI components built with Radix and Tailwind CSS."
+    },
+    "bootstrap": {
+      "name": "Bootstrap",
+      "description": "A front-end framework for developing responsive and mobile-first websites."
+    },
+    "material": {
+      "name": "Material UI",
+      "description": "A popular React UI framework with a set of pre-designed components."
+    },
+    "vscode": {
+      "name": "VS Code",
+      "description": "A powerful code editor developed by Microsoft."
+    }
+  }
 }

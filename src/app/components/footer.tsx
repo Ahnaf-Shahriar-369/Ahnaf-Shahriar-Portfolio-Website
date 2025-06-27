@@ -131,7 +131,11 @@ export default function FooterSection() {
                   <div className="absolute inset-0 flex items-center justify-center bg-transparent">
                     <Image  
                       
-                      loading="eager"
+                      
+
+                      unoptimized
+                      
+    
                       
                       src="/sphere (1).gif"
                       width={200}

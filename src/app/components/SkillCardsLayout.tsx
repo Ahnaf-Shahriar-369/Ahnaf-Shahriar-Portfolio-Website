@@ -131,7 +131,16 @@ export default function SkillCardsLayout() {
       name: "Material UI",
       description: "A popular React UI framework with a set of pre-designed components.",
       imageSrc: "/logos/material.svg"
-    }
+    },
+
+    {
+      id: 18,
+      name: "VS Code",
+      description: "A powerful code editor developed by Microsoft.",
+      imageSrc: "/logos/vscode.svg"
+    },
+    
+
 
 
   ], [])

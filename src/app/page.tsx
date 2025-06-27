@@ -1,5 +1,7 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
+
 import { useEffect } from "react";
 import Navbar from "./components/NavBar";
 import Sidebar from "./components/SideBar";
@@ -10,12 +12,13 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 // import SkillCard from "./components/SkillCard";
 // import SkillCardLayout from "./components/SkillCardLayout";
-import SkillCardsLayout from "./components/SkillCardsLayout";
+// import SkillCardsLayout from "./components/SkillCardsLayout";
 // import ProjectCard from "./components/ProjectCard";
 import ProjectLayout from "./components/PcLayout";
 import Contact from "./components/Contact";
 // import NeonTicTacToe from "./components/NeonTicTacToe";
 // import NeonTicTacToe from "./components/Tic";
+import SkillsCarousel from "./components/SkillCarou";
 
 
 
@@ -70,6 +73,12 @@ import Contact from "./components/Contact";
 
 
 export default function Home() {
+
+const { t } = useTranslation();
+
+
+
+
   // Fix for the right side background issue
 
 
@@ -160,19 +169,20 @@ export default function Home() {
 
           {/* <h1 className="text-4xl font-bold">Skills Section</h1> */}
 
-          <SkillCardsLayout></SkillCardsLayout>
+          {/* 
+          <SkillCardsLayout skills={skills} /> */}
 
-
-
-
-      {/* <SkillCard
-        imageSrc="/github-mark.svg"
-        name="GitHub"
-        description="A developer platform for storing, managing, and sharing code, combining Git's distributed version control with access control features."
-        onClick={() => console.log("GitHub card clicked")}
-      /> */}
+          {/* <SkillCard
+  imageSrc="/github-mark.svg"
+  name={t("skills.github.name")}
+  description={t("skills.github.description")}
+  onClick={() => console.log("GitHub card clicked")}
+/> */}
 
       {/* <SkillCardLayout skills={skills} /> */}
+
+
+          <SkillsCarousel></SkillsCarousel>
     
 
         </section>
