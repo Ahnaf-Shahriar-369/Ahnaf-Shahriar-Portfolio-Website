@@ -27,7 +27,7 @@ const logos = [
     `<div class="tech-item" title="${name}">
       <img src="/logos/${name}.svg" alt="${name}" />
       <span class="tooltip">${name}</span>
-     </div>`,
+    </div>`,
 )
 
 export default function LogoSphere() {

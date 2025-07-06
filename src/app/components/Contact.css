@@ -1,0 +1,611 @@
+/* Contact Component Styles - Matching About Component Theme */
+
+/* CSS Variables for Glass Effects */
+:root {
+  --glass-bg-light: rgba(255, 255, 255, 0.15);
+  --glass-bg-light-hover: rgba(255, 255, 255, 0.25);
+  --glass-border-light: rgba(255, 255, 255, 0.3);
+  --glass-shadow-light: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --glass-shadow-light-hover: 0 16px 48px rgba(31, 38, 135, 0.25);
+
+  --glass-bg-dark: rgba(255, 255, 255, 0.08);
+  --glass-bg-dark-hover: rgba(255, 255, 255, 0.15);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow-dark-hover: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme Transition System */
+.theme-transition {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, opacity 0.4s ease, box-shadow 0.4s
+    ease;
+}
+
+/* Contact Container - Same as About */
+.contactContainer {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+  color: #1f2937;
+  position: relative;
+}
+.dark .contactContainer {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a0b2e 25%, #16213e 50%, #0f3460 75%, #2d1b69 100%);
+  color: #ffffff;
+}
+
+/* Contact Title - Same gradient as About */
+.contactTitle {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 20%, #3b82f6 40%, #10b981 60%, #f59e0b 80%, #a855f7 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+  animation: gradientShift 12s ease infinite;
+  filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.1));
+}
+
+.contactTitleUnderline {
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+}
+
+/* Contact Description - Same as About */
+.contactDescription {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--glass-shadow-light), 0 0 40px rgba(168, 85, 247, 0.08);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+.dark .contactDescription {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark), 0 0 40px rgba(168, 85, 247, 0.1);
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact Cards - Same as About Card */
+.contactCard,
+.contactGameCard {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 32px;
+  padding: 2.5rem;
+  box-shadow: var(--glass-shadow-light), 0 0 60px rgba(168, 85, 247, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.dark .contactCard,
+.dark .contactGameCard {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark), 0 0 60px rgba(168, 85, 247, 0.1);
+}
+
+.contactCard::before,
+.contactGameCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: background-color 0.4s ease;
+}
+.dark .contactCard::before,
+.dark .contactGameCard::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.contactCard:hover,
+.contactGameCard:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--glass-shadow-light-hover), 0 0 80px rgba(168, 85, 247, 0.15);
+  background: var(--glass-bg-light-hover);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.dark .contactCard:hover,
+.dark .contactGameCard:hover {
+  box-shadow: var(--glass-shadow-dark-hover), 0 0 80px rgba(168, 85, 247, 0.2);
+  background: var(--glass-bg-dark-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Card Glow Effect */
+.cardGlow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4);
+  border-radius: 34px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.contactCard:hover .cardGlow,
+.contactGameCard:hover .cardGlow {
+  opacity: 0.15;
+}
+.dark .contactCard:hover .cardGlow,
+.dark .contactGameCard:hover .cardGlow {
+  opacity: 0.25;
+}
+
+/* Card Titles */
+.contactCardTitle,
+.contactGameTitle {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.contactCardUnderline {
+  background: linear-gradient(90deg, #a855f7, #ec4899);
+}
+
+/* Form Styles */
+.contactFormGroup {
+  position: relative;
+}
+
+.contactLabel {
+  color: #a855f7;
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+.dark .contactLabel {
+  color: #c084fc;
+}
+
+.contactInputWrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.contactInput,
+.contactTextarea {
+  width: 100%;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 16px;
+  padding: 0.875rem 1rem;
+  color: #1f2937;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+.dark .contactInput,
+.dark .contactTextarea {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  color: #f1f5f9;
+}
+
+.contactInput::placeholder,
+.contactTextarea::placeholder {
+  color: rgba(168, 85, 247, 0.5);
+}
+.dark .contactInput::placeholder,
+.dark .contactTextarea::placeholder {
+  color: rgba(192, 132, 252, 0.5);
+}
+
+.contactInput:focus,
+.contactTextarea:focus {
+  outline: none;
+  border-color: #ec4899;
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.2);
+  background: var(--glass-bg-light-hover);
+}
+.dark .contactInput:focus,
+.dark .contactTextarea:focus {
+  background: var(--glass-bg-dark-hover);
+}
+
+.contactInputGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(45deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.contactFormGroup:focus-within .contactInputGlow {
+  opacity: 1;
+}
+
+/* Submit Button */
+.contactSubmitBtn {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #3b82f6 100%);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: gradientShift 8s ease infinite;
+}
+
+.contactSubmitBtn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+}
+
+.contactSubmitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.contactSubmitGlow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #a855f7, #ec4899, #3b82f6);
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.contactSubmitBtn:hover .contactSubmitGlow {
+  opacity: 0.5;
+}
+
+/* Decorative Elements */
+.contactCardDecor1 {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  border-radius: 50%;
+  filter: blur(1.5rem);
+  transition: background-color 0.4s ease;
+}
+.dark .contactCardDecor1 {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+}
+
+.contactCardDecor2 {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+  border-radius: 50%;
+  filter: blur(1rem);
+  transition: background-color 0.4s ease;
+}
+.dark .contactCardDecor2 {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(168, 85, 247, 0.15));
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes backgroundShine {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-20deg);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.25;
+  }
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes rotateGeometry {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveLines {
+  0% {
+    transform: translate(-50px, -50px);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Utility Classes */
+.animate-backgroundShine {
+  animation: backgroundShine 20s infinite linear;
+}
+.animate-wave {
+  animation: wave 30s ease-in-out infinite;
+}
+.animate-floatParticle {
+  animation: floatParticle 12s ease-in-out infinite;
+}
+.animate-floatIcon {
+  animation: floatIcon 10s ease-in-out infinite;
+}
+.animate-rotateGeometry {
+  animation: rotateGeometry 50s linear infinite;
+}
+.animate-moveLines {
+  animation: moveLines 80s linear infinite;
+}
+
+/* Mobile-first utility classes */
+.w-full-mobile {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .w-full-mobile {
+    width: auto;
+  }
+}
+
+/* Fix text scaling on mobile */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 640px) {
+  .contactContainer {
+    padding: 0.5rem;
+  }
+
+  .contactTitle {
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .contactDescription {
+    padding: 1rem;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  .contactCard,
+  .contactGameCard {
+    padding: 1rem;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+  }
+
+  .contactCardTitle,
+  .contactGameTitle {
+    font-size: 1.25rem;
+  }
+
+  .contactInput,
+  .contactTextarea {
+    padding: 0.625rem;
+    font-size: 0.875rem;
+    border-radius: 12px;
+  }
+
+  .contactSubmitBtn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    border-radius: 12px;
+  }
+
+  .contactFormGroup {
+    margin-bottom: 1rem;
+  }
+
+  /* Fix grid layout on mobile */
+  /* .container.mx-auto.max-w-7xl .grid.lg\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  } */
+}
+
+@media (max-width: 768px) {
+  .contactContainer {
+    padding: 1rem;
+  }
+
+  .contactTitle {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .contactDescription {
+    padding: 1.25rem;
+    border-radius: 18px;
+    font-size: 0.9375rem;
+  }
+
+  .contactCard,
+  .contactGameCard {
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+
+  .contactCardTitle,
+  .contactGameTitle {
+    font-size: 1.375rem;
+  }
+
+  .contactInput,
+  .contactTextarea {
+    padding: 0.75rem;
+    font-size: 0.9375rem;
+    border-radius: 14px;
+  }
+
+  .contactSubmitBtn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    border-radius: 14px;
+  }
+
+  /* Better spacing for tablet */
+  .container.mx-auto.max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .contactTitle {
+    font-size: 3rem;
+  }
+
+  .contactDescription {
+    max-width: 100%;
+  }
+
+  /* Stack layout on tablet */
+  /* .container.mx-auto.max-w-7xl .grid.lg\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  } */
+
+  .contactCard,
+  .contactGameCard {
+    max-width: 100%;
+  }
+}
+
+/* Fix container width issues */
+@media (max-width: 1280px) {
+  .container.mx-auto.max-w-7xl {
+    max-width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Ensure proper spacing on all screen sizes */
+.contactContainer .container {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Fix overflow issues */
+.contactContainer {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Better mobile form layout */
+@media (max-width: 640px) {
+  .contactFormGroup {
+    width: 100%;
+  }
+
+  .contactInputWrapper {
+    width: 100%;
+  }
+
+  .contactInput,
+  .contactTextarea {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contactSubmitBtn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* GPU Acceleration */
+.contactCard,
+.contactGameCard,
+.cardGlow {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

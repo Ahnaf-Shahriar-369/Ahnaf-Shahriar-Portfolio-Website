@@ -1,0 +1,281 @@
+/* CSS Custom Properties for Glass Effects */
+:root {
+  --glass-bg-light: rgba(255, 255, 255, 0.25);
+  --glass-bg-dark: rgba(26, 26, 46, 0.4);
+  --glass-border-light: rgba(255, 255, 255, 0.3);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-shadow-light: 0 8px 32px rgba(31, 38, 135, 0.37);
+  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --glass-bg-light-hover: rgba(255, 255, 255, 0.35);
+  --glass-bg-dark-hover: rgba(26, 26, 46, 0.6);
+  --glass-shadow-light-hover: 0 12px 40px rgba(31, 38, 135, 0.5);
+  --glass-shadow-dark-hover: 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* Theme Transition System */
+.theme-transition {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, opacity 0.4s ease, box-shadow 0.4s
+    ease;
+}
+
+/* Project Card - Same as About Card */
+.projectCard {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 32px;
+  box-shadow: var(--glass-shadow-light), 0 0 60px rgba(168, 85, 247, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.dark .projectCard {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark), 0 0 60px rgba(168, 85, 247, 0.1);
+}
+
+.projectCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: background-color 0.4s ease;
+}
+.dark .projectCard::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.projectCardHovered {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--glass-shadow-light-hover), 0 0 80px rgba(168, 85, 247, 0.15);
+  background: var(--glass-bg-light-hover);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.dark .projectCardHovered {
+  box-shadow: var(--glass-shadow-dark-hover), 0 0 80px rgba(168, 85, 247, 0.2);
+  background: var(--glass-bg-dark-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Project Card Title */
+.projectCardTitle {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.projectCardTitle:hover {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 30%, #3b82f6 60%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transform: scale(1.02);
+}
+
+/* Project Card Description */
+.projectCardDescription {
+  color: rgba(0, 0, 0, 0.7);
+  transition: color 0.3s ease;
+}
+.dark .projectCardDescription {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.projectCard:hover .projectCardDescription {
+  color: rgba(0, 0, 0, 0.85);
+}
+.dark .projectCard:hover .projectCardDescription {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Technology Badges */
+.techBadge {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 50%;
+  box-shadow: var(--glass-shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+.dark .techBadge {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark);
+}
+
+.techBadge:hover {
+  transform: scale(1.1);
+  box-shadow: var(--glass-shadow-light-hover), 0 0 20px rgba(168, 85, 247, 0.2);
+  background: var(--glass-bg-light-hover);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+.dark .techBadge:hover {
+  box-shadow: var(--glass-shadow-dark-hover), 0 0 20px rgba(168, 85, 247, 0.3);
+  background: var(--glass-bg-dark-hover);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+/* Action Buttons */
+.actionButton {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 50%;
+  box-shadow: var(--glass-shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+}
+.dark .actionButton {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark);
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+  box-shadow: var(--glass-shadow-light-hover), 0 0 20px rgba(168, 85, 247, 0.2);
+  background: var(--glass-bg-light-hover);
+  border-color: rgba(168, 85, 247, 0.3);
+}
+.dark .actionButton:hover {
+  box-shadow: var(--glass-shadow-dark-hover), 0 0 20px rgba(168, 85, 247, 0.3);
+  background: var(--glass-bg-dark-hover);
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+/* Image Container */
+.projectImageContainer {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: 20px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.dark .projectImageContainer {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+.projectCard:hover .projectImageContainer {
+  border-color: rgba(168, 85, 247, 0.4);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+}
+.dark .projectCard:hover .projectImageContainer {
+  border-color: rgba(168, 85, 247, 0.5);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+}
+
+/* Card Glow Effect */
+.cardGlow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4);
+  border-radius: 34px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.projectCard:hover .cardGlow {
+  opacity: 0.15;
+}
+.dark .projectCard:hover .cardGlow {
+  opacity: 0.25;
+}
+
+/* Decorative Elements */
+.projectCardDecor1 {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(236, 72, 153, 0.1));
+  border-radius: 50%;
+  filter: blur(1.5rem);
+  transition: background-color 0.4s ease;
+}
+.dark .projectCardDecor1 {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+}
+
+.projectCardDecor2 {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1));
+  border-radius: 50%;
+  filter: blur(1rem);
+  transition: background-color 0.4s ease;
+}
+.dark .projectCardDecor2 {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(168, 85, 247, 0.15));
+}
+
+/* Floating Particles */
+.cardParticle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.projectCard:hover .cardParticle {
+  opacity: 0.5;
+}
+
+/* Tooltip */
+.cardTooltip {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  border-radius: 8px;
+  box-shadow: var(--glass-shadow-dark);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .projectCard {
+    border-radius: 24px;
+  }
+
+  .projectImageContainer {
+    border-radius: 16px;
+  }
+
+  .theme-transition {
+    transition-duration: 0.3s;
+  }
+}
+
+/* GPU Acceleration */
+.projectCard,
+.cardGlow,
+.techBadge,
+.actionButton {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

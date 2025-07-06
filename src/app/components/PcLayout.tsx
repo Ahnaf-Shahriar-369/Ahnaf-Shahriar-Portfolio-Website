@@ -3,161 +3,168 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import ProjectCard from "./ProjectCard"
+import "./PcLayout.css"
+import { useTranslation } from "react-i18next"
 
 // Sample project data - replace with your actual projects
 const projectsData = [
   {
     id: 1,
-    title: "CoinEcho - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Stay informed with real-time cryptocurrency updates, expert opinions, and in-depth analysis. CoinEcho brings the world of crypto to your fingertips. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "React" },
-      { id: 2, name: "Next.js" },
-      { id: 3, name: "TypeScript" },
-      { id: 4, name: "Tailwind" },
-      { id: 5, name: "Node.js" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/coinecho",
-    liveUrl: "https://coinecho.example.com",
-    imageUrl: "/coin-echo.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 2,
-    title: "SnapLoom - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Transform your images with AI-powered tools for background removal, recoloring, aspect ratio resizing, and image generation. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "Python" },
-      { id: 2, name: "FastAPI" },
-      { id: 3, name: "React" },
-      { id: 4, name: "TensorFlow" },
-      { id: 5, name: "OpenCV" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/snaploom",
-    liveUrl: "https://snaploom.example.com",
-    imageUrl: "/snaploom.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 3,
-    title: "Free Games Hub - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Unleash your inner gamer at FreeGamesHub! Dive into a treasure trove of free PC games and browser-based delights. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "Vue.js" },
-      { id: 2, name: "Nuxt.js" },
-      { id: 3, name: "MongoDB" },
-      { id: 4, name: "Express" },
-      { id: 5, name: "Socket.io" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/freegameshub",
-    liveUrl: "https://freegameshub.example.com",
-    imageUrl: "/games-hub.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 4,
-    title: "TaskFlow - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Streamline your workflow with our intelligent task management system. Boost productivity with AI-powered scheduling and team collaboration. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "React" },
-      { id: 2, name: "GraphQL" },
-      { id: 3, name: "PostgreSQL" },
-      { id: 4, name: "Redis" },
-      { id: 5, name: "Docker" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/taskflow",
-    liveUrl: "https://taskflow.example.com",
-    imageUrl: "/taskflow.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 5,
-    title: "EcoTracker - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Monitor your environmental impact with our comprehensive carbon footprint tracking application. Make sustainable choices with data-driven insights. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "Angular" },
-      { id: 2, name: "NestJS" },
-      { id: 3, name: "MySQL" },
-      { id: 4, name: "Chart.js" },
-      { id: 5, name: "AWS" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/ecotracker",
-    liveUrl: "https://ecotracker.example.com",
-    imageUrl: "/ecotracker.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 6,
-    title: "CodeMentor - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Learn programming through interactive tutorials and AI-powered code reviews. Perfect for beginners and advanced developers alike. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "Svelte" },
-      { id: 2, name: "SvelteKit" },
-      { id: 3, name: "Supabase" },
-      { id: 4, name: "Prisma" },
-      { id: 5, name: "Vercel" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/codementor",
-    liveUrl: "https://codementor.example.com",
-    imageUrl: "/codementor.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 7,
-    title: "HealthSync - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Synchronize your health data across multiple devices and platforms. Get personalized insights and recommendations for better wellness. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "React Native" },
-      { id: 2, name: "Expo" },
-      { id: 3, name: "Firebase" },
-      { id: 4, name: "TensorFlow" },
-      { id: 5, name: "HealthKit" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/healthsync",
-    liveUrl: "https://healthsync.example.com",
-    imageUrl: "/healthsync.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 8,
-    title: "ArtisanMarket - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Connect local artisans with customers through our beautiful marketplace platform. Discover unique handcrafted items and support local creators. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "Next.js" },
-      { id: 2, name: "Stripe" },
-      { id: 3, name: "Sanity" },
-      { id: 4, name: "Tailwind" },
-      { id: 5, name: "Framer Motion" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/artisanmarket",
-    liveUrl: "https://artisanmarket.example.com",
-    imageUrl: "/artisan-market.webp",
+    githubUrl: "",
+    liveUrl: "",
+    imageUrl: "",
   },
   {
     id: 9,
-    title: "WeatherWise - Coming Soon",
+    title: "Coming Soon",
     description:
-      "Get accurate weather forecasts with beautiful visualizations and smart notifications. Plan your day with confidence using our advanced weather analytics. Still making improvements and adding new features.",
+      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     technologies: [
-      { id: 1, name: "Flutter" },
-      { id: 2, name: "Dart" },
-      { id: 3, name: "OpenWeather API" },
-      { id: 4, name: "SQLite" },
-      { id: 5, name: "Provider" },
+      { id: 1, name: "" },
+      { id: 2, name: "" },
+      { id: 3, name: "" },
+      { id: 4, name: "" },
+      { id: 5, name: "" },
     ],
-    githubUrl: "https://github.com/example/weatherwise",
-    liveUrl: "https://weatherwise.example.com",
-    imageUrl: "/weatherwise.webp",
+    githubUrl: "#",
+    liveUrl: "#",
+    imageUrl: "",
   },
 ]
 
 export default function ProjectLayout() {
+
+  const { t } = useTranslation()
+
+
   const [showMore, setShowMore] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
   const [isLoadingLess, setIsLoadingLess] = useState(false)
   const [visibleProjects, setVisibleProjects] = useState<typeof projectsData>([])
+  const [isButtonHovered, setIsButtonHovered] = useState(false)
 
   // Initial loading effect
   useEffect(() => {
@@ -187,7 +194,17 @@ export default function ProjectLayout() {
     setIsLoadingLess(false)
   }
 
-  // Simplified animation variants
+  // Floating particles data
+  const particles = [
+    { top: "15%", left: "15%", size: "3px", gradient: "linear-gradient(45deg, #a855f7, #ec4899)", delay: "0s" },
+    { top: "25%", right: "20%", size: "4px", gradient: "linear-gradient(45deg, #3b82f6, #a855f7)", delay: "4s" },
+    { bottom: "35%", left: "25%", size: "2px", gradient: "linear-gradient(45deg, #ec4899, #f59e0b)", delay: "8s" },
+    { top: "65%", right: "30%", size: "3px", gradient: "linear-gradient(45deg, #8b5cf6, #10b981)", delay: "2s" },
+    { top: "45%", left: "10%", size: "2px", gradient: "linear-gradient(45deg, #10b981, #3b82f6)", delay: "6s" },
+    { bottom: "20%", right: "15%", size: "3px", gradient: "linear-gradient(45deg, #f59e0b, #ec4899)", delay: "10s" },
+  ]
+
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -217,39 +234,25 @@ export default function ProjectLayout() {
     },
   }
 
-  const buttonVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3, delay: 0.2 },
-    },
-    hover: { scale: 1.02, transition: { duration: 0.2 } },
-    tap: { scale: 0.98, transition: { duration: 0.1 } },
-  }
-
-  // Optimized loading skeleton
+  // Loading skeleton component
   const LoadingSkeleton = () => (
     <div className="w-full max-w-xs mx-auto">
-      <div className="relative overflow-hidden  bg-[#1a1a2e]/80 backdrop-blur-xl shadow-xl rounded-lg border border-[#e91e63]/20">
+      <div className="loadingSkeleton theme-transition relative overflow-hidden shadow-xl rounded-lg">
         <div className="relative p-3 space-y-2">
-          <div className="relative h-44 rounded-lg bg-gradient-to-br from-[#16213e]/60 via-[#e91e63]/5 to-[#16213e]/60 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#e91e63]/8 to-transparent opacity-50" />
+          <div className="loadingSkeletonImage theme-transition relative h-44 rounded-lg overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-50" />
           </div>
           <div className="flex items-center justify-center">
             <div className="flex -space-x-3">
               {[...Array(5)].map((_, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full bg-gradient-to-br from-[#16213e]/60 via-[#e91e63]/8 to-[#16213e]/60 border border-[#e91e63]/15"
-                />
+                <div key={i} className="loadingSkeletonTech theme-transition w-8 h-8 rounded-full" />
               ))}
             </div>
           </div>
           <div className="space-y-1">
-            <div className="h-6 bg-gradient-to-r from-[#16213e]/60 via-[#e91e63]/8 to-[#16213e]/60 rounded" />
-            <div className="h-4 bg-gradient-to-r from-[#16213e]/40 via-[#e91e63]/5 to-[#16213e]/40 rounded" />
-            <div className="h-4 w-3/4 bg-gradient-to-r from-[#16213e]/40 via-[#e91e63]/5 to-[#16213e]/40 rounded" />
+            <div className="loadingSkeletonText theme-transition h-6 rounded" />
+            <div className="loadingSkeletonText theme-transition h-4 rounded" />
+            <div className="loadingSkeletonText theme-transition h-4 w-3/4 rounded" />
           </div>
         </div>
       </div>
@@ -257,81 +260,89 @@ export default function ProjectLayout() {
   )
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 dark:bg-[#0f0f23] overflow-hidden w-full h-full bg-amber-50">
-      {/* ========================================
-          OPTIMIZED STATIC BACKGROUND SYSTEM
-      ======================================== */}
+    <section className="projectsContainer theme-transition min-h-screen relative overflow-hidden w-full" id="projects">
+      {/* Background Effects - Same as About */}
+      <div
+        className="absolute top-0 left-0 w-[200%] h-full transform -skew-x-12 z-[1] animate-backgroundShine"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.04), rgba(236, 72, 153, 0.06), rgba(59, 130, 246, 0.04), transparent)",
+        }}
+      />
 
-      {/* Base background layers */}
-      <div className="absolute inset-0 bg-[#0f0f23]" />
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e]/30 via-transparent to-[#16213e]/20" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-[#e91e63]/5 via-transparent to-[#9c27b0]/5" />
-
-      {/* Static decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Static orbs */}
-        <div className="absolute top-1/4 left-1/6 w-32 h-32 bg-[#e91e63]/6 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/6 w-40 h-40 bg-[#9c27b0]/4 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#673ab7]/3 rounded-full blur-3xl" />
-
-        {/* Static geometric shapes */}
-        <div className="absolute top-1/5 left-1/8 w-4 h-4 border border-[#e91e63]/15 rotate-45" />
-        <div className="absolute bottom-1/4 right-1/8 w-3 h-3 border border-[#9c27b0]/20 rounded-full" />
-        <div className="absolute top-1/2 right-1/5 w-2 h-2 bg-[#673ab7]/10 rotate-45" />
-        <div className="absolute top-1/3 left-1/3 w-1 h-1 bg-[#e91e63]/20 rounded-full" />
-        <div className="absolute bottom-1/3 right-1/3 w-1.5 h-1.5 bg-[#9c27b0]/15 rounded-full" />
-
-        {/* Static particles constellation */}
-        <div className="absolute top-1/6 left-1/4 w-1 h-1 bg-[#e91e63]/25 rounded-full" />
-        <div className="absolute top-2/3 right-1/4 w-0.5 h-0.5 bg-[#9c27b0]/30 rounded-full" />
-        <div className="absolute bottom-1/6 left-1/3 w-1 h-1 bg-[#673ab7]/20 rounded-full" />
-        <div className="absolute top-1/4 right-1/2 w-0.5 h-0.5 bg-[#e91e63]/25 rounded-full" />
-        <div className="absolute bottom-1/2 left-1/5 w-1 h-1 bg-[#9c27b0]/20 rounded-full" />
-      </div>
-
-      {/* Static grid pattern */}
-      <div className="absolute inset-0 opacity-[0.008] pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[1]">
         <div
-          className="w-full h-full"
+          className="absolute -top-1/2 -left-1/2 w-[150%] h-[150%] rounded-full animate-wave"
           style={{
-            backgroundImage: `
-              linear-gradient(rgba(233, 30, 99, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(233, 30, 99, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "80px 80px",
+            background: "radial-gradient(circle, rgba(168, 85, 247, 0.02) 0%, transparent 70%)",
+            animationDelay: "0s",
+          }}
+        />
+        <div
+          className="absolute -top-[30%] -right-1/2 w-[150%] h-[150%] rounded-full animate-wave"
+          style={{
+            background: "radial-gradient(circle, rgba(236, 72, 153, 0.02) 0%, transparent 70%)",
+            animationDelay: "10s",
           }}
         />
       </div>
 
-      {/* Static corner glows */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-48 h-48 bg-gradient-to-br from-[#e91e63]/8 to-transparent rounded-br-full" />
-        <div className="absolute bottom-0 right-0 w-56 h-56 bg-gradient-to-tl from-[#9c27b0]/6 to-transparent rounded-tl-full" />
-        <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-[#673ab7]/5 to-transparent rounded-bl-full" />
-        <div className="absolute bottom-0 left-0 w-44 h-44 bg-gradient-to-tr from-[#e91e63]/7 to-transparent rounded-tr-full" />
+      {/* Floating Particles */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[2]">
+        {particles.map((particle, i) => (
+          <div
+            key={i}
+            className="floatingParticle"
+            style={{
+              ...particle,
+              width: particle.size,
+              height: particle.size,
+              background: particle.gradient,
+              animationDelay: particle.delay,
+            }}
+          />
+        ))}
       </div>
 
-      {/* Main content container */}
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Title Section */}
-        <motion.div variants={titleVariants} initial="hidden" animate="visible" className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-[#e91e63] via-[#9c27b0] to-[#673ab7] bg-clip-text text-transparent">
-              My Projects
-            </span>
-          </h2>
-          <p className="text-gray-400 dark:text-pink-500 text-lg max-w-2xl mx-auto mb-8">
-            A showcase of my recent work and creative solutions. Each project represents a unique challenge and learning
-            experience.
-          </p>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#e91e63] to-[#9c27b0] mx-auto rounded-full" />
+      {/* Geometric Shapes */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[1]">
+        <div
+          className="absolute top-[15%] right-[10%] w-[40px] h-[40px] rounded-full animate-rotateGeometry"
+          style={{
+            border: "1px solid rgba(168, 85, 247, 0.15)",
+            animationDelay: "0s",
+          }}
+        />
+        <div
+          className="absolute bottom-[25%] left-[8%] w-[30px] h-[30px] animate-rotateGeometry"
+          style={{
+            border: "1px solid rgba(236, 72, 153, 0.12)",
+            transform: "rotate(45deg)",
+            animationDelay: "15s",
+          }}
+        />
+      </div>
 
-          {/* Static decorative elements around title */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 pointer-events-none">
-            <div className="absolute top-4 left-1/4 w-1.5 h-1.5 bg-[#e91e63]/20 rounded-full" />
-            <div className="absolute top-8 right-1/3 w-1 h-1 bg-[#9c27b0]/25 rounded-full" />
-            <div className="absolute top-12 left-1/3 w-1.2 h-1.2 bg-[#673ab7]/15 rounded-full" />
-          </div>
+      <div className="container mx-auto max-w-7xl relative z-10 py-24 md:py-32 px-6 md:px-12 lg:px-20">
+        {/* Header Section */}
+        <motion.div variants={titleVariants} initial="hidden" animate="visible" className="text-center mb-20 md:mb-32">
+          <h2 className="projectsTitle text-5xl md:text-7xl font-bold mb-8">{t("projects_title")}</h2>
+
+          <motion.div
+            className="projectsTitleUnderline w-24 h-1 mx-auto mb-12 rounded-full theme-transition"
+            initial={{ width: 0 }}
+            animate={{ width: 96 }}
+            transition={{ duration: 1, delay: 0.3 }}
+          />
+          <motion.div
+            className="projectsDescription text-lg md:text-xl max-w-4xl mx-auto leading-relaxed theme-transition"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <p>{t("projects_section_description")}</p>
+
+          </motion.div>
         </motion.div>
 
         {/* Projects Grid */}
@@ -359,39 +370,46 @@ export default function ProjectLayout() {
               animate="visible"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
             >
-              {visibleProjects.map((project, ) => {
-                  return (
-                      <motion.div
-                          key={project.id}
-                          variants={cardVariants}
-                          whileHover={{ y: -6, transition: { duration: 0.2 } }}
-                          className="flex justify-center"
-                      >
-                          <ProjectCard />
-                      </motion.div>
-                  )
-              })}
+              {visibleProjects.map((project) => (
+                <motion.div
+                  key={project.id}
+                  variants={cardVariants}
+                  whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                  className="flex justify-center"
+                >
+                  <ProjectCard project={project} />
+                </motion.div>
+              ))}
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Show More/Less Button */}
-        <motion.div variants={buttonVariants} initial="hidden" animate="visible" className="flex justify-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex justify-center"
+        >
           <AnimatePresence mode="wait">
             {!showMore ? (
               <motion.button
                 key="show-more"
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
                 onClick={handleShowMore}
                 disabled={isLoadingMore}
-                className="relative group px-8 py-4 bg-[#1a1a2e]/80 border border-[#e91e63]/30 rounded-lg backdrop-blur-sm shadow-lg shadow-[#e91e63]/8 transition-all duration-300 hover:border-[#e91e63]/50 hover:shadow-[#e91e63]/15 disabled:opacity-50 disabled:cursor-not-allowed"
+                onMouseEnter={() => setIsButtonHovered(true)}
+                onMouseLeave={() => setIsButtonHovered(false)}
+                className={`projectsButton theme-transition relative ${
+                  isButtonHovered ? "projectsButtonHovered" : ""
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#e91e63]/0 via-[#9c27b0]/0 to-[#e91e63]/0 group-hover:from-[#e91e63]/5 group-hover:via-[#9c27b0]/3 group-hover:to-[#e91e63]/5 transition-all duration-300" />
+                <div className="projectsDecor1 theme-transition" />
+                <div className="projectsDecor2 theme-transition" />
 
                 <div className="relative flex items-center space-x-3">
                   <AnimatePresence mode="wait">
@@ -403,8 +421,9 @@ export default function ProjectLayout() {
                         exit={{ opacity: 0, scale: 0.8 }}
                         className="flex items-center space-x-3"
                       >
-                        <div className="w-5 h-5 border-2 border-[#e91e63] border-t-transparent rounded-full animate-spin" />
-                        <span className="text-white font-medium">Loading More Projects...</span>
+                        <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+<span className="font-medium">{t("projects_loading_more")}</span>
+
                       </motion.div>
                     ) : (
                       <motion.div
@@ -414,29 +433,31 @@ export default function ProjectLayout() {
                         exit={{ opacity: 0, scale: 0.8 }}
                         className="flex items-center space-x-3"
                       >
-                        <span className="text-white font-medium">Show More Projects</span>
-                        <span className="text-[#e91e63] text-lg">→</span>
+<span className="font-medium">{t("projects_show_more")}</span>
+                        <span className="text-lg">→</span>
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
-
-                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#e91e63]/0 via-[#9c27b0]/0 to-[#e91e63]/0 group-hover:from-[#e91e63]/10 group-hover:via-[#9c27b0]/5 group-hover:to-[#e91e63]/10 blur transition-all duration-300 opacity-0 group-hover:opacity-100" />
               </motion.button>
             ) : (
               <motion.button
                 key="show-less"
-                variants={buttonVariants}
-                whileHover="hover"
-                whileTap="tap"
                 onClick={handleShowLess}
                 disabled={isLoadingLess}
-                className="relative group px-8 py-4 bg-[#1a1a2e]/80 border border-[#e91e63]/30 rounded-lg backdrop-blur-sm shadow-lg shadow-[#e91e63]/8 transition-all duration-300 hover:border-[#e91e63]/50 hover:shadow-[#e91e63]/15 disabled:opacity-50 disabled:cursor-not-allowed"
+                onMouseEnter={() => setIsButtonHovered(true)}
+                onMouseLeave={() => setIsButtonHovered(false)}
+                className={`projectsButton theme-transition relative ${
+                  isButtonHovered ? "projectsButtonHovered" : ""
+                } disabled:opacity-50 disabled:cursor-not-allowed`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-[#e91e63]/0 via-[#9c27b0]/0 to-[#e91e63]/0 group-hover:from-[#e91e63]/5 group-hover:via-[#9c27b0]/3 group-hover:to-[#e91e63]/5 transition-all duration-300" />
+                <div className="projectsDecor1 theme-transition" />
+                <div className="projectsDecor2 theme-transition" />
 
                 <div className="relative flex items-center space-x-3">
                   <AnimatePresence mode="wait">
@@ -448,8 +469,9 @@ export default function ProjectLayout() {
                         exit={{ opacity: 0, scale: 0.8 }}
                         className="flex items-center space-x-3"
                       >
-                        <div className="w-5 h-5 border-2 border-[#e91e63] border-t-transparent rounded-full animate-spin" />
-                        <span className="text-white font-medium">Collapsing Projects...</span>
+                        <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        <span className="font-medium">{t("projects_collapsing")}</span>
+
                       </motion.div>
                     ) : (
                       <motion.div
@@ -459,19 +481,27 @@ export default function ProjectLayout() {
                         exit={{ opacity: 0, scale: 0.8 }}
                         className="flex items-center space-x-3"
                       >
-                        <span className="text-[#e91e63] text-lg">←</span>
-                        <span className="text-white font-medium">Show Less Projects</span>
+                        <span className="text-lg">←</span>
+                        <span className="font-medium">{t("projects_show_less")}</span>
+
                       </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
-
-                <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#e91e63]/0 via-[#9c27b0]/0 to-[#e91e63]/0 group-hover:from-[#e91e63]/10 group-hover:via-[#9c27b0]/5 group-hover:to-[#e91e63]/10 blur transition-all duration-300 opacity-0 group-hover:opacity-100" />
               </motion.button>
             )}
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {/* Pattern Overlay */}
+      <div
+        className="absolute top-0 left-0 w-[200%] h-[200%] z-0"
+        style={{
+          background:
+            "repeating-linear-gradient(45deg, transparent, transparent 400px, rgba(168, 85, 247, 0.008) 400px, rgba(168, 85, 247, 0.008) 402px)",
+        }}
+      />
     </section>
   )
 }

@@ -1,0 +1,545 @@
+/* Footer Component Styles - Matching About Component Theme with Exact Light/Dark Mode Colors */
+
+/* CSS Variables for Glass Effects */
+:root {
+  --glass-bg-light: rgba(255, 255, 255, 0.15);
+  --glass-bg-light-hover: rgba(255, 255, 255, 0.25);
+  --glass-border-light: rgba(255, 255, 255, 0.3);
+  --glass-shadow-light: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --glass-shadow-light-hover: 0 16px 48px rgba(31, 38, 135, 0.25);
+
+  --glass-bg-dark: rgba(255, 255, 255, 0.08);
+  --glass-bg-dark-hover: rgba(255, 255, 255, 0.15);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow-dark-hover: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme Transition System */
+.theme-transition {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, opacity 0.4s ease, box-shadow 0.4s
+    ease;
+}
+
+/* Footer Container - Exact Same Colors as About Component */
+.footerContainer {
+  /* Light Mode - Same as About */
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+  color: #1f2937;
+  position: relative;
+  min-height: 60vh;
+}
+.dark .footerContainer {
+  /* Dark Mode - Same as About */
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a0b2e 25%, #16213e 50%, #0f3460 75%, #2d1b69 100%);
+  color: #ffffff;
+}
+
+/* Footer Content */
+.footerContent {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Footer Cards - Same as About Cards */
+.footerQuoteCard,
+.footerTextCard,
+.footerCopyrightCard {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--glass-shadow-light), 0 0 40px rgba(168, 85, 247, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.dark .footerQuoteCard,
+.dark .footerTextCard,
+.dark .footerCopyrightCard {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark), 0 0 40px rgba(168, 85, 247, 0.1);
+}
+
+.footerQuoteCard::before,
+.footerTextCard::before,
+.footerCopyrightCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: background-color 0.4s ease;
+}
+.dark .footerQuoteCard::before,
+.dark .footerTextCard::before,
+.dark .footerCopyrightCard::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.footerQuoteCard:hover,
+.footerTextCard:hover,
+.footerCopyrightCard:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--glass-shadow-light-hover), 0 0 60px rgba(168, 85, 247, 0.15);
+  background: var(--glass-bg-light-hover);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.dark .footerQuoteCard:hover,
+.dark .footerTextCard:hover,
+.dark .footerCopyrightCard:hover {
+  box-shadow: var(--glass-shadow-dark-hover), 0 0 60px rgba(168, 85, 247, 0.2);
+  background: var(--glass-bg-dark-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Card Glow Effect */
+.cardGlow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4);
+  border-radius: 26px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.footerQuoteCard:hover .cardGlow,
+.footerTextCard:hover .cardGlow,
+.footerCopyrightCard:hover .cardGlow {
+  opacity: 0.15;
+}
+.dark .footerQuoteCard:hover .cardGlow,
+.dark .footerTextCard:hover .cardGlow,
+.dark .footerCopyrightCard:hover .cardGlow {
+  opacity: 0.25;
+}
+
+/* Footer Quote - Same as About */
+.footerQuote {
+  text-align: center;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+.dark .footerQuote {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.footerQuoteText {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 20%, #3b82f6 40%, #10b981 60%, #f59e0b 80%, #a855f7 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  animation: gradientShift 12s ease infinite;
+  filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.1));
+}
+
+/* Footer Headings - Same as About */
+.footerHeading {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 20%, #3b82f6 40%, #10b981 60%, #f59e0b 80%, #a855f7 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 12s ease infinite;
+  filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.1));
+  transition: transform 0.5s ease;
+}
+
+.footerHeading:hover {
+  transform: translateX(8px);
+}
+
+/* Footer Description - Same as About */
+.footerDescription {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  transition: color 0.5s ease;
+}
+.dark .footerDescription {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.footerDescription:hover {
+  color: rgba(0, 0, 0, 1);
+}
+.dark .footerDescription:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+/* Footer Stars - Same as About */
+.footerStar {
+  background: linear-gradient(45deg, #a855f7, #ec4899);
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.6);
+}
+
+/* Footer Landscape - Same as About */
+.footerLandscape {
+  fill: rgba(31, 41, 55, 0.3);
+  transition: fill 0.4s ease;
+}
+.dark .footerLandscape {
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+/* Footer GIF Container - Same as About */
+.footerGifContainer {
+  position: relative;
+}
+
+.footerGifWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.footerGif {
+  animation: pulseSlow 3s ease-in-out infinite;
+}
+
+.footerGifOverlay {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerGifGradient {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(168, 85, 247, 0.1) 50%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+}
+
+.footerGifBorder {
+  border-color: rgba(168, 85, 247, 0.3);
+  animation: spin 8s linear infinite;
+}
+
+.footerGifHover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0) 0%, rgba(59, 130, 246, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.footerGifContainer:hover .footerGifHover {
+  opacity: 0.3;
+}
+
+.footerGifGlow {
+  background: linear-gradient(45deg, #a855f7, #3b82f6, #a855f7);
+  opacity: 0;
+  transition: all 0.5s ease;
+  filter: blur(16px);
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.footerGifContainer:hover .footerGifGlow {
+  opacity: 0.4;
+}
+
+/* Floating Particles around GIF */
+.footerFloatingParticle1 {
+  background: #3b82f6;
+  animation: float 3s ease-in-out infinite;
+}
+
+.footerFloatingParticle2 {
+  background: #a855f7;
+  animation: float 3s ease-in-out 0.5s infinite;
+}
+
+.footerFloatingParticle3 {
+  background: #ec4899;
+  animation: float 3s ease-in-out 1s infinite;
+}
+
+/* Social Buttons - Same as About */
+.footerSocialGrid {
+  position: relative;
+}
+
+.footerSocialBtn {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--glass-bg-light);
+  border: 2px solid var(--glass-border-light);
+  position: relative;
+  overflow: hidden;
+}
+.dark .footerSocialBtn {
+  background: var(--glass-bg-dark);
+  border: 2px solid var(--glass-border-dark);
+}
+
+.footerSocialIcon {
+  color: rgba(31, 41, 55, 0.9);
+  transition: all 0.3s ease;
+}
+.dark .footerSocialIcon {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footerSocialBtn:hover .footerSocialIcon {
+  color: rgba(31, 41, 55, 1);
+  transform: scale(1.1);
+}
+.dark .footerSocialBtn:hover .footerSocialIcon {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.footerSocialGlow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #a855f7, #ec4899, #3b82f6);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.footerSocialBtn:hover .footerSocialGlow {
+  opacity: 0.4;
+}
+
+.footerSocialShine {
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  animation: shine 1s linear;
+  opacity: 0.7;
+}
+
+/* Copyright - Same as About */
+.footerCopyright {
+  color: rgba(31, 41, 55, 0.7);
+  transition: color 0.3s ease;
+}
+.dark .footerCopyright {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footerCopyrightName {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes backgroundShine {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-20deg);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.25;
+  }
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulseSlow {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0.2;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    transform: translateX(-100%);
+  }
+  60% {
+    opacity: 0.7;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 0.2;
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveLines {
+  0% {
+    transform: translate(-50px, -50px);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Utility Classes */
+.animate-backgroundShine {
+  animation: backgroundShine 20s infinite linear;
+}
+.animate-wave {
+  animation: wave 30s ease-in-out infinite;
+}
+.animate-floatParticle {
+  animation: floatParticle 12s ease-in-out infinite;
+}
+.animate-twinkle {
+  animation: twinkle ease-in-out infinite;
+}
+.animate-moveLines {
+  animation: moveLines 80s linear infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footerQuoteCard,
+  .footerTextCard,
+  .footerCopyrightCard {
+    padding: 1.5rem;
+    border-radius: 20px;
+  }
+
+  .footerHeading {
+    font-size: 1.5rem;
+  }
+
+  .footerQuote {
+    font-size: 1rem;
+  }
+
+  .footerDescription {
+    font-size: 0.875rem;
+  }
+
+  .footerSocialBtn {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .footerSocialIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* GPU Acceleration */
+.footerQuoteCard,
+.footerTextCard,
+.footerCopyrightCard,
+.footerGifContainer,
+.cardGlow {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

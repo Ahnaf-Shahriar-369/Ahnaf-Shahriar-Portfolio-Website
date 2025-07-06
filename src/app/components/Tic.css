@@ -1,0 +1,819 @@
+/* Tic Tac Toe Component Styles - Matching About Component Theme */
+
+/* CSS Variables for Glass Effects */
+:root {
+  --glass-bg-light: rgba(255, 255, 255, 0.15);
+  --glass-bg-light-hover: rgba(255, 255, 255, 0.25);
+  --glass-border-light: rgba(255, 255, 255, 0.3);
+  --glass-shadow-light: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --glass-shadow-light-hover: 0 16px 48px rgba(31, 38, 135, 0.25);
+
+  --glass-bg-dark: rgba(255, 255, 255, 0.08);
+  --glass-bg-dark-hover: rgba(255, 255, 255, 0.15);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-shadow-dark-hover: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme Transition System */
+.theme-transition {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, opacity 0.4s ease, box-shadow 0.4s
+    ease;
+}
+
+/* Tic Tac Toe Container */
+.ticTacToeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1.5rem;
+  position: relative;
+  min-height: 100%;
+}
+
+/* Tic Tac Toe Content */
+.ticTacToeContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Floating Particles */
+.ticTacToeParticles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ticTacToeParticle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+/* Cards - Same as About Cards */
+.ticTacToeDifficultyCard,
+.ticTacToeScoreCard,
+.ticTacToeGameCard,
+.ticTacToeStatusCard {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: var(--glass-shadow-light), 0 0 40px rgba(168, 85, 247, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease, border-color 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+.dark .ticTacToeDifficultyCard,
+.dark .ticTacToeScoreCard,
+.dark .ticTacToeGameCard,
+.dark .ticTacToeStatusCard {
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark), 0 0 40px rgba(168, 85, 247, 0.1);
+}
+
+.ticTacToeDifficultyCard::before,
+.ticTacToeScoreCard::before,
+.ticTacToeGameCard::before,
+.ticTacToeStatusCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: background-color 0.4s ease;
+}
+.dark .ticTacToeDifficultyCard::before,
+.dark .ticTacToeScoreCard::before,
+.dark .ticTacToeGameCard::before,
+.dark .ticTacToeStatusCard::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.ticTacToeDifficultyCard:hover,
+.ticTacToeScoreCard:hover,
+.ticTacToeGameCard:hover,
+.ticTacToeStatusCard:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--glass-shadow-light-hover), 0 0 60px rgba(168, 85, 247, 0.15);
+  background: var(--glass-bg-light-hover);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.dark .ticTacToeDifficultyCard:hover,
+.dark .ticTacToeScoreCard:hover,
+.dark .ticTacToeGameCard:hover,
+.dark .ticTacToeStatusCard:hover {
+  box-shadow: var(--glass-shadow-dark-hover), 0 0 60px rgba(168, 85, 247, 0.2);
+  background: var(--glass-bg-dark-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Card Glow Effect */
+.cardGlow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ec4899, #8b5cf6, #3b82f6, #06b6d4);
+  border-radius: 26px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.ticTacToeDifficultyCard:hover .cardGlow,
+.ticTacToeScoreCard:hover .cardGlow,
+.ticTacToeGameCard:hover .cardGlow,
+.ticTacToeStatusCard:hover .cardGlow {
+  opacity: 0.15;
+}
+.dark .ticTacToeDifficultyCard:hover .cardGlow,
+.dark .ticTacToeScoreCard:hover .cardGlow,
+.dark .ticTacToeGameCard:hover .cardGlow,
+.dark .ticTacToeStatusCard:hover .cardGlow {
+  opacity: 0.25;
+}
+
+/* Difficulty Section */
+.ticTacToeDifficultyTitle {
+  text-align: center;
+  color: #a855f7;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.dark .ticTacToeDifficultyTitle {
+  color: #c084fc;
+}
+
+.ticTacToeDifficultyButtons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.ticTacToeDifficultyBtn {
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1px solid var(--glass-border-light);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.dark .ticTacToeDifficultyBtn {
+  border-color: var(--glass-border-dark);
+}
+
+.difficultyUnselected {
+  background: var(--glass-bg-light);
+  color: #a855f7;
+}
+.dark .difficultyUnselected {
+  background: var(--glass-bg-dark);
+  color: #c084fc;
+}
+
+.difficultyUnselected:hover {
+  background: var(--glass-bg-light-hover);
+  transform: scale(1.05);
+}
+.dark .difficultyUnselected:hover {
+  background: var(--glass-bg-dark-hover);
+}
+
+.difficultySelected {
+  animation: difficultyGlow 2s ease-in-out infinite;
+  border: none;
+}
+
+.difficulty-easy {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.difficulty-medium {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.difficulty-hard {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+/* Score Board */
+.ticTacToeScoreGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.ticTacToeScoreItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ticTacToeScoreLabel {
+  font-size: 1.125rem;
+  font-weight: 700;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.winsLabel {
+  color: #10b981;
+}
+.dark .winsLabel {
+  color: #34d399;
+}
+
+.drawsLabel {
+  color: #a855f7;
+}
+.dark .drawsLabel {
+  color: #c084fc;
+}
+
+.lossesLabel {
+  color: #ef4444;
+}
+.dark .lossesLabel {
+  color: #f87171;
+}
+
+.ticTacToeScoreValue {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+.dark .ticTacToeScoreValue {
+  color: #f1f5f9;
+}
+
+.ticTacToeScorePlayer {
+  font-size: 0.875rem;
+  color: #a855f7;
+}
+.dark .ticTacToeScorePlayer {
+  color: #c084fc;
+}
+
+/* Game Board */
+.ticTacToeBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 288px;
+  height: 288px;
+}
+
+.ticTacToeCell {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: var(--glass-bg-light);
+  border: 1px solid var(--glass-border-light);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.dark .ticTacToeCell {
+  background: var(--glass-bg-dark);
+  border-color: var(--glass-border-dark);
+}
+
+.ticTacToeCell:hover:not(:disabled) {
+  background: var(--glass-bg-light-hover);
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
+}
+.dark .ticTacToeCell:hover:not(:disabled) {
+  background: var(--glass-bg-dark-hover);
+}
+
+.ticTacToeCell:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.ticTacToeCell:disabled {
+  cursor: not-allowed;
+}
+
+.ticTacToeCellContent {
+  animation: cellPop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.playerX {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.playerO {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.winningCell {
+  animation: winningPulse 1s ease-in-out infinite;
+  background: rgba(236, 72, 153, 0.3) !important;
+  border-color: #ec4899 !important;
+}
+
+.cellThinking {
+  animation: aiThinking 1s ease-in-out infinite;
+}
+
+/* Spinner */
+.ticTacToeSpinner {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+}
+
+.ticTacToeSpinnerInner {
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  border-top-color: #a855f7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Game Status */
+.ticTacToeStatusMain {
+  text-align: center;
+  font-size: 1.125rem;
+  color: #a855f7;
+  margin-bottom: 0.5rem;
+}
+.dark .ticTacToeStatusMain {
+  color: #c084fc;
+}
+
+.ticTacToeStatusSub {
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgba(168, 85, 247, 0.7);
+}
+.dark .ticTacToeStatusSub {
+  color: rgba(192, 132, 252, 0.7);
+}
+
+.statusAiThinking {
+  color: #3b82f6;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+.dark .statusAiThinking {
+  color: #60a5fa;
+}
+
+.statusPlayerTurn {
+  color: #ec4899;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+.dark .statusPlayerTurn {
+  color: #f472b6;
+}
+
+.statusAiTurn {
+  color: #3b82f6;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+.dark .statusAiTurn {
+  color: #60a5fa;
+}
+
+.statusWon {
+  color: #10b981;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+.dark .statusWon {
+  color: #34d399;
+}
+
+.statusLost {
+  color: #ef4444;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+.dark .statusLost {
+  color: #f87171;
+}
+
+.statusDraw {
+  color: #f59e0b;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+.dark .statusDraw {
+  color: #fbbf24;
+}
+
+/* Action Buttons */
+.ticTacToeActions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.ticTacToeActionBtn {
+  border: none;
+  border-radius: 16px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.newGameBtn {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.resetScoresBtn {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+.ticTacToeActionBtn:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.ticTacToeActionBtn:active {
+  transform: scale(0.95);
+}
+
+.ticTacToeActionGlow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.newGameGlow {
+  background: linear-gradient(45deg, #ec4899, #8b5cf6);
+}
+
+.resetScoresGlow {
+  background: linear-gradient(45deg, #8b5cf6, #3b82f6);
+}
+
+.ticTacToeActionBtn:hover .ticTacToeActionGlow {
+  opacity: 0.5;
+}
+
+/* Overlays */
+.ticTacToeOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.celebrationOverlay {
+  animation: screenFlash 0.3s ease-in-out 3;
+}
+
+.ticTacToeOverlayContent {
+  text-align: center;
+  padding: 2rem;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border-dark);
+  border-radius: 32px;
+  box-shadow: var(--glass-shadow-dark), 0 0 60px rgba(168, 85, 247, 0.2);
+}
+
+.celebrationMode {
+  animation: celebration 0.5s ease-in-out infinite;
+}
+
+.defeatMode {
+  animation: defeatShake 0.5s ease-in-out 3;
+}
+
+.ticTacToeOverlayTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  animation: neonGlow 2s ease-in-out infinite;
+}
+
+.winTitle {
+  background: linear-gradient(135deg, #10b981, #059669);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.loseTitle {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ticTacToeOverlaySubtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.winSubtitle {
+  color: #10b981;
+}
+.dark .winSubtitle {
+  color: #34d399;
+}
+
+.loseSubtitle {
+  color: #ef4444;
+}
+.dark .loseSubtitle {
+  color: #f87171;
+}
+
+/* Special States */
+.aiThinking {
+  animation: aiThinking 1s ease-in-out infinite;
+}
+
+.gameWon {
+  animation: rainbowBorder 2s linear infinite;
+}
+
+/* Animations */
+@keyframes neonGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 8px currentColor;
+    opacity: 0.8;
+  }
+}
+
+@keyframes cellPop {
+  0% {
+    transform: scale(0.8) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes winningPulse {
+  0%,
+  100% {
+    background: rgba(236, 72, 153, 0.3);
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+  }
+  50% {
+    background: rgba(236, 72, 153, 0.6);
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(236, 72, 153, 0.8);
+  }
+}
+
+@keyframes celebration {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+@keyframes defeatShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes aiThinking {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.5;
+  }
+}
+
+@keyframes rainbowBorder {
+  0% {
+    border-color: #ec4899;
+  }
+  25% {
+    border-color: #8b5cf6;
+  }
+  50% {
+    border-color: #3b82f6;
+  }
+  75% {
+    border-color: #06b6d4;
+  }
+  100% {
+    border-color: #ec4899;
+  }
+}
+
+@keyframes screenFlash {
+  0%,
+  100% {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    background: rgba(236, 72, 153, 0.1);
+  }
+}
+
+@keyframes difficultyGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px currentColor;
+  }
+  50% {
+    box-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .ticTacToeContent {
+    max-width: 320px;
+    gap: 1rem;
+  }
+
+  .ticTacToeDifficultyCard,
+  .ticTacToeScoreCard,
+  .ticTacToeGameCard,
+  .ticTacToeStatusCard {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .ticTacToeBoard {
+    width: 240px;
+    height: 240px;
+    gap: 0.5rem;
+  }
+
+  .ticTacToeCell {
+    font-size: 2rem;
+    border-radius: 12px;
+  }
+
+  .ticTacToeScoreGrid {
+    gap: 1rem;
+  }
+
+  .ticTacToeScoreValue {
+    font-size: 1.5rem;
+  }
+
+  .ticTacToeOverlayTitle {
+    font-size: 2rem;
+  }
+
+  .ticTacToeOverlaySubtitle {
+    font-size: 1rem;
+  }
+
+  .ticTacToeActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ticTacToeActionBtn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transition,
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* GPU Acceleration */
+.ticTacToeDifficultyCard,
+.ticTacToeScoreCard,
+.ticTacToeGameCard,
+.ticTacToeStatusCard,
+.cardGlow {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

@@ -105,5 +105,35 @@
       "name": "VS কোড",
       "description": "মাইক্রোসফট দ্বারা নির্মিত শক্তিশালী কোড এডিটর।"
     }
-  }
+  },
+
+
+  
+"projects_title": "আমার প্রজেক্টসমূহ",
+"projects_section_description": "আমার সাম্প্রতিক কাজ ও সৃজনশীল সমাধানসমূহের প্রদর্শনী। প্রতিটি প্রজেক্ট একটি অনন্য চ্যালেঞ্জ ও শেখার অভিজ্ঞতা, আধুনিক প্রযুক্তি ও সেরা চর্চায় নির্মিত।",
+"projects_show_more": "আরও প্রজেক্ট দেখুন",
+"projects_show_less": "কম দেখান",
+"projects_loading_more": "আরও প্রজেক্ট লোড হচ্ছে...",
+"projects_collapsing": "প্রজেক্টগুলো গুটানো হচ্ছে...",
+
+
+
+
+
+
+"contact_title": "যোগাযোগ করুন",
+"contact_description": "আপনার আইডিয়া বাস্তবায়নে প্রস্তুত? আমি আপনাকে অসাধারণ কিছু তৈরি করতে সাহায্য করতে প্রস্তুত। নতুন কোনো প্রজেক্ট বা সহযোগিতা হোক, চলুন কথা বলা শুরু করি।",
+"contact_form_title": "বার্তা পাঠান",
+"contact_form_name": "নাম",
+"contact_form_name_placeholder": "আপনার পুরো নাম",
+"contact_form_email": "ইমেইল",
+"contact_form_email_placeholder": "your.email@example.com",
+"contact_form_subject": "বিষয়",
+"contact_form_subject_placeholder": "প্রজেক্ট সহযোগিতা",
+"contact_form_message": "বার্তা",
+"contact_form_message_placeholder": "আপনার প্রজেক্ট আইডিয়া সম্পর্কে লিখুন...",
+"contact_form_send": "বার্তা পাঠান",
+"contact_form_sending": "পাঠানো হচ্ছে...",
+"contact_game_title": "অপেক্ষা করতে করতে খেলুন"
+
   }

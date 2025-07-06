@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useMemo } from "react"
 import { motion, useAnimation, useMotionValue } from "framer-motion"
 import SkillCard from "./SkillCard"
 
+
 // Define the skill data structure
 interface Skill {
   id: number
@@ -311,6 +312,7 @@ export default function SkillCardsLayout() {
                     description={skill.description}
                     onClick={() => handleSkillClick(skill)}
                   />
+                  
                 </div>
               ))}
             </motion.div>
@@ -335,6 +337,7 @@ export default function SkillCardsLayout() {
           </motion.div>
         </div>
       </div>
+      
     </section>
   )
 }

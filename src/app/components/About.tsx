@@ -5,6 +5,7 @@ import RightSection from "./right2"
 import { useTranslation } from "react-i18next"
 import "./About.css"
 
+
 const About = () => {
   const { t, i18n } = useTranslation()
 
@@ -318,7 +319,12 @@ const About = () => {
           background:
             "repeating-linear-gradient(45deg, transparent, transparent 400px, rgba(147, 51, 234, 0.008) 400px, rgba(147, 51, 234, 0.008) 402px)",
         }}
-      />
+
+      >
+        
+
+      </div>
+      
     </section>
   )
 }

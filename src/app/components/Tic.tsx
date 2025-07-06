@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import "./Tic.css"
 
 type Player = "X" | "O" | null
 type Board = Player[]
@@ -188,270 +189,168 @@ export default function NeonTicTacToe() {
     setScores({ wins: 0, losses: 0, draws: 0 })
   }
 
-  // Fixed color particles
+  // Fixed color particles matching About component theme
   const fixedParticles = [
-    { left: "10%", top: "15%" },
-    { left: "20%", top: "70%" },
-    { left: "30%", top: "40%" },
-    { left: "40%", top: "80%" },
-    { left: "50%", top: "20%" },
-    { left: "60%", top: "60%" },
-    { left: "70%", top: "35%" },
-    { left: "80%", top: "75%" },
-    { left: "90%", top: "25%" },
-    { left: "15%", top: "50%" },
-    { left: "25%", top: "85%" },
-    { left: "35%", top: "30%" },
-    { left: "45%", top: "65%" },
-    { left: "55%", top: "10%" },
-    { left: "65%", top: "55%" },
-    { left: "75%", top: "45%" },
-    { left: "85%", top: "60%" },
-    { left: "95%", top: "35%" },
-    { left: "60%", top: "90%" },
-    { left: "80%", top: "10%" },
+    { left: "10%", top: "15%", gradient: "linear-gradient(45deg, #a855f7, #ec4899)" },
+    { left: "20%", top: "70%", gradient: "linear-gradient(45deg, #3b82f6, #a855f7)" },
+    { left: "30%", top: "40%", gradient: "linear-gradient(45deg, #ec4899, #f59e0b)" },
+    { left: "40%", top: "80%", gradient: "linear-gradient(45deg, #8b5cf6, #10b981)" },
+    { left: "50%", top: "20%", gradient: "linear-gradient(45deg, #10b981, #3b82f6)" },
+    { left: "60%", top: "60%", gradient: "linear-gradient(45deg, #a855f7, #ec4899)" },
+    { left: "70%", top: "35%", gradient: "linear-gradient(45deg, #3b82f6, #a855f7)" },
+    { left: "80%", top: "75%", gradient: "linear-gradient(45deg, #ec4899, #f59e0b)" },
+    { left: "90%", top: "25%", gradient: "linear-gradient(45deg, #8b5cf6, #10b981)" },
+    { left: "15%", top: "50%", gradient: "linear-gradient(45deg, #10b981, #3b82f6)" },
   ]
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4 space-y-6 relative">
-      {/* Enhanced CSS for advanced animations */}
-      <style jsx>{`
-        @keyframes neon-glow {
-          0%, 100% { 
-            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor, 0 0 20px currentColor;
-          }
-          50% { 
-            text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 8px currentColor, 0 0 12px currentColor;
-          }
-        }
-        @keyframes cell-pop {
-          0% { transform: scale(0.8) rotate(-10deg); opacity: 0; }
-          50% { transform: scale(1.2) rotate(5deg); }
-          100% { transform: scale(1) rotate(0deg); opacity: 1; }
-        }
-        @keyframes winning-pulse {
-          0%, 100% { 
-            background: rgba(236, 72, 153, 0.3);
-            transform: scale(1);
-            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
-          }
-          50% { 
-            background: rgba(236, 72, 153, 0.6);
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(236, 72, 153, 0.8);
-          }
-        }
-        @keyframes celebration {
-          0%, 100% { transform: scale(1) rotate(0deg); }
-          25% { transform: scale(1.1) rotate(-5deg); }
-          75% { transform: scale(1.1) rotate(5deg); }
-        }
-        @keyframes defeat-shake {
-          0%, 100% { transform: translateX(0); }
-          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-          20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-        @keyframes ai-thinking {
-          0%, 100% { opacity: 0.3; transform: scale(0.95); }
-          50% { opacity: 1; transform: scale(1.05); }
-        }
-        @keyframes particle-float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-          50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
-        }
-        @keyframes rainbow-border {
-          0% { border-color: #ec4899; }
-          25% { border-color: #8b5cf6; }
-          50% { border-color: #3b82f6; }
-          75% { border-color: #06b6d4; }
-          100% { border-color: #ec4899; }
-        }
-        @keyframes screen-flash {
-          0%, 100% { background: transparent; }
-          50% { background: rgba(236, 72, 153, 0.1); }
-        }
-        @keyframes difficulty-glow {
-          0%, 100% { box-shadow: 0 0 10px currentColor; }
-          50% { box-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
-        }
-        .neon-title { animation: neon-glow 2s ease-in-out infinite; }
-        .cell-animate { animation: cell-pop 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
-        .winning-cell { animation: winning-pulse 1s ease-in-out infinite; }
-        .celebration-mode { animation: celebration 0.5s ease-in-out infinite; }
-        .defeat-mode { animation: defeat-shake 0.5s ease-in-out 3; }
-        .ai-thinking { animation: ai-thinking 1s ease-in-out infinite; }
-        .particle-animation { animation: particle-float 3s ease-in-out infinite; }
-        .rainbow-border { animation: rainbow-border 2s linear infinite; }
-        .screen-flash { animation: screen-flash 0.3s ease-in-out 3; }
-        .difficulty-selected { animation: difficulty-glow 1s ease-in-out infinite; }
-        .glass-effect {
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .glass-hover:hover {
-          backdrop-filter: blur(20px);
-          background: rgba(255, 255, 255, 0.15);
-          transform: translateY(-2px);
-        }
-      `}</style>
-
+    <div className="ticTacToeContainer theme-transition relative">
       {/* Celebration/Defeat Overlay */}
       {showCelebration && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 screen-flash">
-          <div className="text-center celebration-mode">
-            <div className="text-8xl mb-4">🎉</div>
-            <h2 className="text-6xl font-bold text-green-400 neon-title mb-4">YOU WIN!</h2>
-            <div className="text-2xl text-green-300">Congratulations! 🏆</div>
+        <div className="ticTacToeOverlay celebrationOverlay">
+          <div className="ticTacToeOverlayContent celebrationMode">
+            <div className="text-6xl md:text-8xl mb-4">🎉</div>
+            <h2 className="ticTacToeOverlayTitle winTitle">YOU WIN!</h2>
+            <div className="ticTacToeOverlaySubtitle winSubtitle">Congratulations! 🏆</div>
           </div>
         </div>
       )}
 
       {showDefeat && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="text-center defeat-mode">
-            <div className="text-8xl mb-4">😔</div>
-            <h2 className="text-6xl font-bold text-red-400 neon-title mb-4">YOU LOSE!</h2>
-            <div className="text-2xl text-red-300">Better luck next time! 💪</div>
+        <div className="ticTacToeOverlay defeatOverlay">
+          <div className="ticTacToeOverlayContent defeatMode">
+            <div className="text-6xl md:text-8xl mb-4">😔</div>
+            <h2 className="ticTacToeOverlayTitle loseTitle">YOU LOSE!</h2>
+            <div className="ticTacToeOverlaySubtitle loseSubtitle">Better luck next time! 💪</div>
           </div>
         </div>
       )}
 
       {/* Fixed Color Floating Particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      <div className="ticTacToeParticles">
         {fixedParticles.map((p, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 rounded-full particle-animation opacity-60"
+            className="ticTacToeParticle"
             style={{
               left: p.left,
               top: p.top,
-              background: i % 3 === 0
-                ? "linear-gradient(to right, #f472b6, #a78bfa)"
-                : i % 3 === 1
-                  ? "linear-gradient(to right, #60a5fa, #818cf8)"
-                  : "linear-gradient(to right, #fbbf24, #f472b6)"
+              background: p.gradient,
+              animationDelay: `${i * 0.3}s`,
             }}
           />
         ))}
       </div>
 
-      {/* Difficulty Selection */}
-      <div className="glass-effect rounded-2xl p-6 shadow-xl">
-        <h3 className="text-center text-purple-200 mb-4 font-semibold">AI Difficulty</h3>
-        <div className="flex gap-3">
-          {(["easy", "medium", "hard"] as Difficulty[]).map((diff) => (
-            <Button
-              key={diff}
-              onClick={() => setDifficulty(diff)}
-              className={`px-4 py-2 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
-                difficulty === diff
-                  ? `difficulty-selected ${
-                      diff === "easy"
-                        ? "bg-green-500 text-white"
-                        : diff === "medium"
-                          ? "bg-yellow-500 text-black"
-                          : "bg-red-500 text-white"
-                    }`
-                  : "glass-effect text-purple-200 hover:bg-white/20"
-              }`}
-            >
-              {diff.charAt(0).toUpperCase() + diff.slice(1)}
-            </Button>
-          ))}
-        </div>
-      </div>
-
-      {/* Score Board */}
-      <div className="glass-effect rounded-2xl p-6 shadow-xl hover:shadow-purple-500/25 transition-all duration-300 glass-hover">
-        <div className="grid grid-cols-3 gap-8 text-center">
-          <div>
-            <div className="text-green-400 text-xl font-bold neon-title">Wins</div>
-            <div className="text-3xl font-bold">{scores.wins}</div>
-            <div className="text-purple-300 text-sm">You</div>
-          </div>
-          <div>
-            <div className="text-purple-400 text-xl font-bold neon-title">Draws</div>
-            <div className="text-3xl font-bold">{scores.draws}</div>
-          </div>
-          <div>
-            <div className="text-red-400 text-xl font-bold neon-title">Losses</div>
-            <div className="text-3xl font-bold">{scores.losses}</div>
-            <div className="text-purple-300 text-sm">AI</div>
+      <div className="ticTacToeContent">
+        {/* Difficulty Selection */}
+        <div className="ticTacToeDifficultyCard theme-transition">
+          <div className="cardGlow theme-transition" />
+          <h3 className="ticTacToeDifficultyTitle">AI Difficulty</h3>
+          <div className="ticTacToeDifficultyButtons">
+            {(["easy", "medium", "hard"] as Difficulty[]).map((diff) => (
+              <Button
+                key={diff}
+                onClick={() => setDifficulty(diff)}
+                className={`ticTacToeDifficultyBtn theme-transition ${
+                  difficulty === diff ? `difficultySelected difficulty-${diff}` : "difficultyUnselected"
+                }`}
+              >
+                {diff.charAt(0).toUpperCase() + diff.slice(1)}
+              </Button>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Game Board */}
-      <div
-        className={`glass-effect rounded-3xl p-6 shadow-2xl transition-all duration-500 ${
-          isAiThinking ? "ai-thinking" : "hover:shadow-purple-500/30"
-        } ${gameState === "won" ? "rainbow-border" : ""}`}
-      >
-        <div className="grid grid-cols-3 gap-3 w-72 h-72">
-          {board.map((cell, index) => (
-            <button
-              key={index}
-              onClick={() => handleCellClick(index)}
-              className={`glass-effect rounded-xl flex items-center justify-center text-4xl font-bold transition-all duration-300 hover:bg-white/20 hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-purple-500/30 border-purple-300/30 ${
-                winningLine.includes(index) ? "winning-cell" : ""
-              } ${isAiThinking && !cell ? "ai-thinking" : ""}`}
-              disabled={!!cell || gameState !== "playing" || currentPlayer === "O"}
-            >
-              {cell && (
-                <span
-                  className={`${cell === "X" ? "text-pink-400 neon-title" : "text-blue-400 neon-title"} cell-animate`}
-                >
-                  {cell}
-                </span>
-              )}
-              {isAiThinking && !cell && (
-                <div className="w-6 h-6 border-2 border-purple-400 border-t-transparent rounded-full animate-spin"></div>
-              )}
-            </button>
-          ))}
+        {/* Score Board */}
+        <div className="ticTacToeScoreCard theme-transition">
+          <div className="cardGlow theme-transition" />
+          <div className="ticTacToeScoreGrid">
+            <div className="ticTacToeScoreItem">
+              <div className="ticTacToeScoreLabel winsLabel">Wins</div>
+              <div className="ticTacToeScoreValue">{scores.wins}</div>
+              <div className="ticTacToeScorePlayer">You</div>
+            </div>
+            <div className="ticTacToeScoreItem">
+              <div className="ticTacToeScoreLabel drawsLabel">Draws</div>
+              <div className="ticTacToeScoreValue">{scores.draws}</div>
+            </div>
+            <div className="ticTacToeScoreItem">
+              <div className="ticTacToeScoreLabel lossesLabel">Losses</div>
+              <div className="ticTacToeScoreValue">{scores.losses}</div>
+              <div className="ticTacToeScorePlayer">AI</div>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Game Status */}
-      <div className="text-center glass-effect rounded-xl p-4 hover:bg-white/10 transition-all duration-300">
-        <div className="text-purple-200 text-lg">
-          {gameState === "playing" ? (
-            isAiThinking ? (
-              <span className="text-blue-400 neon-title">AI is thinking... 🤖</span>
-            ) : currentPlayer === "X" ? (
-              <span className="text-pink-400 neon-title">Your turn! ✨</span>
+        {/* Game Board */}
+        <div
+          className={`ticTacToeGameCard theme-transition ${
+            isAiThinking ? "aiThinking" : ""
+          } ${gameState === "won" ? "gameWon" : ""}`}
+        >
+          <div className="cardGlow theme-transition" />
+          <div className="ticTacToeBoard">
+            {board.map((cell, index) => (
+              <button
+                key={index}
+                onClick={() => handleCellClick(index)}
+                className={`ticTacToeCell theme-transition ${
+                  winningLine.includes(index) ? "winningCell" : ""
+                } ${isAiThinking && !cell ? "cellThinking" : ""}`}
+                disabled={!!cell || gameState !== "playing" || currentPlayer === "O"}
+              >
+                {cell && (
+                  <span className={`ticTacToeCellContent ${cell === "X" ? "playerX" : "playerO"} cellAnimate`}>
+                    {cell}
+                  </span>
+                )}
+                {isAiThinking && !cell && (
+                  <div className="ticTacToeSpinner">
+                    <div className="ticTacToeSpinnerInner"></div>
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Game Status */}
+        <div className="ticTacToeStatusCard theme-transition">
+          <div className="cardGlow theme-transition" />
+          <div className="ticTacToeStatusMain">
+            {gameState === "playing" ? (
+              isAiThinking ? (
+                <span className="statusAiThinking">AI is thinking... 🤖</span>
+              ) : currentPlayer === "X" ? (
+                <span className="statusPlayerTurn">Your turn! ✨</span>
+              ) : (
+                <span className="statusAiTurn">AI&apos;s turn 🎯</span>
+              )
+            ) : gameState === "won" ? (
+              <span className="statusWon celebrationMode">You Won! 🎉</span>
+            ) : gameState === "lost" ? (
+              <span className="statusLost">AI Won! 🤖</span>
             ) : (
-              <span className="text-blue-400 neon-title">AI`s turn 🎯</span>
-            )
-          ) : gameState === "won" ? (
-            <span className="text-green-400 neon-title celebration-mode">You Won! 🎉</span>
-          ) : gameState === "lost" ? (
-            <span className="text-red-400 neon-title">AI Won! 🤖</span>
-          ) : (
-            <span className="text-yellow-400 neon-title">It is a Draw! 🤝</span>
-          )}
+              <span className="statusDraw">It&apos;s a Draw! 🤝</span>
+            )}
+          </div>
+          <div className="ticTacToeStatusSub">
+            {gameState === "playing" ? "Click any empty cell to make your move" : "Game Over - Start a new game!"}
+          </div>
         </div>
-        <div className="text-purple-300 text-sm mt-1">
-          {gameState === "playing" ? "Click any empty cell to make your move" : "Game Over - Start a new game!"}
-        </div>
-      </div>
 
-      {/* Action Buttons */}
-      <div className="flex gap-4">
-        <Button
-          onClick={resetGame}
-          className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-pink-500/50"
-        >
-          New Game 🎮
-        </Button>
-        <Button
-          onClick={resetScores}
-          className="bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white border-0 rounded-xl px-6 py-3 font-semibold transition-all duration-300 transform hover:scale-105 active:scale-95 hover:shadow-lg hover:shadow-blue-500/50"
-        >
-          Reset Scores 📊
-        </Button>
+        {/* Action Buttons */}
+        <div className="ticTacToeActions">
+          <Button onClick={resetGame} className="ticTacToeActionBtn newGameBtn theme-transition">
+            <span className="relative z-10">New Game 🎮</span>
+            <div className="ticTacToeActionGlow newGameGlow"></div>
+          </Button>
+          <Button onClick={resetScores} className="ticTacToeActionBtn resetScoresBtn theme-transition">
+            <span className="relative z-10">Reset Scores 📊</span>
+            <div className="ticTacToeActionGlow resetScoresGlow"></div>
+          </Button>
+        </div>
       </div>
     </div>
   )

@@ -1,15 +1,23 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+
+import { useTranslation } from "react-i18next"
+
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import NeonTicTacToe from "./Tic"
 import FooterSection from "./footer"
+import "./Contact.css"
 
 export default function ContactForm() {
+
+  const { t } = useTranslation()
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +26,25 @@ export default function ContactForm() {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  // const [ setIsVisible] = useState(false)
+
+  // Intersection observer for animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          // setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.1 },
+    )
+    const section = document.getElementById("contact")
+    if (section) observer.observe(section)
+    return () => {
+      if (section) observer.disconnect()
+    }
+  }, [])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -46,272 +73,307 @@ export default function ContactForm() {
     })
   }
 
+  // Enhanced floating particles configuration
+  const particles = [
+    { top: "10%", left: "15%", size: "3px", gradient: "linear-gradient(45deg, #a855f7, #ec4899)", delay: "0s" },
+    { top: "25%", right: "20%", size: "4px", gradient: "linear-gradient(45deg, #3b82f6, #a855f7)", delay: "4s" },
+    { bottom: "35%", left: "25%", size: "2px", gradient: "linear-gradient(45deg, #ec4899, #f59e0b)", delay: "8s" },
+    { top: "65%", right: "30%", size: "3px", gradient: "linear-gradient(45deg, #8b5cf6, #10b981)", delay: "2s" },
+    { top: "40%", left: "10%", size: "2px", gradient: "linear-gradient(45deg, #10b981, #3b82f6)", delay: "6s" },
+    { top: "80%", left: "60%", size: "3px", gradient: "linear-gradient(45deg, #a855f7, #ec4899)", delay: "10s" },
+    { top: "15%", left: "70%", size: "2px", gradient: "linear-gradient(45deg, #3b82f6, #a855f7)", delay: "12s" },
+    { bottom: "20%", right: "15%", size: "4px", gradient: "linear-gradient(45deg, #ec4899, #f59e0b)", delay: "14s" },
+  ]
+
+  const floatingIcons = [
+    { icon: "💌", top: "15%", right: "10%", delay: "0s" },
+    { icon: "✨", bottom: "25%", left: "8%", delay: "2.5s" },
+    { icon: "🎯", top: "60%", right: "15%", delay: "5s" },
+    { icon: "💫", top: "35%", left: "5%", delay: "7.5s" },
+    { icon: "🚀", top: "70%", left: "80%", delay: "10s" },
+    { icon: "⭐", bottom: "40%", right: "25%", delay: "12.5s" },
+  ]
+
+  // Geometric shapes for background
+  const geometricShapes = [
+    { type: "circle", top: "20%", right: "15%", size: "60px", delay: "0s" },
+    { type: "square", bottom: "30%", left: "10%", size: "40px", delay: "5s" },
+    { type: "triangle", top: "50%", right: "25%", size: "50px", delay: "10s" },
+    { type: "circle", bottom: "15%", right: "40%", size: "35px", delay: "15s" },
+  ]
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white w-full relative overflow-hidden">
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-10px) rotate(1deg); }
-          66% { transform: translateY(5px) rotate(-1deg); }
-        }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.2; transform: scale(1); }
-          50% { opacity: 0.4; transform: scale(1.05); }
-        }
-        @keyframes shimmer {
-          0% { background-position: -200% 0; }
-          100% { background-position: 200% 0; }
-        }
-        @keyframes neon-pulse {
-          0%, 100% { 
-            text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
-            opacity: 1;
-          }
-          50% { 
-            text-shadow: 0 0 2px currentColor, 0 0 5px currentColor, 0 0 8px currentColor;
-            opacity: 0.8;
-          }
-        }
-        @keyframes gradient-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .float-animation { animation: float 6s ease-in-out infinite; }
-        .float-animation-delay { animation: float 6s ease-in-out infinite 2s; }
-        .float-animation-delay-2 { animation: float 6s ease-in-out infinite 4s; }
-        .pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
-        .pulse-glow-delay { animation: pulse-glow 4s ease-in-out infinite 2s; }
-        .pulse-glow-delay-2 { animation: pulse-glow 4s ease-in-out infinite 4s; }
-        .neon-text { animation: neon-pulse 2s ease-in-out infinite; }
-        .shimmer-bg {
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-          background-size: 200% 100%;
-          animation: shimmer 3s ease-in-out infinite;
-        }
-        .gradient-animate {
-          background-size: 200% 200%;
-          animation: gradient-shift 4s ease infinite;
-        }
-        .glass-morphism {
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .glass-hover:hover {
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-          background: rgba(255, 255, 255, 0.15);
-          transform: translateY(-2px) scale(1.02);
-          box-shadow: 0 20px 40px rgba(147, 51, 234, 0.3);
-        }
-        .input-glow:focus {
-          box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.3), 0 0 20px rgba(236, 72, 153, 0.2);
-        }
-        .button-glow:hover {
-          box-shadow: 0 0 30px rgba(147, 51, 234, 0.5), 0 0 60px rgba(236, 72, 153, 0.3);
-        }
-        @media (max-width: 640px) {
-          .glass-hover:hover {
-            transform: none;
-            box-shadow: 0 10px 20px rgba(147, 51, 234, 0.2);
-          }
-        }
-      `}</style>
+    <section className="contactContainer theme-transition min-h-screen relative overflow-hidden w-full" id="contact">
+      {/* Enhanced Background Effects */}
+      <div
+        className="absolute top-0 left-0 w-[200%] h-full transform -skew-x-12 z-[1] animate-backgroundShine"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.04), rgba(236, 72, 153, 0.06), rgba(59, 130, 246, 0.04), transparent)",
+        }}
+      />
 
-      {/* Animated background elements - Responsive sizing */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 w-40 h-40 sm:w-60 md:w-80 sm:h-60 md:h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl pulse-glow"></div>
-        <div className="absolute -bottom-20 sm:-bottom-40 -left-20 sm:-left-40 w-40 h-40 sm:w-60 md:w-80 sm:h-60 md:h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl pulse-glow-delay"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 sm:w-60 md:w-80 sm:h-60 md:h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl pulse-glow-delay-2"></div>
-        {/* Floating particles */}
-        <div className="absolute top-10 sm:top-20 left-10 sm:left-20 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-400 rounded-full float-animation opacity-60"></div>
-        <div className="absolute top-20 sm:top-40 right-16 sm:right-32 w-1 h-1 bg-purple-400 rounded-full float-animation-delay opacity-40"></div>
-        <div className="absolute bottom-16 sm:bottom-32 left-20 sm:left-40 w-2 h-2 sm:w-3 sm:h-3 bg-blue-400 rounded-full float-animation-delay-2 opacity-50"></div>
-        <div className="absolute top-30 sm:top-60 right-10 sm:right-20 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-indigo-400 rounded-full float-animation opacity-70"></div>
-        <div className="absolute bottom-10 sm:bottom-20 right-30 sm:right-60 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-300 rounded-full float-animation-delay opacity-30"></div>
+      {/* Multiple Wave Layers */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[1]">
+        <div
+          className="absolute -top-1/2 -left-1/2 w-[150%] h-[150%] rounded-full animate-wave"
+          style={{
+            background: "radial-gradient(circle, rgba(168, 85, 247, 0.02) 0%, transparent 70%)",
+            animationDelay: "0s",
+          }}
+        />
+        <div
+          className="absolute -top-[30%] -right-1/2 w-[150%] h-[150%] rounded-full animate-wave"
+          style={{
+            background: "radial-gradient(circle, rgba(236, 72, 153, 0.02) 0%, transparent 70%)",
+            animationDelay: "10s",
+          }}
+        />
+        <div
+          className="absolute -bottom-1/2 -left-1/3 w-[120%] h-[120%] rounded-full animate-wave"
+          style={{
+            background: "radial-gradient(circle, rgba(59, 130, 246, 0.015) 0%, transparent 60%)",
+            animationDelay: "20s",
+          }}
+        />
       </div>
 
-      {/* About/Intro Section - Responsive and wide */}
-      <div className="w-full max-w-3xl mx-auto mb-8 px-4 mt-9">
-        <div className="bg-gradient-to-r from-purple-800/80 to-indigo-800/80 rounded-2xl shadow-lg p-6 sm:p-8 md:p-10 text-center border border-purple-600/30">
-          <h2 className="text-3xl sm:text-4xl font-bold text-purple-300 mb-2">Congrats!</h2>
-          <p className="text-purple-200 text-base sm:text-lg mb-4">
-            You have made it here! The last part of my portfolio. If you are interested in my work, please feel free to contact me. I am always open to new opportunities and collaborations. Also you can play the Tic Tac Toe game I made.
-          </p>
-          {/* <div className="flex flex-col sm:flex-row justify-center gap-6 text-left text-sm sm:text-base text-purple-200">
-            <div>
-              <div><span className="font-semibold text-purple-400">Name:</span> Ahnaf Shahriar</div>
-              <div><span className="font-semibold text-purple-400">Location:</span> Dhaka, Bangladesh</div>
-              <div><span className="font-semibold text-purple-400">Education:</span> Still studying in 8th Class</div>
-              <div><span className="font-semibold text-purple-400">Languages:</span> English, Bengali, Hindi</div>
-            </div>
-          </div> */}
-        </div>
+      {/* Enhanced Floating Particles */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[2]">
+        {particles.map((particle, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full opacity-40 animate-floatParticle"
+            style={{
+              ...particle,
+              width: particle.size,
+              height: particle.size,
+              background: particle.gradient,
+              animationDelay: particle.delay,
+            }}
+          />
+        ))}
       </div>
 
-      {/* Main layout - Enhanced responsive grid */}
-      <div className="flex flex-col lg:grid lg:grid-cols-2 min-h-screen relative z-10">
-        {/* Left Section - Tic Tac Toe Game */}
-        <div className="order-2 lg:order-1 p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[50vh] lg:min-h-screen">
-          <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-            <NeonTicTacToe />
+      {/* Geometric Shapes */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[1]">
+        {geometricShapes.map((shape, i) => (
+          <div
+            key={i}
+            className={`absolute animate-rotateGeometry opacity-10 ${
+              shape.type === "circle" ? "rounded-full" : shape.type === "square" ? "rounded-lg" : ""
+            }`}
+            style={{
+              ...shape,
+              width: shape.size,
+              height: shape.size,
+              border: "1px solid rgba(168, 85, 247, 0.2)",
+              animationDelay: shape.delay,
+              ...(shape.type === "triangle" && {
+                width: 0,
+                height: 0,
+                borderLeft: `${Number.parseInt(shape.size) / 2}px solid transparent`,
+                borderRight: `${Number.parseInt(shape.size) / 2}px solid transparent`,
+                borderBottom: `${shape.size} solid rgba(168, 85, 247, 0.1)`,
+                border: "none",
+              }),
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Enhanced Floating Icons */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[5]">
+        {floatingIcons.map((item, i) => (
+          <div
+            key={i}
+            className="absolute text-2xl md:text-3xl opacity-50 animate-floatIcon"
+            style={{
+              ...item,
+              filter: "drop-shadow(0 0 12px rgba(147, 51, 234, 0.3))",
+              animationDelay: item.delay,
+            }}
+          >
+            {item.icon}
+          </div>
+        ))}
+      </div>
+
+      {/* Grid Pattern Overlay */}
+      <div
+        className="absolute top-0 left-0 w-full h-full z-[1] opacity-5"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+      />
+
+      <div className="container mx-auto max-w-7xl relative z-10 py-8 md:py-12 lg:py-20 px-4 md:px-6 lg:px-12 xl:px-20 w-full">
+        {/* Header Section */}
+        <div className="text-center mb-16 md:mb-24">
+          <h1 className="contactTitle text-4xl md:text-6xl lg:text-7xl font-bold mb-8">Let&apos;s Connect</h1>
+          <div className="contactTitleUnderline w-24 h-1 mx-auto mb-8 rounded-full theme-transition"></div>
+          <div className="contactDescription text-lg md:text-xl max-w-3xl mx-auto leading-relaxed theme-transition">
+            <p>
+              Ready to bring your ideas to life? I&apos;m here to help you create something amazing. Whether it&apos;s a new
+              project or collaboration, let&apos;s start the conversation.
+            </p>
           </div>
         </div>
 
-        {/* Right Section - Contact Form */}
-        <div className="order-1 lg:order-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12 flex flex-col justify-center min-h-[50vh] lg:min-h-screen">
-          <div className="max-w-xs sm:max-w-sm md:max-w-md mx-auto w-full">
-            <div className="glass-morphism glass-hover rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl sm:shadow-2xl transition-all duration-500 relative">
-              <div className="text-center mb-6 sm:mb-8 space-y-3 sm:space-y-4">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent neon-text gradient-animate leading-tight">
-                  Let&apos;s Have a Chat
-                </h1>
-                <div className="h-0.5 sm:h-1 w-16 sm:w-20 bg-gradient-to-r from-pink-500 to-purple-500 mx-auto rounded-full shadow-lg shadow-purple-500/50 shimmer-bg"></div>
-                <p className="text-purple-200 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed px-2 sm:px-0">
-                  Leave your email and I will get back to you within 24 hours
-                </p>
-              </div>
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-20 items-start max-w-6xl mx-auto">
+          {/* Left Section - Contact Form */}
+          <div className="order-2 lg:order-1 w-full">
+            <div className="contactCard theme-transition relative w-full">
+              <div className="cardGlow theme-transition" />
 
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <h2 className="contactCardTitle text-xl md:text-2xl lg:text-3xl font-bold mb-2">Send Message</h2>
+              <div className="contactCardUnderline w-16 h-0.5 mb-6 lg:mb-8 rounded-full theme-transition"></div>
+
+              <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6 w-full">
                 {/* Name Field */}
-                <div className="group">
-                  <Label
-                    htmlFor="name"
-                    className="text-purple-200 text-xs sm:text-sm font-medium mb-2 sm:mb-3 block transition-all duration-300 group-focus-within:text-pink-300 group-focus-within:drop-shadow-sm"
-                  >
+                <div className="contactFormGroup w-full">
+                  <Label htmlFor="name" className="contactLabel">
                     Name
                   </Label>
-                  <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
+                  <div className="contactInputWrapper w-full">
                     <Input
                       id="name"
                       name="name"
                       type="text"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Write your name"
-                      className="w-full glass-morphism rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder:text-purple-300/60 border-purple-300/30 focus:border-pink-400/60 focus:ring-2 focus:ring-pink-400/30 transition-all duration-300 hover:bg-white/8 hover:border-purple-300/50 input-glow"
+                      placeholder="Your full name"
+                      className="contactInput theme-transition w-full"
                       required
                     />
-                    <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                    <div className="absolute inset-0 shimmer-bg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg sm:rounded-xl"></div>
+                    <div className="contactInputGlow"></div>
                   </div>
                 </div>
+
                 {/* Email Field */}
-                <div className="group">
-                  <Label
-                    htmlFor="email"
-                    className="text-purple-200 text-xs sm:text-sm font-medium mb-2 sm:mb-3 block transition-all duration-300 group-focus-within:text-pink-300 group-focus-within:drop-shadow-sm"
-                  >
+                <div className="contactFormGroup w-full">
+                  <Label htmlFor="email" className="contactLabel">
                     Email
                   </Label>
-                  <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
+                  <div className="contactInputWrapper w-full">
                     <Input
                       id="email"
                       name="email"
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="Write your email"
-                      className="w-full glass-morphism rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder:text-purple-300/60 border-purple-300/30 focus:border-pink-400/60 focus:ring-2 focus:ring-pink-400/30 transition-all duration-300 hover:bg-white/8 hover:border-purple-300/50 input-glow"
+                      placeholder="your.email@example.com"
+                      className="contactInput theme-transition w-full"
                       required
                     />
-                    <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                    <div className="absolute inset-0 shimmer-bg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg sm:rounded-xl"></div>
+                    <div className="contactInputGlow"></div>
                   </div>
                 </div>
+
                 {/* Subject Field */}
-                <div className="group">
-                  <Label
-                    htmlFor="subject"
-                    className="text-purple-200 text-xs sm:text-sm font-medium mb-2 sm:mb-3 block transition-all duration-300 group-focus-within:text-pink-300 group-focus-within:drop-shadow-sm"
-                  >
+                <div className="contactFormGroup w-full">
+                  <Label htmlFor="subject" className="contactLabel">
                     Subject
                   </Label>
-                  <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
+                  <div className="contactInputWrapper w-full">
                     <Input
                       id="subject"
                       name="subject"
                       type="text"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      placeholder="Want to build a website?"
-                      className="w-full glass-morphism rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder:text-purple-300/60 border-purple-300/30 focus:border-pink-400/60 focus:ring-2 focus:ring-pink-400/30 transition-all duration-300 hover:bg-white/8 hover:border-purple-300/50 input-glow"
+                      placeholder="Project collaboration"
+                      className="contactInput theme-transition w-full"
                       required
                     />
-                    <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                    <div className="absolute inset-0 shimmer-bg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg sm:rounded-xl"></div>
+                    <div className="contactInputGlow"></div>
                   </div>
                 </div>
+
                 {/* Message Field */}
-                <div className="group">
-                  <Label
-                    htmlFor="message"
-                    className="text-purple-200 text-xs sm:text-sm font-medium mb-2 sm:mb-3 block transition-all duration-300 group-focus-within:text-pink-300 group-focus-within:drop-shadow-sm"
-                  >
+                <div className="contactFormGroup w-full">
+                  <Label htmlFor="message" className="contactLabel">
                     Message
                   </Label>
-                  <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
+                  <div className="contactInputWrapper w-full">
                     <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Looking for a proficient software developer skilled in React and Next.js ?"
-                      rows={3}
-                      className="w-full glass-morphism rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base text-white placeholder:text-purple-300/60 border-purple-300/30 focus:border-pink-400/60 focus:ring-2 focus:ring-pink-400/30 transition-all duration-300 hover:bg-white/8 hover:border-purple-300/50 resize-none input-glow"
+                      placeholder="Tell me about your project ideas..."
+                      rows={4}
+                      className="contactInput contactTextarea theme-transition resize-none w-full"
                       required
                     />
-                    <div className="absolute inset-0 rounded-lg sm:rounded-xl bg-gradient-to-r from-pink-500/20 to-purple-500/20 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                    <div className="absolute inset-0 shimmer-bg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg sm:rounded-xl"></div>
+                    <div className="contactInputGlow"></div>
                   </div>
                 </div>
+
                 {/* Submit Button */}
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 rounded-lg sm:rounded-xl py-3 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none relative overflow-hidden group button-glow gradient-animate"
+                  className="contactSubmitBtn theme-transition w-full relative overflow-hidden group"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     {isSubmitting ? (
                       <>
-                        <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        <span className="shimmer-bg bg-clip-text">Sending...</span>
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        Sending...
                       </>
                     ) : (
                       <>
-                        <span className="bg-gradient-to-r from-white to-purple-100 bg-clip-text text-transparent">
-                          Submit
-                        </span>
-                        <span className="transform transition-transform group-hover:translate-x-1 text-white">→</span>
+                        {t("contact_form_send")}
+                        <span className="transform transition-transform group-hover:translate-x-1">→</span>
                       </>
                     )}
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 shimmer-bg opacity-0 group-hover:opacity-50 transition-opacity duration-500"></div>
+                  <div className="contactSubmitGlow"></div>
                 </Button>
               </form>
-              {/* Decorative elements */}
-              <div className="absolute -top-1 sm:-top-2 -right-1 sm:-right-2 w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-60 float-animation"></div>
-              <div className="absolute -bottom-1 sm:-bottom-2 -left-1 sm:-left-2 w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full opacity-40 float-animation-delay"></div>
-              
-            </div>
 
-            
+              {/* Decorative Elements */}
+              <div className="contactCardDecor1 theme-transition"></div>
+              <div className="contactCardDecor2 theme-transition"></div>
+            </div>
           </div>
 
-          
-        </div>
+          {/* Right Section - Game */}
+          <div className="order-1 lg:order-2 w-full">
+            {/* Game Section */}
+            <div className="contactGameCard theme-transition relative w-full">
+              <div className="cardGlow theme-transition" />
 
-        
+              <h3 className="contactGameTitle text-lg md:text-xl lg:text-2xl font-bold mb-4 text-center">
+                {t("contact_game_title")}
+              </h3>
+
+              <div className="flex justify-center w-full">
+                <div className="w-full max-w-sm">
+                  <NeonTicTacToe />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
+      {/* Enhanced Pattern Overlay */}
+      <div
+        className="absolute top-0 left-0 w-[200%] h-[200%] z-0 animate-moveLines"
+        style={{
+          background:
+            "repeating-linear-gradient(45deg, transparent, transparent 400px, rgba(147, 51, 234, 0.008) 400px, rgba(147, 51, 234, 0.008) 402px)",
+        }}
+      />
+
       <FooterSection />
-
-      {/* Background gradient overlay */}
-    </div>
-
-    
+    </section>
   )
 }

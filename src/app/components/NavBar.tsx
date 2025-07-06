@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import "./NavBar.css"
 
+
 export default function Navbar() {
 
     const { t } = useTranslation()
