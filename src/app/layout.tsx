@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     siteName: "Ahnaf Shahriar",
     images: [
       {
-        url: "/me-2.png",
-        width: 1200,
-        height: 630,
+        url: "/Ahnaf-Shahriar.png",
+        width: 963,
+        height: 369,
         alt: "Ahnaf Shahriar's Portfolio Website",
       },
     ],
-    locale: "en_US",
+    locale: "en_US,bn_BD",
     type: "website",
   },
 
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Ahnaf Shahriar's Portfolio Website",
     description: "Web developer - Ahnaf Shahriar's Portfolio Website.",
-    images: ["/me-2.png"],
+    images: ["/Ahnaf-Shahriar.png"],
     creator: "Ahnaf_Shah_Riar",
     site: "https://ahnafshahriar.vercel.app/",
   },
@@ -68,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en,bn"  suppressHydrationWarning>
 
 
       
