@@ -133,6 +133,52 @@
 "contact_form_message_placeholder": "Tell me about your project ideas...",
 "contact_form_send": "Send Message",
 "contact_form_sending": "Sending...",
-"contact_game_title": "Play While You Wait"
+"contact_game_title": "Play While You Wait",
+
+
+
+
+"tic": {
+  "ai_difficulty": "AI Difficulty",
+  "difficulty_easy": "Easy",
+  "difficulty_medium": "Medium",
+  "difficulty_hard": "Hard",
+  "wins": "Wins",
+  "draws": "Draws",
+  "losses": "Losses",
+  "you": "You",
+  "ai": "AI",
+  "your_turn": "Your turn! ✨",
+  "ai_turn": "AI's turn 🎯",
+  "ai_thinking": "AI is thinking... 🤖",
+  "you_won": "You Won! 🎉",
+  "ai_won": "AI Won! 🤖",
+  "draw": "It's a Draw! 🤝",
+  "click_to_move": "Click any empty cell to make your move",
+  "game_over": "Game Over - Start a new game!",
+  "new_game": "New Game 🎮",
+  "reset_scores": "Reset Scores 📊",
+  "celebration_title": "YOU WIN!",
+  "celebration_subtitle": "Congratulations! 🏆",
+  "defeat_title": "YOU LOSE!",
+  "defeat_subtitle": "Better luck next time! 💪"
+},
+
+
+
+"footer": {
+  "quote": "If you can see stars from gutter,\nyou are the one brother!",
+  "coding_canvas": "Coding is my canvas,",
+  "coding_masterpiece": "every project is a new masterpiece.",
+  "description": "I offer professional web development services with a focus on creating user-friendly, responsive, and beautiful websites. Let's work together to bring your ideas to life!",
+  "email": "Email",
+  "linkedin": "LinkedIn",
+  "github": "GitHub",
+  "resume": "Resume",
+  "copyright": "©All Rights Reserved 2025 | Made with ❤️ by",
+  "author": "Ahnaf Shahriar"
+}
+
+
 
 }

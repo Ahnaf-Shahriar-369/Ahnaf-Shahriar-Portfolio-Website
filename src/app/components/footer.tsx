@@ -1,12 +1,21 @@
 "use client"
 
+import { useTranslation } from "react-i18next"
+
+
 import { useState, useEffect } from "react"
 import { Mail, Linkedin, Github, FileText } from "lucide-react"
 import Image from "next/image"
 import "./footer.css"
 
+
 export default function FooterSection() {
-  const [isVisible, setIsVisible] = useState(false)
+
+  const { t } = useTranslation()
+
+
+
+  // const [ setIsVisible] = useState(false)
   const [clicked, setClicked] = useState<string | null>(null)
 
   // Intersection observer for animations
@@ -14,7 +23,7 @@ export default function FooterSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setIsVisible(true)
+          // setIsVisible(true)
           observer.disconnect()
         }
       },
@@ -178,9 +187,12 @@ export default function FooterSection() {
             <div className="cardGlow theme-transition" />
             <p className="footerQuote text-lg sm:text-xl lg:text-2xl font-medium italic">
               <span className="footerQuoteText">
-                `If you can see stars from gutter,
-                <br />
-                you are the one brother!
+                {t("footer.quote").split("\n").map((line, i) => (
+                  <span key={i}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
               </span>
             </p>
           </div>
@@ -192,14 +204,13 @@ export default function FooterSection() {
             <div className="footerTextCard theme-transition relative">
               <div className="cardGlow theme-transition" />
               <div>
-                <h3 className="footerHeading text-2xl sm:text-3xl font-bold mb-2">Coding is my canvas,</h3>
+                <h3 className="footerHeading text-2xl sm:text-3xl font-bold mb-2">{t("footer.coding_canvas")}</h3>
                 <h3 className="footerHeading text-2xl sm:text-3xl font-bold mb-6">
-                  every project is a new masterpiece.
+                  {t("footer.coding_masterpiece")}
                 </h3>
               </div>
               <p className="footerDescription text-base sm:text-lg leading-relaxed max-w-md">
-                I offer professional web development services with a focus on creating user-friendly, responsive, and
-                beautiful websites. Let&apo;s work together to bring your ideas to life!
+                {t("footer.description")}
               </p>
             </div>
           </div>
@@ -247,12 +258,12 @@ export default function FooterSection() {
           {/* Right Social Buttons */}
           <div className="flex justify-center md:justify-end">
             <div className="footerSocialGrid grid grid-cols-2 gap-4 sm:gap-3">
-              {socials.map(({ icon: Icon, label, color, darkColor, glow, delay, href }) => (
+              {socials.map(({ icon: Icon, label, darkColor, glow, delay, href }) => (
                 <a
                   key={label}
                   href={href}
-                  target={label === "Resume" ? "_blank" : label === "Email" ? "_self" : "_blank"}
-                  rel={label !== "Email" ? "noopener noreferrer" : undefined}
+                  target={label === t("footer.resume") ? "_blank" : label === t("footer.email") ? "_self" : "_blank"}
+                  rel={label !== t("footer.email") ? "noopener noreferrer" : undefined}
                   className={`footerSocialBtn relative overflow-hidden w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 group
                     ${clicked === label ? `${darkColor} ${glow} border-none` : ""}
                   `}
@@ -260,7 +271,7 @@ export default function FooterSection() {
                   aria-label={label}
                   onClick={(e) => {
                     setClicked(label)
-                    if (label !== "Email") {
+                    if (label !== t("footer.email")) {
                       e.preventDefault()
                       window.open(href, "_blank", "noopener,noreferrer")
                     }
@@ -284,9 +295,9 @@ export default function FooterSection() {
           <div className="footerCopyrightCard theme-transition relative">
             <div className="cardGlow theme-transition" />
             <p className="footerCopyright text-sm">
-              ©All Rights Reserved 2025 | Made with ❤️ by
+              {t("footer.copyright")}
               <br />
-              <span className="footerCopyrightName">Ahnaf Shahriar</span>
+              <span className="footerCopyrightName">{t("footer.author")}</span>
             </p>
           </div>
         </div>

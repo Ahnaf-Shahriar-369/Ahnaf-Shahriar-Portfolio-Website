@@ -214,12 +214,13 @@ export default function ContactForm() {
       <div className="container mx-auto max-w-7xl relative z-10 py-8 md:py-12 lg:py-20 px-4 md:px-6 lg:px-12 xl:px-20 w-full">
         {/* Header Section */}
         <div className="text-center mb-16 md:mb-24">
-          <h1 className="contactTitle text-4xl md:text-6xl lg:text-7xl font-bold mb-8">Let&apos;s Connect</h1>
+          <h1 className="contactTitle text-4xl md:text-6xl lg:text-7xl font-bold mb-8">
+            {t("contact_title")}
+          </h1>
           <div className="contactTitleUnderline w-24 h-1 mx-auto mb-8 rounded-full theme-transition"></div>
           <div className="contactDescription text-lg md:text-xl max-w-3xl mx-auto leading-relaxed theme-transition">
             <p>
-              Ready to bring your ideas to life? I&apos;m here to help you create something amazing. Whether it&apos;s a new
-              project or collaboration, let&apos;s start the conversation.
+              {t("contact_description")}
             </p>
           </div>
         </div>
@@ -231,14 +232,16 @@ export default function ContactForm() {
             <div className="contactCard theme-transition relative w-full">
               <div className="cardGlow theme-transition" />
 
-              <h2 className="contactCardTitle text-xl md:text-2xl lg:text-3xl font-bold mb-2">Send Message</h2>
+              <h2 className="contactCardTitle text-xl md:text-2xl lg:text-3xl font-bold mb-2">
+                {t("contact_form_title")}
+              </h2>
               <div className="contactCardUnderline w-16 h-0.5 mb-6 lg:mb-8 rounded-full theme-transition"></div>
 
               <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6 w-full">
                 {/* Name Field */}
                 <div className="contactFormGroup w-full">
                   <Label htmlFor="name" className="contactLabel">
-                    Name
+                    {t("contact_form_name")}
                   </Label>
                   <div className="contactInputWrapper w-full">
                     <Input
@@ -247,7 +250,7 @@ export default function ContactForm() {
                       type="text"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Your full name"
+                      placeholder={t("contact_form_name_placeholder")}
                       className="contactInput theme-transition w-full"
                       required
                     />
@@ -258,7 +261,7 @@ export default function ContactForm() {
                 {/* Email Field */}
                 <div className="contactFormGroup w-full">
                   <Label htmlFor="email" className="contactLabel">
-                    Email
+                    {t("contact_form_email")}
                   </Label>
                   <div className="contactInputWrapper w-full">
                     <Input
@@ -267,7 +270,7 @@ export default function ContactForm() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="your.email@example.com"
+                      placeholder={t("contact_form_email_placeholder")}
                       className="contactInput theme-transition w-full"
                       required
                     />
@@ -278,7 +281,7 @@ export default function ContactForm() {
                 {/* Subject Field */}
                 <div className="contactFormGroup w-full">
                   <Label htmlFor="subject" className="contactLabel">
-                    Subject
+                    {t("contact_form_subject")}
                   </Label>
                   <div className="contactInputWrapper w-full">
                     <Input
@@ -287,7 +290,7 @@ export default function ContactForm() {
                       type="text"
                       value={formData.subject}
                       onChange={handleInputChange}
-                      placeholder="Project collaboration"
+                      placeholder={t("contact_form_subject_placeholder")}
                       className="contactInput theme-transition w-full"
                       required
                     />
@@ -298,7 +301,7 @@ export default function ContactForm() {
                 {/* Message Field */}
                 <div className="contactFormGroup w-full">
                   <Label htmlFor="message" className="contactLabel">
-                    Message
+                    {t("contact_form_message")}
                   </Label>
                   <div className="contactInputWrapper w-full">
                     <Textarea
@@ -306,7 +309,7 @@ export default function ContactForm() {
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Tell me about your project ideas..."
+                      placeholder={t("contact_form_message_placeholder")}
                       rows={4}
                       className="contactInput contactTextarea theme-transition resize-none w-full"
                       required
@@ -325,7 +328,7 @@ export default function ContactForm() {
                     {isSubmitting ? (
                       <>
                         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Sending...
+                        {t("contact_form_sending")}
                       </>
                     ) : (
                       <>

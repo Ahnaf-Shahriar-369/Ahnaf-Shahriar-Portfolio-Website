@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import "./Tic.css"
+import { useTranslation } from "react-i18next"
+
 
 type Player = "X" | "O" | null
 type Board = Player[]
@@ -10,6 +12,10 @@ type Difficulty = "easy" | "medium" | "hard"
 type GameState = "playing" | "won" | "lost" | "draw"
 
 export default function NeonTicTacToe() {
+
+  const { t } = useTranslation()
+
+
   const [board, setBoard] = useState<Board>(Array(9).fill(null))
   const [currentPlayer, setCurrentPlayer] = useState<"X" | "O">("X")
   const [scores, setScores] = useState({ wins: 0, losses: 0, draws: 0 })
@@ -210,8 +216,8 @@ export default function NeonTicTacToe() {
         <div className="ticTacToeOverlay celebrationOverlay">
           <div className="ticTacToeOverlayContent celebrationMode">
             <div className="text-6xl md:text-8xl mb-4">🎉</div>
-            <h2 className="ticTacToeOverlayTitle winTitle">YOU WIN!</h2>
-            <div className="ticTacToeOverlaySubtitle winSubtitle">Congratulations! 🏆</div>
+            <h2 className="ticTacToeOverlayTitle winTitle">{t("tic.celebration_title")}</h2>
+            <div className="ticTacToeOverlaySubtitle winSubtitle">{t("tic.celebration_subtitle")}</div>
           </div>
         </div>
       )}
@@ -220,8 +226,8 @@ export default function NeonTicTacToe() {
         <div className="ticTacToeOverlay defeatOverlay">
           <div className="ticTacToeOverlayContent defeatMode">
             <div className="text-6xl md:text-8xl mb-4">😔</div>
-            <h2 className="ticTacToeOverlayTitle loseTitle">YOU LOSE!</h2>
-            <div className="ticTacToeOverlaySubtitle loseSubtitle">Better luck next time! 💪</div>
+            <h2 className="ticTacToeOverlayTitle loseTitle">{t("tic.defeat_title")}</h2>
+            <div className="ticTacToeOverlaySubtitle loseSubtitle">{t("tic.defeat_subtitle")}</div>
           </div>
         </div>
       )}
@@ -246,7 +252,7 @@ export default function NeonTicTacToe() {
         {/* Difficulty Selection */}
         <div className="ticTacToeDifficultyCard theme-transition">
           <div className="cardGlow theme-transition" />
-          <h3 className="ticTacToeDifficultyTitle">AI Difficulty</h3>
+          <h3 className="ticTacToeDifficultyTitle">{t("tic.ai_difficulty")}</h3>
           <div className="ticTacToeDifficultyButtons">
             {(["easy", "medium", "hard"] as Difficulty[]).map((diff) => (
               <Button
@@ -256,7 +262,7 @@ export default function NeonTicTacToe() {
                   difficulty === diff ? `difficultySelected difficulty-${diff}` : "difficultyUnselected"
                 }`}
               >
-                {diff.charAt(0).toUpperCase() + diff.slice(1)}
+                {t(`tic.difficulty_${diff}`)}
               </Button>
             ))}
           </div>
@@ -267,18 +273,18 @@ export default function NeonTicTacToe() {
           <div className="cardGlow theme-transition" />
           <div className="ticTacToeScoreGrid">
             <div className="ticTacToeScoreItem">
-              <div className="ticTacToeScoreLabel winsLabel">Wins</div>
+              <div className="ticTacToeScoreLabel winsLabel">{t("tic.wins")}</div>
               <div className="ticTacToeScoreValue">{scores.wins}</div>
-              <div className="ticTacToeScorePlayer">You</div>
+              <div className="ticTacToeScorePlayer">{t("tic.you")}</div>
             </div>
             <div className="ticTacToeScoreItem">
-              <div className="ticTacToeScoreLabel drawsLabel">Draws</div>
+              <div className="ticTacToeScoreLabel drawsLabel">{t("tic.draws")}</div>
               <div className="ticTacToeScoreValue">{scores.draws}</div>
             </div>
             <div className="ticTacToeScoreItem">
-              <div className="ticTacToeScoreLabel lossesLabel">Losses</div>
+              <div className="ticTacToeScoreLabel lossesLabel">{t("tic.losses")}</div>
               <div className="ticTacToeScoreValue">{scores.losses}</div>
-              <div className="ticTacToeScorePlayer">AI</div>
+              <div className="ticTacToeScorePlayer">{t("tic.ai")}</div>
             </div>
           </div>
         </div>
@@ -321,33 +327,35 @@ export default function NeonTicTacToe() {
           <div className="ticTacToeStatusMain">
             {gameState === "playing" ? (
               isAiThinking ? (
-                <span className="statusAiThinking">AI is thinking... 🤖</span>
+                <span className="statusAiThinking">{t("tic.ai_thinking")}</span>
               ) : currentPlayer === "X" ? (
-                <span className="statusPlayerTurn">Your turn! ✨</span>
+                <span className="statusPlayerTurn">{t("tic.your_turn")}</span>
               ) : (
-                <span className="statusAiTurn">AI&apos;s turn 🎯</span>
+                <span className="statusAiTurn">{t("tic.ai_turn")}</span>
               )
             ) : gameState === "won" ? (
-              <span className="statusWon celebrationMode">You Won! 🎉</span>
+              <span className="statusWon celebrationMode">{t("tic.you_won")}</span>
             ) : gameState === "lost" ? (
-              <span className="statusLost">AI Won! 🤖</span>
+              <span className="statusLost">{t("tic.ai_won")}</span>
             ) : (
-              <span className="statusDraw">It&apos;s a Draw! 🤝</span>
+              <span className="statusDraw">{t("tic.draw")}</span>
             )}
           </div>
           <div className="ticTacToeStatusSub">
-            {gameState === "playing" ? "Click any empty cell to make your move" : "Game Over - Start a new game!"}
+            {gameState === "playing"
+              ? t("tic.click_to_move")
+              : t("tic.game_over")}
           </div>
         </div>
 
         {/* Action Buttons */}
         <div className="ticTacToeActions">
           <Button onClick={resetGame} className="ticTacToeActionBtn newGameBtn theme-transition">
-            <span className="relative z-10">New Game 🎮</span>
+            <span className="relative z-10">{t("tic.new_game")}</span>
             <div className="ticTacToeActionGlow newGameGlow"></div>
           </Button>
           <Button onClick={resetScores} className="ticTacToeActionBtn resetScoresBtn theme-transition">
-            <span className="relative z-10">Reset Scores 📊</span>
+            <span className="relative z-10">{t("tic.reset_scores")}</span>
             <div className="ticTacToeActionGlow resetScoresGlow"></div>
           </Button>
         </div>
