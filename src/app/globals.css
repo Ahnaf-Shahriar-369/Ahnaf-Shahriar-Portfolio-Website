@@ -493,7 +493,7 @@ button,  select, textarea, option , a, link, button,img,.skill-card, .project-ca
 }
 
 h1, h2, h3, h4, h5, h6, p, input, textarea {
-  cursor: url('/text.png'), text !important;
+  cursor: url('/text.webp'), text !important;
 }
 
 

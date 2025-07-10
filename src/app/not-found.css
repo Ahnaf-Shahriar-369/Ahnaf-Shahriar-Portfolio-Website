@@ -1,0 +1,292 @@
+/* CSS Variables for Glass Morphism */
+:root {
+  --glass-bg-light: rgba(255, 255, 255, 0.15);
+  --glass-border-light: rgba(255, 255, 255, 0.25);
+  --glass-shadow-light: 0 8px 32px rgba(31, 38, 135, 0.15);
+  --glass-bg-dark: rgba(15, 23, 42, 0.3);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Container */
+.notFoundContainer {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+  color: #1f2937;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.dark .notFoundContainer {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a0b2e 25%, #16213e 50%, #0f3460 75%, #2d1b69 100%);
+  color: #ffffff;
+}
+
+/* 404 Title */
+.notFoundTitle {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 20%, #3b82f6 40%, #10b981 60%, #f59e0b 80%, #a855f7 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 8s ease infinite;
+  filter: drop-shadow(0 4px 12px rgba(168, 85, 247, 0.3));
+}
+
+/* Glass Cards */
+.notFoundGlassCard {
+  background: var(--glass-bg-light);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid var(--glass-border-light);
+  box-shadow: var(--glass-shadow-light), 0 20px 40px rgba(168, 85, 247, 0.2);
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.dark .notFoundGlassCard {
+  background: var(--glass-bg-dark);
+  border: 2px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark), 0 20px 40px rgba(168, 85, 247, 0.3);
+}
+
+/* Human Shape Container */
+.humanShapeContainer {
+  background: var(--glass-bg-light);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid var(--glass-border-light);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow: var(--glass-shadow-light), 0 20px 40px rgba(168, 85, 247, 0.2);
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.dark .humanShapeContainer {
+  background: var(--glass-bg-dark);
+  border: 2px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow-dark), 0 20px 40px rgba(168, 85, 247, 0.3);
+}
+
+/* Placeholder Text */
+.placeholderText {
+  color: #6b7280;
+  transition: color 0.4s ease;
+}
+
+.dark .placeholderText {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Description Text */
+.descriptionText {
+  color: #6b7280;
+  transition: color 0.4s ease;
+}
+
+.dark .descriptionText {
+  color: #d1d5db;
+}
+
+/* Button Styles */
+.backButton {
+  background: var(--glass-bg-light);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  color: #a855f7;
+  transition: all 0.3s ease;
+}
+
+.dark .backButton {
+  background: var(--glass-bg-dark);
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  color: #c084fc;
+}
+
+/* Glow Effects */
+.sphereGlow1 {
+  background: linear-gradient(45deg, #a855f7, #ec4899, #3b82f6);
+  filter: blur(30px);
+  opacity: 0.4;
+  animation: spherePulse 12s ease-in-out infinite;
+  transform: scale(1.2);
+}
+
+.dark .sphereGlow1 {
+  opacity: 0.5;
+  filter: blur(35px);
+}
+
+.sphereGlow2 {
+  background: linear-gradient(45deg, #ec4899, #a855f7, #10b981);
+  filter: blur(40px);
+  opacity: 0.2;
+  animation: spherePulse 15s ease-in-out infinite reverse;
+  transform: scale(1.4);
+}
+
+.dark .sphereGlow2 {
+  opacity: 0.3;
+  filter: blur(45px);
+}
+
+/* Floating Particles */
+.floatingParticle {
+  opacity: 0.6;
+  animation: floatParticle 8s ease-in-out infinite;
+}
+
+.dark .floatingParticle {
+  opacity: 0.8;
+}
+
+/* Floating Icons */
+.floatingIcon {
+  opacity: 0.4;
+  filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4));
+  animation: floatIcon 12s ease-in-out infinite;
+}
+
+.dark .floatingIcon {
+  opacity: 0.6;
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
+}
+
+/* Wave Effects */
+.waveEffect1 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.03) 0%, transparent 70%);
+  animation: wave 25s ease-in-out infinite;
+}
+
+.dark .waveEffect1 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.05) 0%, transparent 70%);
+}
+
+.waveEffect2 {
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.03) 0%, transparent 70%);
+  animation: wave 30s ease-in-out infinite reverse;
+  animation-delay: 5s;
+}
+
+.dark .waveEffect2 {
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spherePulse {
+  0%,
+  100% {
+    transform: scale(1.2);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.6;
+  }
+}
+
+.dark .sphereGlow1 {
+  animation: spherePulseDark 12s ease-in-out infinite;
+}
+
+.dark .sphereGlow2 {
+  animation: spherePulseDark 15s ease-in-out infinite reverse;
+}
+
+@keyframes spherePulseDark {
+  0%,
+  100% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+@keyframes backgroundShine {
+  0% {
+    transform: translateX(-100%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(100%) skewX(-20deg);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.03;
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.05;
+  }
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes rotateGeometry {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes floatIcon {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+@keyframes moveLines {
+  0% {
+    transform: translate(-100px, -100px);
+  }
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .notFoundTitle {
+    font-size: 4rem;
+  }
+
+  .humanShapeContainer {
+    width: 16rem;
+    height: 20rem;
+  }
+
+  .notFoundGlassCard {
+    padding: 1.5rem;
+  }
+}

@@ -59,7 +59,7 @@ function DownBar() {
 
   return (
     <>
-      <audio loop ref={audioRef} src="/in-slow-motion-inspiring-ambient-lounge-219592.mp3"></audio>
+      <audio loop ref={audioRef} src="/portfolio-song.mp3"></audio>
 
       {/* Responsive DownBar */}
       <div className="downbar-container fixed bottom-4 left-4 right-4 flex justify-center items-center z-50">

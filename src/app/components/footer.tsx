@@ -223,7 +223,7 @@ export default function FooterSection() {
                 <div className="absolute inset-0 flex items-center justify-center blur bg-transparent">
                   <Image
                     unoptimized
-                    src="/sphere (1).gif"
+                    src="/sphere.gif"
                     width={200}
                     height={200}
                     alt="Animated GIF"

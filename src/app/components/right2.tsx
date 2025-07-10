@@ -132,7 +132,7 @@ const RightSection = ({ className = "" }: RightSectionProps) => {
           variants={itemVariants}
         >
           <Image
-            src="/me-2-m.png"
+            src="/me-2-m.webp"
             alt="Profile Picture"
             fill
             sizes="300px"
@@ -148,7 +148,7 @@ const RightSection = ({ className = "" }: RightSectionProps) => {
             priority
           />
           <Image
-            src="/me-2.png"
+            src="/me-2.webp"
             alt="Profile Picture Hover"
             fill
             sizes="300px"

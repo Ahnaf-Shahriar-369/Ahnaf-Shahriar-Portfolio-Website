@@ -181,7 +181,7 @@ export default function Navbar() {
             <div className="flex items-center space-x-3 flex-shrink-0 mr-6">
               <div className="relative w-10 h-10 overflow-hidden rounded-full transition-transform duration-500 hover:scale-110 group">
                 <Image
-                  src="/coder.png"
+                  src="/coder.webp"
                   alt="Coder Logo"
                   width={40}
                   height={40}
