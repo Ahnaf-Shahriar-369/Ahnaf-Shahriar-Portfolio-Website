@@ -120,20 +120,21 @@
 
 
 
-"contact_title": "Let's Connect",
-"contact_description": "Ready to bring your ideas to life? I'm here to help you create something amazing. Whether it's a new project or collaboration, let's start the conversation.",
-"contact_form_title": "Send Message",
-"contact_form_name": "Name",
-"contact_form_name_placeholder": "Your full name",
-"contact_form_email": "Email",
-"contact_form_email_placeholder": "your.email@example.com",
-"contact_form_subject": "Subject",
-"contact_form_subject_placeholder": "Project collaboration",
-"contact_form_message": "Message",
-"contact_form_message_placeholder": "Tell me about your project ideas...",
-"contact_form_send": "Send Message",
-"contact_form_sending": "Sending...",
-"contact_game_title": "Play While You Wait",
+  "contact_title": "Let's Connect",
+  "contact_description": "Ready to bring your ideas to life? I'm here to help you create something amazing. Whether it's a new project or collaboration, let's start the conversation.",
+  "contact_form_title": "Send Message",
+  "contact_form_name": "Name",
+  "contact_form_name_placeholder": "Your full name",
+  "contact_form_email": "Email",
+  "contact_form_email_placeholder": "your.email@example.com",
+  "contact_form_subject": "Subject",
+  "contact_form_subject_placeholder": "Project collaboration",
+  "contact_form_message": "Message",
+  "contact_form_message_placeholder": "Tell me about your project ideas...",
+  "contact_form_send": "Send Message",
+  "contact_form_sending": "Sending...",
+  "contact_form_success": "Thanks for your message! I'll get back to you soon.",
+  "contact_game_title": "Play While You Wait",
 
 
 

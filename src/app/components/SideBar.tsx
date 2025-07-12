@@ -83,7 +83,7 @@ export default function Sidebar() {
           delay={1}
           color="sidebar-icon-mail"
         />
-        <SidebarIcon icon={<FileText size={28} />} href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3" delay={1.5} color="sidebar-icon-file" />
+        <SidebarIcon icon={<FileText size={28} />} href="https://drive.proton.me/urls/TP91KF853M#cQz2bligep2m" delay={1.5} color="sidebar-icon-file" />
       </div>
     </div>
   )

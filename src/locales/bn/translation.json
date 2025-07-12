@@ -121,20 +121,21 @@
 
 
 
-"contact_title": "যোগাযোগ করুন",
-"contact_description": "আপনার আইডিয়া বাস্তবায়নে প্রস্তুত? আমি আপনাকে অসাধারণ কিছু তৈরি করতে সাহায্য করতে প্রস্তুত। নতুন কোনো প্রজেক্ট বা সহযোগিতা হোক, চলুন কথা বলা শুরু করি।",
-"contact_form_title": "বার্তা পাঠান",
-"contact_form_name": "নাম",
-"contact_form_name_placeholder": "আপনার পুরো নাম",
-"contact_form_email": "ইমেইল",
-"contact_form_email_placeholder": "your.email@example.com",
-"contact_form_subject": "বিষয়",
-"contact_form_subject_placeholder": "প্রজেক্ট সহযোগিতা",
-"contact_form_message": "বার্তা",
-"contact_form_message_placeholder": "আপনার প্রজেক্ট আইডিয়া সম্পর্কে লিখুন...",
-"contact_form_send": "বার্তা পাঠান",
-"contact_form_sending": "পাঠানো হচ্ছে...",
-"contact_game_title": "অপেক্ষা করতে করতে খেলুন",
+ "contact_title": "যোগাযোগ করুন",
+  "contact_description": "আপনার আইডিয়া বাস্তবায়নে প্রস্তুত? আমি আপনাকে অসাধারণ কিছু তৈরি করতে সাহায্য করতে প্রস্তুত। নতুন কোনো প্রজেক্ট বা সহযোগিতা হোক, চলুন কথা বলা শুরু করি।",
+  "contact_form_title": "বার্তা পাঠান",
+  "contact_form_name": "নাম",
+  "contact_form_name_placeholder": "আপনার পুরো নাম",
+  "contact_form_email": "ইমেইল",
+  "contact_form_email_placeholder": "your.email@example.com",
+  "contact_form_subject": "বিষয়",
+  "contact_form_subject_placeholder": "প্রজেক্ট সহযোগিতা",
+  "contact_form_message": "বার্তা",
+  "contact_form_message_placeholder": "আপনার প্রজেক্ট আইডিয়া সম্পর্কে লিখুন...",
+  "contact_form_send": "বার্তা পাঠান",
+  "contact_form_sending": "পাঠানো হচ্ছে...",
+  "contact_form_success": "আপনার বার্তা পেয়েছি! খুব শীঘ্রই উত্তর দেব।",
+  "contact_game_title": "অপেক্ষা করতে করতে খেলুন",
 
 
 
