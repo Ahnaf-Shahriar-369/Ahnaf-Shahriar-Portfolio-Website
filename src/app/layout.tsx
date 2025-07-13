@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from 'next-themes';
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: "Ahnaf Shahriar's Portfolio Website",
@@ -91,6 +92,7 @@ export default function RootLayout({
           
           {children}
           <Analytics />
+          <SpeedInsights/>
         </ThemeProvider>
       </body>
     </html>
