@@ -13,16 +13,18 @@ const projectsData = [
     title: "Coming Soon",
     description:
       "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    technologies: [
-      { id: 1, name: "" },
-      { id: 2, name: "" },
-      { id: 3, name: "" },
-      { id: 4, name: "" },
-      { id: 5, name: "" },
+     technologies: [
+        { id: 1, name: "Next.js", icon: "/logos/nextjs.svg" },
+        { id: 2, name: "MongoDB", icon: "/logos/mongodb.svg" },
+        { id: 3, name: "TypeScript", icon: "/logos/typescript.svg" },
+        { id: 4, name: "Express", icon: "/logos/express.svg" },
+        { id: 5, name: "Tailwind CSS", icon: "/logos/tailwind.svg" },
+        {id: 6, name: "Node.js", icon: "/logos/nodejs.svg" }
     ],
-    githubUrl: "",
-    liveUrl: "",
-    imageUrl: "",
+        githubUrl: "https://github.com/your-rep",
+    liveUrl: "https://your-live-demo.com",
+    imageUrl: "/Ahnaf-Shahriar.png",
+    videoUrl: "/project-videos/p1.webm" 
   },
   {
     id: 2,
