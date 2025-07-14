@@ -13,8 +13,8 @@ import About from "./components/About";
 // import SkillCard from "./components/SkillCard";
 // import SkillCardLayout from "./components/SkillCardLayout";
 // import SkillCardsLayout from "./components/SkillCardsLayout";
-// import ProjectCard from "./components/ProjectCard";
-import ProjectLayout from "./components/PcLayout";
+import ProjectCard from "./components/ProjectCard";
+// import ProjectLayout from "./components/PcLayout";
 import Contact from "./components/Contact";
 // import NeonTicTacToe from "./components/NeonTicTacToe";
 // import NeonTicTacToe from "./components/Tic";
@@ -66,7 +66,22 @@ import SkillsCarousel from "./components/SkillCarou";
 
 
 
-
+const demoProject = {
+  id: 1,
+  title: "Coming Soon",
+  description: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+  technologies: [
+    { id: 1, name: "Next.js", icon: "/logos/nextjs.svg" },
+    { id: 2, name: "MongoDB", icon: "/logos/mongodb.svg" },
+    { id: 3, name: "TypeScript", icon: "/logos/typescript.svg" },
+    { id: 4, name: "Express", icon: "/logos/express.svg" },
+    { id: 5, name: "Tailwind CSS", icon: "/logos/tailwind.svg" },
+    {id: 6, name: "Node.js", icon: "/logos/nodejs.svg" }
+  ],
+  githubUrl: "",
+  liveUrl: "",
+  imageUrl: ""
+}
   
 
 
@@ -197,8 +212,10 @@ export default function Home() {
           {/* <h1 className="text-4xl font-bold">Projects Section</h1> */}
 
 
-          <ProjectLayout />
+          {/* <ProjectLayout /> */}
           {/* <NeonTicTacToe /> */}
+
+          <ProjectCard project={demoProject} />
 
           
 

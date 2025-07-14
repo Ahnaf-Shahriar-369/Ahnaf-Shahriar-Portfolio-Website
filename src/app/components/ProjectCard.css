@@ -1,16 +1,5 @@
 /* CSS Custom Properties for Glass Effects */
-:root {
-  --glass-bg-light: rgba(255, 255, 255, 0.25);
-  --glass-bg-dark: rgba(26, 26, 46, 0.4);
-  --glass-border-light: rgba(255, 255, 255, 0.3);
-  --glass-border-dark: rgba(255, 255, 255, 0.1);
-  --glass-shadow-light: 0 8px 32px rgba(31, 38, 135, 0.37);
-  --glass-shadow-dark: 0 8px 32px rgba(0, 0, 0, 0.5);
-  --glass-bg-light-hover: rgba(255, 255, 255, 0.35);
-  --glass-bg-dark-hover: rgba(26, 26, 46, 0.6);
-  --glass-shadow-light-hover: 0 12px 40px rgba(31, 38, 135, 0.5);
-  --glass-shadow-dark-hover: 0 12px 40px rgba(0, 0, 0, 0.7);
-}
+
 
 /* Theme Transition System */
 .theme-transition {
@@ -112,6 +101,7 @@
   box-shadow: var(--glass-shadow-dark);
 }
 
+/* Remove these blocks: */
 .techBadge:hover {
   transform: scale(1.1);
   box-shadow: var(--glass-shadow-light-hover), 0 0 20px rgba(168, 85, 247, 0.2);
