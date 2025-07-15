@@ -24,7 +24,7 @@ const projectsData = [
         githubUrl: "https://github.com/your-rep",
     liveUrl: "https://your-live-demo.com",
     imageUrl: "/Ahnaf-Shahriar.png",
-    videoUrl: "/project-videos/p1.webm" 
+    videoUrl: "/project-videos/P1.webm" 
   },
   {
     id: 2,
