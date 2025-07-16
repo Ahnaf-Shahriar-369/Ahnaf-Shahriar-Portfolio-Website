@@ -32,6 +32,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     const [isCardHovered, setIsCardHovered] = useState(false)
     const [isMobile, setIsMobile] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
+    const [showVideo, setShowVideo] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(null)
 
     // Detect mobile device
@@ -48,6 +49,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     // Play/pause video
     const playVideo = () => {
         if (videoRef.current) {
+            videoRef.current.currentTime = 0
             videoRef.current.play()
             setIsPlaying(true)
         }
@@ -55,6 +57,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     const pauseVideo = () => {
         if (videoRef.current) {
             videoRef.current.pause()
+            videoRef.current.currentTime = 0
             setIsPlaying(false)
         }
     }
@@ -63,7 +66,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     const handleMobileTap = () => {
         if (isPlaying) {
             pauseVideo()
+            setShowVideo(false)
         } else {
+            setShowVideo(true)
             playVideo()
         }
     }
@@ -81,6 +86,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     const handleButtonClick = (url: string) => {
         if (url && url !== "#") {
             window.open(url, "_blank", "noopener,noreferrer")
+        }
+    }
+
+    // Handlers for hover
+    const handleMouseEnter = () => {
+        if (!isMobile && project.videoUrl) {
+            setShowVideo(true)
+        }
+    }
+    const handleMouseLeave = () => {
+        if (!isMobile && project.videoUrl) {
+            setShowVideo(false)
         }
     }
 
@@ -120,39 +137,25 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     {/* Image/Video Container with buttons */}
                     <div
                         className="projectImageContainer theme-transition relative h-44 overflow-hidden shadow-inner"
-                        onMouseEnter={() => {
-                            if (!isMobile && project.videoUrl) playVideo()
-                        }}
-                        onMouseLeave={() => {
-                            if (!isMobile && project.videoUrl) pauseVideo()
-                        }}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
                         onClick={() => {
                             if (isMobile && project.videoUrl) handleMobileTap()
                         }}
                         style={{ cursor: isMobile && project.videoUrl ? "pointer" : "default" }}
                     >
-                        {project.videoUrl ? (
-                            <div className="relative w-full h-full">
-                                <video
-                                    ref={videoRef}
-                                    src={project.videoUrl}
-                                    className="object-cover w-full h-full absolute inset-0"
-                                    poster={project.imageUrl || "/placeholder.svg"}
-                                    loop
-                                    muted
-                                    playsInline
-                                    controls={false}
-                                    style={{ objectFit: "cover", pointerEvents: "none" }}
-                                />
-                                {isMobile && (
-                                    <div
-                                        className="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white text-xs px-2 py-1 rounded"
-                                        style={{ zIndex: 2 }}
-                                    >
-                                        {isPlaying ? "tap to stop" : "tap to start"}
-                                    </div>
-                                )}
-                            </div>
+                        {project.videoUrl && showVideo ? (
+                            <video
+                                ref={videoRef}
+                                src={project.videoUrl}
+                                className="object-cover w-full h-full absolute inset-0"
+                                poster={project.imageUrl || "/placeholder.svg"}
+                                loop={false}
+                                muted
+                                playsInline
+                                controls={false}
+                                style={{ objectFit: "cover", pointerEvents: "none" }}
+                            />
                         ) : (
                             <Image
                                 src={project.imageUrl || "/placeholder.svg"}
@@ -228,6 +231,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
                         {/* Overlay Effects */}
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/0 via-violet-900/0 to-purple-900/0 group-hover:from-purple-900/10 group-hover:via-violet-900/5 group-hover:to-purple-900/10 transition-all duration-300" />
+                        {isMobile && project.videoUrl && (
+                            <div
+                                className="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white text-xs px-2 py-1 rounded"
+                                style={{ zIndex: 2 }}
+                            >
+                                {isPlaying ? "tap to stop" : "tap to start"}
+                            </div>
+                        )}
                     </div>
 
                     {/* Technologies Section */}
