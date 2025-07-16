@@ -10,19 +10,19 @@ import { useTranslation } from "react-i18next"
 const projectsData = [
   {
     id: 1,
-    title: "Coming Soon",
+    title: "Portfolio Website (Current)",
     description:
-      "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "My personal (Web Dev) portfolio website showcasing my skills, projects, and experience. Built with modern web technologies for a responsive and engaging user experience.",
      technologies: [
         { id: 1, name: "Next.js", icon: "/logos/nextjs.svg" },
-        { id: 2, name: "MongoDB", icon: "/logos/mongodb.svg" },
+        { id: 2, name: "Shadcn UI", icon: "/logos/shadecn.svg" },
         { id: 3, name: "TypeScript", icon: "/logos/typescript.svg" },
-        { id: 4, name: "Express", icon: "/logos/express.svg" },
+        { id: 4, name: "Framer Motion", icon: "/logos/framermotion.svg" },
         { id: 5, name: "Tailwind CSS", icon: "/logos/tailwind.svg" },
-        {id: 6, name: "Node.js", icon: "/logos/nodejs.svg" }
+        {id: 6, name: "React", icon: "/logos/react.svg" }
     ],
-        githubUrl: "https://github.com/your-rep",
-    liveUrl: "https://your-live-demo.com",
+        githubUrl: "https://github.com/Ahnaf-Shahriar-369/Ahnaf-Shahriar-Portfolio-Website.git",
+    liveUrl: "https://ahnafshahriar.vercel.app/",
     imageUrl: "/Ahnaf-Shahriar.png",
     videoUrl: "/project-videos/P1.webm" 
   },

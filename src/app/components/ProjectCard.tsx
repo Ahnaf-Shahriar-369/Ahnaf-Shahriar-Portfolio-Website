@@ -46,30 +46,55 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         return () => window.removeEventListener("resize", checkMobile)
     }, [checkMobile])
 
-    // Play/pause video
-    const playVideo = () => {
-        if (videoRef.current) {
-            videoRef.current.currentTime = 0
-            videoRef.current.play()
-            setIsPlaying(true)
-        }
-    }
-    const pauseVideo = () => {
-        if (videoRef.current) {
-            videoRef.current.pause()
-            videoRef.current.currentTime = 0
-            setIsPlaying(false)
-        }
-    }
+    // Video control effect
+    useEffect(() => {
+        const videoElement = videoRef.current;
 
-    // Mobile tap handler
-    const handleMobileTap = () => {
-        if (isPlaying) {
-            pauseVideo()
-            setShowVideo(false)
-        } else {
+        const playVideo = async () => {
+            if (videoElement) {
+                try {
+                    videoElement.currentTime = 0;
+                    await videoElement.play();
+                    setIsPlaying(true);
+                } catch (error) {
+                    setIsPlaying(false);
+                }
+            }
+        };
+
+        if (showVideo && videoElement) {
+            playVideo();
+        } else if (!showVideo && videoElement) {
+            videoElement.pause();
+            videoElement.currentTime = 0;
+            setIsPlaying(false);
+        }
+    }, [showVideo]);
+
+    // Listen for video end on mobile to show the pill again
+    useEffect(() => {
+        const videoElement = videoRef.current;
+        if (isMobile && videoElement) {
+            const handleEnded = () => setIsPlaying(false);
+            videoElement.addEventListener("ended", handleEnded);
+            return () => videoElement.removeEventListener("ended", handleEnded);
+        }
+    }, [isMobile, showVideo]);
+
+    // Handlers for hover/tap
+    const handleMouseEnter = () => {
+        if (!isMobile && project.videoUrl) {
             setShowVideo(true)
-            playVideo()
+        }
+    }
+    const handleMouseLeave = () => {
+        if (!isMobile && project.videoUrl) {
+            setShowVideo(false)
+        }
+    }
+    const handleMobileTap = () => {
+        if (project.videoUrl) {
+            setShowVideo((prev) => !prev)
         }
     }
 
@@ -86,18 +111,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     const handleButtonClick = (url: string) => {
         if (url && url !== "#") {
             window.open(url, "_blank", "noopener,noreferrer")
-        }
-    }
-
-    // Handlers for hover
-    const handleMouseEnter = () => {
-        if (!isMobile && project.videoUrl) {
-            setShowVideo(true)
-        }
-    }
-    const handleMouseLeave = () => {
-        if (!isMobile && project.videoUrl) {
-            setShowVideo(false)
         }
     }
 
@@ -231,12 +244,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
                         {/* Overlay Effects */}
                         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/0 via-violet-900/0 to-purple-900/0 group-hover:from-purple-900/10 group-hover:via-violet-900/5 group-hover:to-purple-900/10 transition-all duration-300" />
-                        {isMobile && project.videoUrl && (
+                        {isMobile && project.videoUrl && !isPlaying && (
                             <div
-                                className="absolute bottom-2 right-2 bg-black bg-opacity-80 text-white text-xs px-2 py-1 rounded"
-                                style={{ zIndex: 2 }}
+                                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-black bg-opacity-80 text-white text-xs px-4 py-2 rounded-full flex items-center justify-center"
+                                style={{ zIndex: 2, minWidth: 120, textAlign: "center" }}
                             >
-                                {isPlaying ? "tap to stop" : "tap to start"}
+                                Tap to see preview
                             </div>
                         )}
                     </div>
