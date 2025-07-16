@@ -56,7 +56,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                     videoElement.currentTime = 0;
                     await videoElement.play();
                     setIsPlaying(true);
-                } catch (error) {
+                } catch {
                     setIsPlaying(false);
                 }
             }
