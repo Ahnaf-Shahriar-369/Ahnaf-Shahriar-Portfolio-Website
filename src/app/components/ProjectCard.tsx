@@ -46,57 +46,72 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         return () => window.removeEventListener("resize", checkMobile)
     }, [checkMobile])
 
-    // Video control effect
+    // Pause/reset video when hiding
     useEffect(() => {
-        const videoElement = videoRef.current;
-
-        const playVideo = async () => {
-            if (videoElement) {
-                try {
-                    videoElement.currentTime = 0;
-                    await videoElement.play();
-                    setIsPlaying(true);
-                } catch {
-                    setIsPlaying(false);
-                }
-            }
-        };
-
-        if (showVideo && videoElement) {
-            playVideo();
-        } else if (!showVideo && videoElement) {
-            videoElement.pause();
-            videoElement.currentTime = 0;
-            setIsPlaying(false);
+        if (!showVideo && videoRef.current) {
+            videoRef.current.pause()
+            videoRef.current.currentTime = 0
+            setIsPlaying(false)
         }
-    }, [showVideo]);
+    }, [showVideo])
 
     // Listen for video end on mobile to show the pill again
     useEffect(() => {
-        const videoElement = videoRef.current;
+        const videoElement = videoRef.current
         if (isMobile && videoElement) {
-            const handleEnded = () => setIsPlaying(false);
-            videoElement.addEventListener("ended", handleEnded);
-            return () => videoElement.removeEventListener("ended", handleEnded);
+            const handleEnded = () => setIsPlaying(false)
+            videoElement.addEventListener("ended", handleEnded)
+            return () => videoElement.removeEventListener("ended", handleEnded)
         }
-    }, [isMobile, showVideo]);
+    }, [isMobile, showVideo])
 
-    // Handlers for hover/tap
+    // Desktop hover handlers
     const handleMouseEnter = () => {
         if (!isMobile && project.videoUrl) {
             setShowVideo(true)
         }
     }
+
     const handleMouseLeave = () => {
-        if (!isMobile && project.videoUrl) {
+        if (!isMobile && project.videoUrl && videoRef.current) {
+            videoRef.current.pause()
+            videoRef.current.currentTime = 0
+            setIsPlaying(false)
             setShowVideo(false)
         }
     }
+
+    // Mobile tap handler
     const handleMobileTap = () => {
-        if (project.videoUrl) {
-            setShowVideo((prev) => !prev)
+        if (project.videoUrl && !showVideo) {
+            setShowVideo(true)
+        } else if (project.videoUrl && videoRef.current) {
+            videoRef.current.pause()
+            videoRef.current.currentTime = 0
+            setIsPlaying(false)
+            setShowVideo(false)
         }
     }
+
+// Mobile: play video after it is rendered
+    useEffect(() => {
+        if (isMobile && showVideo && videoRef.current) {
+            videoRef.current.currentTime = 0
+            videoRef.current.play()
+                .then(() => setIsPlaying(true))
+                .catch(() => setIsPlaying(false))
+        }
+    }, [showVideo, isMobile])
+
+    // Only play in useEffect for desktop
+    useEffect(() => {
+        if (!isMobile && showVideo && videoRef.current) {
+            videoRef.current.currentTime = 0
+            videoRef.current.play()
+                .then(() => setIsPlaying(true))
+                .catch(() => setIsPlaying(false))
+        }
+    }, [showVideo, isMobile])
 
     // Floating particles for the card
     const cardParticles = [
