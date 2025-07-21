@@ -5,16 +5,13 @@ import { Button } from "@/components/ui/button"
 import "./Tic.css"
 import { useTranslation } from "react-i18next"
 
-
 type Player = "X" | "O" | null
 type Board = Player[]
 type Difficulty = "easy" | "medium" | "hard"
 type GameState = "playing" | "won" | "lost" | "draw"
 
 export default function NeonTicTacToe() {
-
   const { t } = useTranslation()
-
 
   const [board, setBoard] = useState<Board>(Array(9).fill(null))
   const [currentPlayer, setCurrentPlayer] = useState<"X" | "O">("X")
@@ -56,11 +53,11 @@ export default function NeonTicTacToe() {
   }
 
   const minimax = (
-    board: Board,
-    depth: number,
-    isMaximizing: boolean,
-    alpha = Number.NEGATIVE_INFINITY,
-    beta: number = Number.POSITIVE_INFINITY,
+      board: Board,
+      depth: number,
+      isMaximizing: boolean,
+      alpha = Number.NEGATIVE_INFINITY,
+      beta: number = Number.POSITIVE_INFINITY,
   ): number => {
     const { winner } = checkWinner(board)
 
@@ -156,29 +153,29 @@ export default function NeonTicTacToe() {
 
     // AI move with delay for better UX
     setTimeout(
-      () => {
-        const aiMove = getAiMove(newBoard, difficulty)
-        newBoard[aiMove] = "O"
-        setBoard([...newBoard])
-        setIsAiThinking(false)
+        () => {
+          const aiMove = getAiMove(newBoard, difficulty)
+          newBoard[aiMove] = "O"
+          setBoard([...newBoard])
+          setIsAiThinking(false)
 
-        const { winner: aiWinner, line: aiLine } = checkWinner(newBoard)
-        if (aiWinner) {
-          setWinningLine(aiLine)
-          if (aiWinner === "O") {
-            setGameState("lost")
-            setScores((prev) => ({ ...prev, losses: prev.losses + 1 }))
-            setShowDefeat(true)
-            setTimeout(() => setShowDefeat(false), 3000)
-          } else if (aiWinner === "draw") {
-            setGameState("draw")
-            setScores((prev) => ({ ...prev, draws: prev.draws + 1 }))
+          const { winner: aiWinner, line: aiLine } = checkWinner(newBoard)
+          if (aiWinner) {
+            setWinningLine(aiLine)
+            if (aiWinner === "O") {
+              setGameState("lost")
+              setScores((prev) => ({ ...prev, losses: prev.losses + 1 }))
+              setShowDefeat(true)
+              setTimeout(() => setShowDefeat(false), 3000)
+            } else if (aiWinner === "draw") {
+              setGameState("draw")
+              setScores((prev) => ({ ...prev, draws: prev.draws + 1 }))
+            }
+          } else {
+            setCurrentPlayer("X")
           }
-        } else {
-          setCurrentPlayer("X")
-        }
-      },
-      500 + Math.random() * 1000,
+        },
+        500 + Math.random() * 1000,
     ) // Random delay for more natural feel
   }
 
@@ -189,6 +186,7 @@ export default function NeonTicTacToe() {
     setWinningLine([])
     setShowCelebration(false)
     setShowDefeat(false)
+    setIsAiThinking(false)
   }
 
   const resetScores = () => {
@@ -210,156 +208,154 @@ export default function NeonTicTacToe() {
   ]
 
   return (
-    <div className="ticTacToeContainer theme-transition relative">
-      {/* Celebration/Defeat Overlay */}
-      {showCelebration && (
-        <div className="ticTacToeOverlay celebrationOverlay">
-          <div className="ticTacToeOverlayContent celebrationMode">
-            <div className="text-6xl md:text-8xl mb-4">🎉</div>
-            <h2 className="ticTacToeOverlayTitle winTitle">{t("tic.celebration_title")}</h2>
-            <div className="ticTacToeOverlaySubtitle winSubtitle">{t("tic.celebration_subtitle")}</div>
-          </div>
-        </div>
-      )}
+      <div className="ticTacToeContainer theme-transition relative">
+        {/* Celebration/Defeat Overlay */}
+        {showCelebration && (
+            <div className="ticTacToeOverlay celebrationOverlay">
+              <div className="ticTacToeOverlayContent celebrationMode">
+                <div className="text-6xl md:text-8xl mb-4">🎉</div>
+                <h2 className="ticTacToeOverlayTitle winTitle">{t("tic.celebration_title")}</h2>
+                <div className="ticTacToeOverlaySubtitle winSubtitle">{t("tic.celebration_subtitle")}</div>
+              </div>
+            </div>
+        )}
 
-      {showDefeat && (
-        <div className="ticTacToeOverlay defeatOverlay">
-          <div className="ticTacToeOverlayContent defeatMode">
-            <div className="text-6xl md:text-8xl mb-4">😔</div>
-            <h2 className="ticTacToeOverlayTitle loseTitle">{t("tic.defeat_title")}</h2>
-            <div className="ticTacToeOverlaySubtitle loseSubtitle">{t("tic.defeat_subtitle")}</div>
-          </div>
-        </div>
-      )}
+        {showDefeat && (
+            <div className="ticTacToeOverlay defeatOverlay">
+              <div className="ticTacToeOverlayContent defeatMode">
+                <div className="text-6xl md:text-8xl mb-4">😔</div>
+                <h2 className="ticTacToeOverlayTitle loseTitle">{t("tic.defeat_title")}</h2>
+                <div className="ticTacToeOverlaySubtitle loseSubtitle">{t("tic.defeat_subtitle")}</div>
+              </div>
+            </div>
+        )}
 
-      {/* Fixed Color Floating Particles */}
-      <div className="ticTacToeParticles">
-        {fixedParticles.map((p, i) => (
+        {/* Fixed Color Floating Particles */}
+        <div className="ticTacToeParticles">
+          {fixedParticles.map((p, i) => (
+              <div
+                  key={i}
+                  className="ticTacToeParticle"
+                  style={{
+                    left: p.left,
+                    top: p.top,
+                    background: p.gradient,
+                    animationDelay: `${i * 0.3}s`,
+                  }}
+              />
+          ))}
+        </div>
+
+        <div className="ticTacToeContent">
+          {/* Difficulty Selection */}
+          <div className="ticTacToeDifficultyCard theme-transition">
+            <div className="cardGlow theme-transition" />
+            <h3 className="ticTacToeDifficultyTitle">{t("tic.ai_difficulty")}</h3>
+            <div className="ticTacToeDifficultyButtons">
+              {(["easy", "medium", "hard"] as Difficulty[]).map((diff) => (
+                  <Button
+                      key={diff}
+                      onClick={() => setDifficulty(diff)}
+                      className={`ticTacToeDifficultyBtn theme-transition ${
+                          difficulty === diff ? `difficultySelected difficulty-${diff}` : "difficultyUnselected"
+                      }`}
+                  >
+                    {t(`tic.difficulty_${diff}`)}
+                  </Button>
+              ))}
+            </div>
+          </div>
+
+          {/* Score Board */}
+          <div className="ticTacToeScoreCard theme-transition">
+            <div className="cardGlow theme-transition" />
+            <div className="ticTacToeScoreGrid">
+              <div className="ticTacToeScoreItem">
+                <div className="ticTacToeScoreLabel winsLabel">{t("tic.wins")}</div>
+                <div className="ticTacToeScoreValue">{scores.wins}</div>
+                <div className="ticTacToeScorePlayer">{t("tic.you")}</div>
+              </div>
+              <div className="ticTacToeScoreItem">
+                <div className="ticTacToeScoreLabel drawsLabel">{t("tic.draws")}</div>
+                <div className="ticTacToeScoreValue">{scores.draws}</div>
+              </div>
+              <div className="ticTacToeScoreItem">
+                <div className="ticTacToeScoreLabel lossesLabel">{t("tic.losses")}</div>
+                <div className="ticTacToeScoreValue">{scores.losses}</div>
+                <div className="ticTacToeScorePlayer">{t("tic.ai")}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Game Board */}
           <div
-            key={i}
-            className="ticTacToeParticle"
-            style={{
-              left: p.left,
-              top: p.top,
-              background: p.gradient,
-              animationDelay: `${i * 0.3}s`,
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="ticTacToeContent">
-        {/* Difficulty Selection */}
-        <div className="ticTacToeDifficultyCard theme-transition">
-          <div className="cardGlow theme-transition" />
-          <h3 className="ticTacToeDifficultyTitle">{t("tic.ai_difficulty")}</h3>
-          <div className="ticTacToeDifficultyButtons">
-            {(["easy", "medium", "hard"] as Difficulty[]).map((diff) => (
-              <Button
-                key={diff}
-                onClick={() => setDifficulty(diff)}
-                className={`ticTacToeDifficultyBtn theme-transition ${
-                  difficulty === diff ? `difficultySelected difficulty-${diff}` : "difficultyUnselected"
-                }`}
-              >
-                {t(`tic.difficulty_${diff}`)}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Score Board */}
-        <div className="ticTacToeScoreCard theme-transition">
-          <div className="cardGlow theme-transition" />
-          <div className="ticTacToeScoreGrid">
-            <div className="ticTacToeScoreItem">
-              <div className="ticTacToeScoreLabel winsLabel">{t("tic.wins")}</div>
-              <div className="ticTacToeScoreValue">{scores.wins}</div>
-              <div className="ticTacToeScorePlayer">{t("tic.you")}</div>
-            </div>
-            <div className="ticTacToeScoreItem">
-              <div className="ticTacToeScoreLabel drawsLabel">{t("tic.draws")}</div>
-              <div className="ticTacToeScoreValue">{scores.draws}</div>
-            </div>
-            <div className="ticTacToeScoreItem">
-              <div className="ticTacToeScoreLabel lossesLabel">{t("tic.losses")}</div>
-              <div className="ticTacToeScoreValue">{scores.losses}</div>
-              <div className="ticTacToeScorePlayer">{t("tic.ai")}</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Game Board */}
-        <div
-          className={`ticTacToeGameCard theme-transition ${
-            isAiThinking ? "aiThinking" : ""
-          } ${gameState === "won" ? "gameWon" : ""}`}
-        >
-          <div className="cardGlow theme-transition" />
-          <div className="ticTacToeBoard">
-            {board.map((cell, index) => (
-              <button
-                key={index}
-                onClick={() => handleCellClick(index)}
-                className={`ticTacToeCell theme-transition ${
-                  winningLine.includes(index) ? "winningCell" : ""
-                } ${isAiThinking && !cell ? "cellThinking" : ""}`}
-                disabled={!!cell || gameState !== "playing" || currentPlayer === "O"}
-              >
-                {cell && (
-                  <span className={`ticTacToeCellContent ${cell === "X" ? "playerX" : "playerO"} cellAnimate`}>
+              className={`ticTacToeGameCard theme-transition ${
+                  isAiThinking ? "aiThinking" : ""
+              } ${gameState === "won" ? "gameWon" : ""}`}
+          >
+            <div className="cardGlow theme-transition" />
+            <div className="ticTacToeBoard">
+              {board.map((cell, index) => (
+                  <button
+                      key={index}
+                      onClick={() => handleCellClick(index)}
+                      className={`ticTacToeCell theme-transition ${
+                          winningLine.includes(index) ? "winningCell" : ""
+                      } ${isAiThinking && !cell ? "cellThinking" : ""}`}
+                      disabled={!!cell || gameState !== "playing" || currentPlayer === "O"}
+                  >
+                    {cell && (
+                        <span className={`ticTacToeCellContent ${cell === "X" ? "playerX" : "playerO"} cellAnimate`}>
                     {cell}
                   </span>
-                )}
-                {isAiThinking && !cell && (
-                  <div className="ticTacToeSpinner">
-                    <div className="ticTacToeSpinnerInner"></div>
-                  </div>
-                )}
-              </button>
-            ))}
+                    )}
+                    {isAiThinking && !cell && (
+                        <div className="ticTacToeSpinner">
+                          <div className="ticTacToeSpinnerInner"></div>
+                        </div>
+                    )}
+                  </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Game Status */}
-        <div className="ticTacToeStatusCard theme-transition">
-          <div className="cardGlow theme-transition" />
-          <div className="ticTacToeStatusMain">
-            {gameState === "playing" ? (
-              isAiThinking ? (
-                <span className="statusAiThinking">{t("tic.ai_thinking")}</span>
-              ) : currentPlayer === "X" ? (
-                <span className="statusPlayerTurn">{t("tic.your_turn")}</span>
+          {/* Game Status */}
+          <div className="ticTacToeStatusCard theme-transition">
+            <div className="cardGlow theme-transition" />
+            <div className="ticTacToeStatusMain">
+              {gameState === "playing" ? (
+                  isAiThinking ? (
+                      <span className="statusAiThinking">{t("tic.ai_thinking")}</span>
+                  ) : currentPlayer === "X" ? (
+                      <span className="statusPlayerTurn">{t("tic.your_turn")}</span>
+                  ) : (
+                      <span className="statusAiTurn">{t("tic.ai_turn")}</span>
+                  )
+              ) : gameState === "won" ? (
+                  <span className="statusWon celebrationMode">{t("tic.you_won")}</span>
+              ) : gameState === "lost" ? (
+                  <span className="statusLost">{t("tic.ai_won")}</span>
               ) : (
-                <span className="statusAiTurn">{t("tic.ai_turn")}</span>
-              )
-            ) : gameState === "won" ? (
-              <span className="statusWon celebrationMode">{t("tic.you_won")}</span>
-            ) : gameState === "lost" ? (
-              <span className="statusLost">{t("tic.ai_won")}</span>
-            ) : (
-              <span className="statusDraw">{t("tic.draw")}</span>
-            )}
+                  <span className="statusDraw">{t("tic.draw")}</span>
+              )}
+            </div>
+            <div className="ticTacToeStatusSub">
+              {gameState === "playing" ? t("tic.click_to_move") : t("tic.game_over")}
+            </div>
           </div>
-          <div className="ticTacToeStatusSub">
-            {gameState === "playing"
-              ? t("tic.click_to_move")
-              : t("tic.game_over")}
-          </div>
-        </div>
 
-        {/* Action Buttons */}
-        <div className="ticTacToeActions">
-          <Button onClick={resetGame} className="ticTacToeActionBtn newGameBtn theme-transition">
-            <span className="relative z-10">{t("tic.new_game")}</span>
-            <div className="ticTacToeActionGlow newGameGlow"></div>
-          </Button>
-          <Button onClick={resetScores} className="ticTacToeActionBtn resetScoresBtn theme-transition">
-            <span className="relative z-10">{t("tic.reset_scores")}</span>
-            <div className="ticTacToeActionGlow resetScoresGlow"></div>
-          </Button>
+          {/* Action Buttons */}
+          <div className="ticTacToeActions">
+            <Button onClick={resetGame} className="ticTacToeActionBtn newGameBtn theme-transition">
+              <span className="relative z-10">{t("tic.new_game")}</span>
+              <div className="ticTacToeActionGlow newGameGlow"></div>
+            </Button>
+            <Button onClick={resetScores} className="ticTacToeActionBtn resetScoresBtn theme-transition">
+              <span className="relative z-10">{t("tic.reset_scores")}</span>
+              <div className="ticTacToeActionGlow resetScoresGlow"></div>
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
   )
 }

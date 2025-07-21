@@ -609,3 +609,31 @@
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+
+.contactMessageTextarea {
+  min-height: 120px;
+  max-height: 320px;
+  resize: vertical;
+  line-height: 1.6;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.contactTextareaCounter {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.contactErrorMsg {
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  min-height: 1.2em;
+  display: block;
+}
+

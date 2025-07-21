@@ -42,18 +42,18 @@ export default function ContactForm() {
   }, [])
 
   // Clear form and show success alert on successful submission
- useEffect(() => {
-  if (state.succeeded) {
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    })
-    setShowSuccess(true)
-    setTimeout(() => setShowSuccess(false), 4000)
-  }
-}, [state.succeeded])
+    useEffect(() => {
+        if (state.succeeded) {
+            setFormData({
+                name: "",
+                email: "",
+                subject: "",
+                message: "",
+            })
+            setShowSuccess(true)
+            setTimeout(() => setShowSuccess(false), 4000)
+        }
+    }, [state.succeeded])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -202,11 +202,14 @@ export default function ContactForm() {
 
       <div className="container mx-auto max-w-7xl relative z-10 py-8 md:py-12 lg:py-20 px-4 md:px-6 lg:px-12 xl:px-20 w-full">
         {/* Success Alert */}
-        {showSuccess && (
-  <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-[9999] px-6 py-3 rounded-lg bg-green-600 text-white font-semibold shadow-lg transition-all">
-    {t("contact_form_success")}
-  </div>
-)}
+          {showSuccess && (
+              <div
+                  className="fixed bottom-6 right-6 z-[9999] px-6 py-3 rounded-lg bg-green-600 text-white font-semibold shadow-lg transition-all"
+                  style={{ left: "auto", top: "auto", transform: "none" }}
+              >
+                  {t("contact_form_success")}
+              </div>
+          )}
 
         {/* Header Section */}
         <div className="text-center mb-16 md:mb-24">
@@ -233,113 +236,130 @@ export default function ContactForm() {
               </h2>
               <div className="contactCardUnderline w-16 h-0.5 mb-6 lg:mb-8 rounded-full theme-transition"></div>
 
-              <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6 w-full">
-                {/* Name Field */}
-                <div className="contactFormGroup w-full">
-                  <Label htmlFor="name" className="contactLabel">
-                    {t("contact_form_name")}
-    </Label>
-    <div className="contactInputWrapper w-full">
-      <Input
-        id="name"
-        name="name"
-        type="text"
-        value={formData.name}
-        onChange={handleInputChange}
-        placeholder={t("contact_form_name_placeholder")}
-        className="contactInput theme-transition w-full"
-        required
-      />
-      <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
-      <div className="contactInputGlow"></div>
-    </div>
-  </div>
+                <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6 w-full" noValidate>
+                    {/* Name Field */}
+                    <div className="contactFormGroup w-full">
+                        <Label htmlFor="name" className="contactLabel">
+                            {t("contact_form_name")}
+                        </Label>
+                        <div className="contactInputWrapper w-full">
+                            <Input
+                                id="name"
+                                name="name"
+                                type="text"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                placeholder={t("contact_form_name_placeholder")}
+                                className="contactInput theme-transition w-full"
+                                required
+                                minLength={2}
+                                maxLength={64}
+                                autoComplete="name"
+                                aria-required="true"
+                            />
+                            <ValidationError prefix="Name" field="name" errors={state.errors} className="contactErrorMsg" />
+                            <div className="contactInputGlow"></div>
+                        </div>
+                    </div>
 
-  {/* Email Field */}
-  <div className="contactFormGroup w-full">
-    <Label htmlFor="email" className="contactLabel">
-      {t("contact_form_email")}
-    </Label>
-    <div className="contactInputWrapper w-full">
-      <Input
-        id="email"
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleInputChange}
-        placeholder={t("contact_form_email_placeholder")}
-        className="contactInput theme-transition w-full"
-        required
-      />
-      <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
-      <div className="contactInputGlow"></div>
-    </div>
-  </div>
+                    {/* Email Field */}
+                    <div className="contactFormGroup w-full">
+                        <Label htmlFor="email" className="contactLabel">
+                            {t("contact_form_email")}
+                        </Label>
+                        <div className="contactInputWrapper w-full">
+                            <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                placeholder={t("contact_form_email_placeholder")}
+                                className="contactInput theme-transition w-full"
+                                required
+                                autoComplete="email"
+                                aria-required="true"
+                                pattern="^[\w\.-]+@[\w\.-]+\.\w{2,}$"
+                            />
+                            <ValidationError prefix="Email" field="email" errors={state.errors} className="contactErrorMsg" />
+                            <div className="contactInputGlow"></div>
+                        </div>
+                    </div>
 
-  {/* Subject Field */}
-  <div className="contactFormGroup w-full">
-    <Label htmlFor="subject" className="contactLabel">
-      {t("contact_form_subject")}
-    </Label>
-    <div className="contactInputWrapper w-full">
-      <Input
-        id="subject"
-        name="subject"
-        type="text"
-        value={formData.subject}
-        onChange={handleInputChange}
-        placeholder={t("contact_form_subject_placeholder")}
-        className="contactInput theme-transition w-full"
-        required
-      />
-      <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-red-500 text-xs mt-1" />
-      <div className="contactInputGlow"></div>
-    </div>
-  </div>
+                    {/* Subject Field */}
+                    <div className="contactFormGroup w-full">
+                        <Label htmlFor="subject" className="contactLabel">
+                            {t("contact_form_subject")}
+                        </Label>
+                        <div className="contactInputWrapper w-full">
+                            <Input
+                                id="subject"
+                                name="subject"
+                                type="text"
+                                value={formData.subject}
+                                onChange={handleInputChange}
+                                placeholder={t("contact_form_subject_placeholder")}
+                                className="contactInput theme-transition w-full"
+                                required
+                                minLength={2}
+                                maxLength={128}
+                                aria-required="true"
+                            />
+                            <ValidationError prefix="Subject" field="subject" errors={state.errors} className="contactErrorMsg" />
+                            <div className="contactInputGlow"></div>
+                        </div>
+                    </div>
 
-  {/* Message Field */}
-  <div className="contactFormGroup w-full">
-    <Label htmlFor="message" className="contactLabel">
-      {t("contact_form_message")}
-    </Label>
-    <div className="contactInputWrapper w-full">
-      <Textarea
-        id="message"
-        name="message"
-        value={formData.message}
-        onChange={handleInputChange}
-        placeholder={t("contact_form_message_placeholder")}
-        rows={4}
-        className="contactInput contactTextarea theme-transition resize-none w-full"
-        required
-      />
-      <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
-      <div className="contactInputGlow"></div>
-    </div>
-  </div>
+                    {/* Message Field */}
+                    <div className="contactFormGroup w-full">
+                        <Label htmlFor="message" className="contactLabel">
+                            {t("contact_form_message")}
+                        </Label>
+                        <div className="contactInputWrapper w-full">
+                            <Textarea
+                                id="message"
+                                name="message"
+                                value={formData.message}
+                                onChange={handleInputChange}
+                                placeholder={t("contact_form_message_placeholder")}
+                                rows={6}
+                                className="contactInput contactTextarea contactMessageTextarea theme-transition resize-vertical w-full"
+                                required
+                                minLength={10}
+                                maxLength={2000}
+                                aria-required="true"
+                            />
+                            <div className="contactTextareaCounter">
+                                {formData.message.length}/2000
+                            </div>
+                            <ValidationError prefix="Message" field="message" errors={state.errors} className="contactErrorMsg" />
+                            <div className="contactInputGlow"></div>
+                        </div>
+                    </div>
 
-  {/* Submit Button */}
-  <Button
-    type="submit"
-    disabled={state.submitting}
-    className="contactSubmitBtn theme-transition w-full relative overflow-hidden group"
-  >
+                    {/* Submit Button */}
+                    <Button
+                        type="submit"
+                        disabled={state.submitting}
+                        className="contactSubmitBtn theme-transition w-full relative overflow-hidden group"
+                        aria-busy={state.submitting}
+                    >
     <span className="relative z-10 flex items-center justify-center gap-2">
       {state.submitting ? (
-        <>
-          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-          {t("contact_form_sending")}
-        </>
+          <>
+              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              {t("contact_form_sending")}
+          </>
       ) : (
-        <>
-          {t("contact_form_send")}
-          <span className="transform transition-transform group-hover:translate-x-1">→</span>
-        </>
+          <>
+              {t("contact_form_send")}
+              <span className="transform transition-transform group-hover:translate-x-1">→</span>
+          </>
       )}
     </span>
-    <div className="contactSubmitGlow"></div>
-  </Button>
-</form>
+                        <div className="contactSubmitGlow"></div>
+                    </Button>
+                </form>
 
 
               {/* Decorative Elements */}

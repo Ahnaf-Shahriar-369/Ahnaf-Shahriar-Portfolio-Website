@@ -18,7 +18,7 @@
 /* Theme Transition System */
 .theme-transition {
   transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, opacity 0.4s ease, box-shadow 0.4s
-    ease;
+  ease;
 }
 
 /* Tic Tac Toe Container */
@@ -30,7 +30,8 @@
   padding: 1rem;
   gap: 1.5rem;
   position: relative;
-  min-height: 100%;
+  min-height: 100vh;
+  width: 100%;
 }
 
 /* Tic Tac Toe Content */
@@ -79,6 +80,7 @@
   overflow: hidden;
   width: 100%;
 }
+
 .dark .ticTacToeDifficultyCard,
 .dark .ticTacToeScoreCard,
 .dark .ticTacToeGameCard,
@@ -101,6 +103,7 @@
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
   transition: background-color 0.4s ease;
 }
+
 .dark .ticTacToeDifficultyCard::before,
 .dark .ticTacToeScoreCard::before,
 .dark .ticTacToeGameCard::before,
@@ -117,6 +120,7 @@
   background: var(--glass-bg-light-hover);
   border-color: rgba(255, 255, 255, 0.4);
 }
+
 .dark .ticTacToeDifficultyCard:hover,
 .dark .ticTacToeScoreCard:hover,
 .dark .ticTacToeGameCard:hover,
@@ -147,6 +151,7 @@
 .ticTacToeStatusCard:hover .cardGlow {
   opacity: 0.15;
 }
+
 .dark .ticTacToeDifficultyCard:hover .cardGlow,
 .dark .ticTacToeScoreCard:hover .cardGlow,
 .dark .ticTacToeGameCard:hover .cardGlow,
@@ -162,6 +167,7 @@
   font-weight: 600;
   font-size: 1rem;
 }
+
 .dark .ticTacToeDifficultyTitle {
   color: #c084fc;
 }
@@ -184,6 +190,7 @@
   position: relative;
   overflow: hidden;
 }
+
 .dark .ticTacToeDifficultyBtn {
   border-color: var(--glass-border-dark);
 }
@@ -192,6 +199,7 @@
   background: var(--glass-bg-light);
   color: #a855f7;
 }
+
 .dark .difficultyUnselected {
   background: var(--glass-bg-dark);
   color: #c084fc;
@@ -201,6 +209,7 @@
   background: var(--glass-bg-light-hover);
   transform: scale(1.05);
 }
+
 .dark .difficultyUnselected:hover {
   background: var(--glass-bg-dark-hover);
 }
@@ -249,6 +258,7 @@
 .winsLabel {
   color: #10b981;
 }
+
 .dark .winsLabel {
   color: #34d399;
 }
@@ -256,6 +266,7 @@
 .drawsLabel {
   color: #a855f7;
 }
+
 .dark .drawsLabel {
   color: #c084fc;
 }
@@ -263,6 +274,7 @@
 .lossesLabel {
   color: #ef4444;
 }
+
 .dark .lossesLabel {
   color: #f87171;
 }
@@ -272,6 +284,7 @@
   font-weight: 700;
   color: #1f2937;
 }
+
 .dark .ticTacToeScoreValue {
   color: #f1f5f9;
 }
@@ -280,17 +293,20 @@
   font-size: 0.875rem;
   color: #a855f7;
 }
+
 .dark .ticTacToeScorePlayer {
   color: #c084fc;
 }
 
-/* Game Board */
+/* Game Board - Responsive Design */
 .ticTacToeBoard {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.75rem;
-  width: 288px;
-  height: 288px;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1;
+  margin: 0 auto;
 }
 
 .ticTacToeCell {
@@ -307,7 +323,12 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  aspect-ratio: 1;
+  min-height: 80px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
+
 .dark .ticTacToeCell {
   background: var(--glass-bg-dark);
   border-color: var(--glass-border-dark);
@@ -318,6 +339,7 @@
   transform: scale(1.05);
   box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
 }
+
 .dark .ticTacToeCell:hover:not(:disabled) {
   background: var(--glass-bg-dark-hover);
 }
@@ -383,6 +405,7 @@
   color: #a855f7;
   margin-bottom: 0.5rem;
 }
+
 .dark .ticTacToeStatusMain {
   color: #c084fc;
 }
@@ -392,6 +415,7 @@
   font-size: 0.875rem;
   color: rgba(168, 85, 247, 0.7);
 }
+
 .dark .ticTacToeStatusSub {
   color: rgba(192, 132, 252, 0.7);
 }
@@ -400,6 +424,7 @@
   color: #3b82f6;
   animation: neonGlow 2s ease-in-out infinite;
 }
+
 .dark .statusAiThinking {
   color: #60a5fa;
 }
@@ -408,6 +433,7 @@
   color: #ec4899;
   animation: neonGlow 2s ease-in-out infinite;
 }
+
 .dark .statusPlayerTurn {
   color: #f472b6;
 }
@@ -416,6 +442,7 @@
   color: #3b82f6;
   animation: neonGlow 2s ease-in-out infinite;
 }
+
 .dark .statusAiTurn {
   color: #60a5fa;
 }
@@ -424,6 +451,7 @@
   color: #10b981;
   animation: neonGlow 2s ease-in-out infinite;
 }
+
 .dark .statusWon {
   color: #34d399;
 }
@@ -432,6 +460,7 @@
   color: #ef4444;
   animation: neonGlow 2s ease-in-out infinite;
 }
+
 .dark .statusLost {
   color: #f87171;
 }
@@ -440,6 +469,7 @@
   color: #f59e0b;
   animation: neonGlow 2s ease-in-out infinite;
 }
+
 .dark .statusDraw {
   color: #fbbf24;
 }
@@ -570,6 +600,7 @@
 .winSubtitle {
   color: #10b981;
 }
+
 .dark .winSubtitle {
   color: #34d399;
 }
@@ -577,6 +608,7 @@
 .loseSubtitle {
   color: #ef4444;
 }
+
 .dark .loseSubtitle {
   color: #f87171;
 }
@@ -745,10 +777,90 @@
   }
 }
 
-/* Responsive Design */
+/* Mobile Responsive Design */
 @media (max-width: 768px) {
+  .ticTacToeContainer {
+    padding: 0.75rem;
+    gap: 1.25rem;
+    min-height: 100vh;
+  }
+
   .ticTacToeContent {
-    max-width: 320px;
+    max-width: 100%;
+    gap: 1.25rem;
+  }
+
+  .ticTacToeDifficultyCard,
+  .ticTacToeScoreCard,
+  .ticTacToeGameCard,
+  .ticTacToeStatusCard {
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+
+  .ticTacToeBoard {
+    max-width: min(350px, calc(100vw - 3rem));
+    gap: 0.5rem;
+  }
+
+  .ticTacToeCell {
+    font-size: 2.25rem;
+    border-radius: 12px;
+    min-height: 100px;
+  }
+
+  .ticTacToeScoreGrid {
+    gap: 1.5rem;
+  }
+
+  .ticTacToeScoreLabel {
+    font-size: 1rem;
+  }
+
+  .ticTacToeScoreValue {
+    font-size: 1.75rem;
+  }
+
+  .ticTacToeActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .ticTacToeActionBtn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .ticTacToeDifficultyButtons {
+    gap: 0.5rem;
+  }
+
+  .ticTacToeDifficultyBtn {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8rem;
+  }
+
+  .ticTacToeOverlayContent {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .ticTacToeOverlayTitle {
+    font-size: 2.5rem;
+  }
+
+  .ticTacToeOverlaySubtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ticTacToeContainer {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  .ticTacToeContent {
     gap: 1rem;
   }
 
@@ -757,18 +869,16 @@
   .ticTacToeGameCard,
   .ticTacToeStatusCard {
     padding: 1rem;
-    border-radius: 20px;
   }
 
   .ticTacToeBoard {
-    width: 240px;
-    height: 240px;
-    gap: 0.5rem;
+    max-width: min(300px, calc(100vw - 2rem));
+    gap: 0.375rem;
   }
 
   .ticTacToeCell {
     font-size: 2rem;
-    border-radius: 12px;
+    min-height: 85px;
   }
 
   .ticTacToeScoreGrid {
@@ -785,16 +895,6 @@
 
   .ticTacToeOverlaySubtitle {
     font-size: 1rem;
-  }
-
-  .ticTacToeActions {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .ticTacToeActionBtn {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.875rem;
   }
 }
 
@@ -817,3 +917,4 @@
   backface-visibility: hidden;
   perspective: 1000px;
 }
+

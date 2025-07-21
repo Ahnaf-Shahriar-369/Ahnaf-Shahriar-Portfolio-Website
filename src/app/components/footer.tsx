@@ -264,9 +264,10 @@ export default function FooterSection() {
                   href={href}
                   target={label === t("footer.resume") ? "_blank" : label === t("footer.email") ? "_self" : "_blank"}
                   rel={label !== t("footer.email") ? "noopener noreferrer" : undefined}
-                  className={`footerSocialBtn relative overflow-hidden w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 group
-                    ${clicked === label ? `${darkColor} ${glow} border-none` : ""}
-                  `}
+                  className={`footerSocialBtn relative overflow-hidden w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 group
+    ${clicked === label ? `${darkColor} ${glow} border-none` : ""}
+  `}
+
                   style={{ animationDelay: `${delay}ms` }}
                   aria-label={label}
                   onClick={(e) => {
@@ -278,10 +279,7 @@ export default function FooterSection() {
                   }}
                 >
                   {clicked !== label && (
-                    <Icon className="w-6 h-6 sm:w-8 sm:h-8 footerSocialIcon transition-all duration-300 group-hover:scale-110 z-10" />
-                  )}
-                  {clicked === label && (
-                    <span className="absolute inset-0 rounded-full footerSocialShine pointer-events-none"></span>
+                      <Icon className="w-10 h-10 sm:w-12 sm:h-12 footerSocialIcon transition-all duration-300 group-hover:scale-110 z-10" />
                   )}
                   <div className="footerSocialGlow"></div>
                 </a>
