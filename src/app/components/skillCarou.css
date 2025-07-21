@@ -1,4 +1,4 @@
-/* Skills Carousel Styling - Optimized for SkillCard component */
+/* Skills Carousel Styling - Optimized for SkillCard component with Scroll Animations */
 
 :root {
     /* Light mode colors */
@@ -39,6 +39,9 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
+    /* Enhanced for scroll animations */
+    perspective: 1000px;
+    transform-style: preserve-3d;
 }
 
 .dark .skills-section {
@@ -53,15 +56,17 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    /* Enhanced for scroll animations */
+    transform-style: preserve-3d;
 }
 
-/* Fixed gradient title - only text should have gradient, not background */
+/* Enhanced gradient title with scroll animation support */
 .skills-title {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
-    background: var(--skills-gradient-light); ;
+    background: var(--skills-gradient-light);
     background-size: 300% 300%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -69,18 +74,23 @@
     animation: gradientShift 12s ease infinite;
     filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.1));
     position: relative;
+    /* Enhanced for scroll animations */
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
 }
 
 .dark .skills-title {
-    /* background: var(--skills-gradient-dark); */
     filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.2));
 }
 
-/* New description styling */
+/* Enhanced description styling with scroll animation support */
 .skills-description {
     margin-bottom: 3rem;
     text-align: center;
     max-width: 600px;
+    /* Enhanced for scroll animations */
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
 }
 
 .skills-description p {
@@ -95,13 +105,14 @@
     color: var(--skills-text-dark);
 }
 
-/* Loading skeleton styles - Adjusted for SkillCard size */
+/* Loading skeleton styles - Enhanced for scroll animations */
 .loading-skeleton {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3rem;
     padding: 4rem 0;
+    opacity: 0.7;
 }
 
 .skeleton-title {
@@ -169,7 +180,7 @@
     }
 }
 
-/* Carousel container - Optimized for 20rem cards */
+/* Enhanced carousel container with scroll animation support */
 .skills-carousel-container {
     width: 100%;
     display: flex;
@@ -179,6 +190,9 @@
     margin-bottom: 2rem;
     padding: 0 80px;
     min-height: 24rem;
+    /* Enhanced for scroll animations */
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
 }
 
 .skills-cards-container {
@@ -188,9 +202,11 @@
     position: relative;
     display: flex;
     justify-content: center;
+    /* Enhanced for scroll animations */
+    transform-style: preserve-3d;
 }
 
-/* Cards wrapper - Perfect spacing for 20rem cards */
+/* Enhanced cards wrapper with scroll animation support */
 .skills-cards-wrapper {
     display: flex;
     flex-direction: row;
@@ -200,17 +216,23 @@
     width: 100%;
     min-height: 22rem;
     padding: 1rem 0;
+    /* Enhanced for scroll animations */
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
 }
 
-/* Card wrapper - No size constraints, let SkillCard handle its own sizing */
+/* Enhanced card wrapper with scroll animation support */
 .skill-card-wrapper {
     flex: 0 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* Enhanced for scroll animations */
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
 }
 
-/* Enhanced Navigation Buttons */
+/* Enhanced Navigation Buttons with scroll animation support */
 .nav-button {
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -229,6 +251,8 @@
     transition: all 0.3s ease;
     color: var(--skills-text-light);
     overflow: hidden;
+    /* Enhanced for scroll animations */
+    will-change: transform, opacity;
 }
 
 .nav-button::before {
@@ -277,10 +301,12 @@
     right: 10px;
 }
 
-/* Slide info */
+/* Enhanced slide info with scroll animation support */
 .slide-info {
     margin-bottom: 2rem;
     text-align: center;
+    /* Enhanced for scroll animations */
+    will-change: transform, opacity;
 }
 
 .slide-info-text {
@@ -299,7 +325,7 @@
     color: var(--skills-text-dark);
 }
 
-/* Enhanced Timer Indicators */
+/* Enhanced Timer Indicators with scroll animation support */
 .timer-indicators {
     display: flex;
     justify-content: center;
@@ -307,6 +333,8 @@
     width: 100%;
     max-width: 500px;
     margin-top: 1rem;
+    /* Enhanced for scroll animations */
+    will-change: transform, opacity;
 }
 
 .timer-indicator-container {
@@ -316,6 +344,8 @@
     max-width: 80px;
     position: relative;
     overflow: hidden;
+    /* Enhanced for scroll animations */
+    will-change: transform, opacity;
 }
 
 .timer-indicator-background {
@@ -371,7 +401,7 @@
     background: linear-gradient(to right, var(--skills-accent-dark), #ec4899);
 }
 
-/* Responsive Styles - Optimized for SkillCard's fixed size */
+/* Responsive Styles - Enhanced for scroll animations */
 @media (max-width: 1200px) {
     .skills-container {
         max-width: 95%;
@@ -401,7 +431,7 @@
     }
 }
 
-/* Mobile Responsive Styles */
+/* Mobile Responsive Styles - Enhanced for scroll animations */
 @media (max-width: 768px) {
     .skills-section {
         padding: 3rem 1rem;
@@ -515,15 +545,19 @@
     }
 }
 
-/* Performance optimizations */
+/* Enhanced Performance optimizations for scroll animations */
 .skills-section * {
     will-change: auto;
 }
 
 .nav-button,
 .timer-indicator-background,
-.skill-card-wrapper {
-    will-change: transform;
+.skill-card-wrapper,
+.skills-title,
+.skills-description,
+.skills-carousel-container,
+.timer-indicators {
+    will-change: transform, opacity;
 }
 
 .timer-indicator-progress {
@@ -549,15 +583,36 @@
     }
 }
 
-/* Accessibility improvements */
+/* Enhanced Accessibility improvements with scroll animation support */
 @media (prefers-reduced-motion: reduce) {
     .skills-title,
     .nav-button,
     .timer-indicator-background,
     .skill-card-wrapper,
-    .skills-cards-wrapper {
+    .skills-cards-wrapper,
+    .skills-section,
+    .skills-container,
+    .skills-description,
+    .skills-carousel-container,
+    .timer-indicators {
         animation: none !important;
         transition: none !important;
+    }
+
+    /* Disable scroll animations for users who prefer reduced motion */
+    .skills-section {
+        transform: none !important;
+        perspective: none !important;
+    }
+
+    .skills-container,
+    .skills-title,
+    .skills-description,
+    .skills-carousel-container,
+    .skill-card-wrapper,
+    .timer-indicators {
+        transform: none !important;
+        transform-style: flat !important;
     }
 }
 
@@ -578,6 +633,51 @@
 
 .dark .timer-indicator-background:focus-visible {
     outline-color: var(--skills-accent-dark);
+}
+
+/* Enhanced scroll animation effects */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 
