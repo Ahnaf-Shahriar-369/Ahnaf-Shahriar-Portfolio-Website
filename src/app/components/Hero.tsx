@@ -5,10 +5,29 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect, useCallback, useMemo } from "react"
 import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
-import LogoSphere2 from "./LogoSphere2"
+
 import "./Hero.css"
 
+
+
+import dynamic from 'next/dynamic';
+
+
+
 export default function Hero() {
+
+
+
+
+const LogoSphere2 = dynamic(
+  () => import('./LogoSphere2'),
+  { ssr: false }
+);
+
+
+
+
+
   const { t } = useTranslation()
 
   const [isGithubHovered, setIsGithubHovered] = useState(false)

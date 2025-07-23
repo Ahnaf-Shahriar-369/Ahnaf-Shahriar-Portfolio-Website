@@ -23,7 +23,7 @@ import SkillsCarousel from "./components/SkillCarou";
 // import LogoSphere2 from "./components/LogoSphere2";
 
 
-// import dynamic from 'next/dynamic';
+ 
 
 
 
@@ -97,10 +97,6 @@ export default function Home() {
 
 
 
-// const LogoSphere2 = dynamic(
-//   () => import('./components/LogoSphere2'),
-//   { ssr: false }
-// );
 
 
 
