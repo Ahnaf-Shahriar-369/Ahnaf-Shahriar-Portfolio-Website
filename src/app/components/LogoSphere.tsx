@@ -1,60 +1,89 @@
-"use client"
+import { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import tagCanvas from 'tag-canvas';
 
-import { useEffect, useRef } from "react"
-import TagCloud from "TagCloud"
-
-const logos = [
-  "bootstrap",
-  "css",
-  "material",
-  "express",
-  "shadecn",
-  "git",
-  "github",
-  "html",
-  "javascript",
-  "mongodb",
-  "prisma",
-  "nextjs",
-  "nodejs",
-  "react",
-  "redux",
-  "sass",
-  "tailwind",
-  "vercel",
-].map(
-  (name) =>
-    `<div class="tech-item" title="${name}">
-      <img src="/logos/${name}.svg" alt="${name}" />
-      <span class="tooltip">${name}</span>
-    </div>`,
-)
+// All skill logos
+const skills = [
+  { name: 'bootstrap', logo: '/bootstrap-logo.png' },
+  { name: 'css', logo: '/css-logo.png' },
+  { name: 'material', logo: '/material-logo.png' },
+  { name: 'express', logo: '/express-logo.png' },
+  { name: 'shadecn', logo: '/shadecn-logo.png' },
+  { name: 'git', logo: '/git-logo.png' },
+  { name: 'github', logo: '/github-logo.png' },
+  { name: 'html', logo: '/html-logo.png' },
+  { name: 'javascript', logo: '/javascript-logo.png' },
+  { name: 'mongodb', logo: '/mongodb-logo.png' },
+  { name: 'prisma', logo: '/prisma-logo.png' },
+  { name: 'nextjs', logo: '/nextjs-logo.png' },
+  { name: 'nodejs', logo: '/nodejs-logo.png' },
+  { name: 'react', logo: '/react-logo.png' },
+  { name: 'redux', logo: '/redux-logo.png' },
+  { name: 'sass', logo: '/sass-logo.png' },
+  { name: 'tailwind', logo: '/tailwind-logo.png' },
+  { name: 'vercel', logo: '/vercel-logo.png' },
+  
+  // ...
+];
 
 export default function LogoSphere() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const listRef   = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) {
-      console.error("containerRef is null")
-      return
-    }
-
-    console.log("Initializing TagCloud with logos:", logos)
+    if (!canvasRef.current || !listRef.current) return;
 
     try {
-      const tagCloud = TagCloud([containerRef.current], logos, {
-        radius: window.innerWidth < 768 ? 120 : 180,
-        maxSpeed: "normal",
-        initSpeed: "normal",
-        keep: true,
-        useHTML: true,
-      })
-
-      return () => tagCloud.destroy()
-    } catch (error) {
-      console.error("Error initializing TagCloud:", error)
+      tagCanvas.Start(
+        'skillCanvas',
+        'skillTags',
+        {
+          animate: true,
+          initial: [0.1, -0.1],
+          noMouse: false,
+          dragControl: true,
+          // ... (rest of the tagCanvas options remain the same)
+          clickToFront: 500,
+          minSpeed: 0.02,
+          maxSpeed: 0.08,
+          decel: 0.95,
+          depth: 0.6,
+          imageScale: 1.2,
+          imageMode: 'both',
+          reverse: false,
+        }
+      );
+    } catch (e) {
+      console.error('TagCanvas init failed', e);
     }
-  }, [])
 
-  return <div className="logo-sphere-container" ref={containerRef} />
+    return () => {
+      try {
+        tagCanvas.Delete('skillCanvas');
+      } catch {}
+    };
+  }, []);
+
+  return (
+    <div className="logos">
+      <canvas
+        width={400}
+        height={400}
+        ref={canvasRef}
+        id="skillCanvas"
+      />
+      <div ref={listRef} id="skillTags">
+        {skills.map((skill, index) => (
+          <div key={index}>
+            <Image
+              src={skill.logo}
+              alt={skill.name}
+              width={50}
+              height={50}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }

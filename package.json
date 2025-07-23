@@ -34,9 +34,11 @@
     "react-animations": "^1.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.5.2",
-    "react-icon-cloud": "^2.0.4",
+    "react-icon-cloud": "^2.0.5",
     "react-icons": "^4.10.1",
     "react-type-animation": "^3.2.0",
+    "simple-icons": "^15.7.0",
+    "tag-canvas": "^0.0.5",
     "TagCloud": "^2.5.0",
     "tailwind-merge": "^3.3.0"
   },

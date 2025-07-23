@@ -19,8 +19,11 @@ import Contact from "./components/Contact";
 // import NeonTicTacToe from "./components/NeonTicTacToe";
 // import NeonTicTacToe from "./components/Tic";
 import SkillsCarousel from "./components/SkillCarou";
+// import LogoSphere from "./components/LogoSphere";
+// import LogoSphere2 from "./components/LogoSphere2";
 
 
+// import dynamic from 'next/dynamic';
 
 
 
@@ -90,6 +93,20 @@ import SkillsCarousel from "./components/SkillCarou";
 
 export default function Home() {
 
+
+
+
+
+// const LogoSphere2 = dynamic(
+//   () => import('./components/LogoSphere2'),
+//   { ssr: false }
+// );
+
+
+
+
+
+
 // const { t } = useTranslation();
 
 
@@ -150,7 +167,8 @@ export default function Home() {
   id="home"
   className="min-h-screen flex items-center justify-center transition-all duration-500 rounded-3xl p-0 m-0 "
 >
-  <Hero />
+            <Hero/>
+
 </section>
 
         <section

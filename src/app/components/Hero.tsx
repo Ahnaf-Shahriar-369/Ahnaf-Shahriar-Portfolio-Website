@@ -5,15 +5,11 @@ import { motion, AnimatePresence } from "framer-motion"
 import { useState, useEffect, useCallback, useMemo } from "react"
 import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
-import LogoSphere from "./LogoSphere"
+import LogoSphere2 from "./LogoSphere2"
 import "./Hero.css"
 
-
 export default function Hero() {
-  
   const { t } = useTranslation()
-  
-
 
   const [isGithubHovered, setIsGithubHovered] = useState(false)
   const [isResumeHovered, setIsResumeHovered] = useState(false)
@@ -24,13 +20,7 @@ export default function Hero() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
 
-  
-
-  const rotatingTexts = useMemo(
-  () =>
-    t("rotatingTexts", { returnObjects: true }) as string[],
-  [t]
-)
+  const rotatingTexts = useMemo(() => t("rotatingTexts", { returnObjects: true }) as string[], [t])
 
   // Optimized loading animation effect
   useEffect(() => {
@@ -255,12 +245,14 @@ export default function Hero() {
             <div className="cardGlow" />
 
             <h1 className="nameGradient text-5xl md:text-7xl leading-tight font-extrabold mb-6">
-              {t("heroTitle").split("\n").map((line, idx) => (
-              <span key={idx}>
-              {line}
-              <br />
-              </span>
-              ))}
+              {t("heroTitle")
+                .split("\n")
+                .map((line, idx) => (
+                  <span key={idx}>
+                    {line}
+                    <br />
+                  </span>
+                ))}
             </h1>
 
             <div
@@ -278,104 +270,109 @@ export default function Hero() {
             </div>
 
             <p
-  className="subtitleText text-lg leading-7 mb-8 font-normal animate-fadeInUp"
-  style={{ animationDelay: "0.4s", opacity: 0, animationFillMode: "forwards" }}
->
-  {t("heroSubtitle")}
-</p>
+              className="subtitleText text-lg leading-7 mb-8 font-normal animate-fadeInUp"
+              style={{ animationDelay: "0.4s", opacity: 0, animationFillMode: "forwards" }}
+            >
+              {t("heroSubtitle")}
+            </p>
 
             <div
               className="flex gap-6 flex-wrap animate-fadeInUp"
               style={{ animationDelay: "0.6s", opacity: 0, animationFillMode: "forwards" }}
             >
-              
+              <Link
+                href="https://github.com/Ahnaf-Shahriar-369"
+                className={`githubButton buttonEffect group/github ${isGithubClicked ? "buttonClicked" : ""}`}
+                onMouseEnter={() => handleGithubInteraction("hover")}
+                onMouseLeave={() => handleGithubInteraction("leave")}
+                onMouseDown={() => handleGithubInteraction("down")}
+                onMouseUp={() => handleGithubInteraction("up")}
+                onTouchStart={() => handleGithubInteraction("down")}
+                onTouchEnd={() => handleGithubInteraction("up")}
+              >
+                <div className="buttonGlow" />
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={t("githubButton")}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="inline-block"
+                  >
+                    {t("githubButton")}
+                  </motion.span>
+                </AnimatePresence>
+                <ArrowRight
+                  size={18}
+                  className={`transition-all duration-300 ${isGithubHovered ? "transform translate-x-1.5" : ""}`}
+                />
+              </Link>
 
-<Link
-  href="https://github.com/Ahnaf-Shahriar-369"
-  className={`githubButton buttonEffect group/github ${isGithubClicked ? "buttonClicked" : ""}`}
-  onMouseEnter={() => handleGithubInteraction("hover")}
-  onMouseLeave={() => handleGithubInteraction("leave")}
-  onMouseDown={() => handleGithubInteraction("down")}
-  onMouseUp={() => handleGithubInteraction("up")}
-  onTouchStart={() => handleGithubInteraction("down")}
-  onTouchEnd={() => handleGithubInteraction("up")}
->
-  <div className="buttonGlow" />
-  <AnimatePresence mode="wait" initial={false}>
-    <motion.span
-      key={t("githubButton")}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.25 }}
-      className="inline-block"
-    >
-      {t("githubButton")}
-    </motion.span>
-  </AnimatePresence>
-  <ArrowRight
-    size={18}
-    className={`transition-all duration-300 ${isGithubHovered ? "transform translate-x-1.5" : ""}`}
-  />
-</Link>
-
-<Link
-  href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
-  className={`resumeButton buttonEffect group/resume ${isResumeClicked ? "buttonClicked" : ""}`}
-  onMouseEnter={() => handleResumeInteraction("hover")}
-  onMouseLeave={() => handleResumeInteraction("leave")}
-  onMouseDown={() => handleResumeInteraction("down")}
-  onMouseUp={() => handleResumeInteraction("up")}
-  onTouchStart={() => handleResumeInteraction("down")}
-  onTouchEnd={() => handleResumeInteraction("up")}
->
-  <div className="buttonGlow" />
-  <AnimatePresence mode="wait" initial={false}>
-    <motion.span
-      key={t("resumeButton")}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.25 }}
-      className="inline-block"
-    >
-      {t("resumeButton")}
-    </motion.span>
-  </AnimatePresence>
-  <Download
-    size={18}
-    className={`transition-all duration-300 ${isResumeHovered ? "transform translate-y-1" : ""}`}
-  />
-</Link>
+              <Link
+                href="https://drive.proton.me/urls/HBH57DYT3W#pt5IXOFVa9a3"
+                className={`resumeButton buttonEffect group/resume ${isResumeClicked ? "buttonClicked" : ""}`}
+                onMouseEnter={() => handleResumeInteraction("hover")}
+                onMouseLeave={() => handleResumeInteraction("leave")}
+                onMouseDown={() => handleResumeInteraction("down")}
+                onMouseUp={() => handleResumeInteraction("up")}
+                onTouchStart={() => handleResumeInteraction("down")}
+                onTouchEnd={() => handleResumeInteraction("up")}
+              >
+                <div className="buttonGlow" />
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={t("resumeButton")}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    className="inline-block"
+                  >
+                    {t("resumeButton")}
+                  </motion.span>
+                </AnimatePresence>
+                <Download
+                  size={18}
+                  className={`transition-all duration-300 ${isResumeHovered ? "transform translate-y-1" : ""}`}
+                />
+              </Link>
             </div>
           </div>
         </div>
 
         {/* Right Side - Enhanced Tech Sphere */}
-        <div className="relative h-[500px] md:h-[550px] w-full max-w-[550px] flex items-center justify-center transform-gpu animate-slideInRight">
+        <div className="relative h-[500px] md:h-[550px] w-full max-w-[550px] flex flex-col items-center justify-center transform-gpu animate-slideInRight">
+          {/* Black Pill Container with Instructions */}
+          <div className="mb-6 px-6 py-3 bg-black/80 backdrop-blur-sm rounded-full border border-white/20 shadow-lg">
+            <p className="text-white text-sm font-medium text-center whitespace-nowrap">
+              Tap logo to stop | Hold and move to rotate
+            </p>
+          </div>
+
           <div className="sphereGlassContainer animate-spherePulse">
             <div
-              className="absolute top-[10%] left-[10%] right-[10%] bottom-[10%] rounded-full animate-innerGlow"
+              className="absolute top-[10%] left-[10%] right-[10%] bottom-[10%] rounded-full animate-innerGlow pointer-events-none"
               style={{ background: "radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, transparent 70%)" }}
             />
             <div
-              className="absolute -top-[25px] -left-[25px] -right-[25px] -bottom-[25px] rounded-full animate-outerRing"
+              className="absolute -top-[25px] -left-[25px] -right-[25px] -bottom-[25px] rounded-full animate-outerRing pointer-events-none"
               style={{ border: "1px solid rgba(147, 51, 234, 0.08)" }}
             />
             <div
-              className="absolute -top-[12px] -left-[12px] -right-[12px] -bottom-[12px] rounded-full animate-middleRing"
+              className="absolute -top-[12px] -left-[12px] -right-[12px] -bottom-[12px] rounded-full animate-middleRing pointer-events-none"
               style={{ border: "1px solid rgba(236, 72, 153, 0.1)" }}
             />
-            <LogoSphere />
+            <LogoSphere2 />
             <div
-              className="absolute -top-[20px] -left-[20px] -right-[20px] -bottom-[20px] rounded-full animate-ripple"
+              className="absolute -top-[20px] -left-[20px] -right-[20px] -bottom-[20px] rounded-full animate-ripple pointer-events-none"
               style={{
                 border: "1px solid rgba(147, 51, 234, 0.15)",
                 animationDelay: "0s",
               }}
             />
             <div
-              className="absolute -top-[30px] -left-[30px] -right-[30px] -bottom-[30px] rounded-full animate-ripple"
+              className="absolute -top-[30px] -left-[30px] -right-[30px] -bottom-[30px] rounded-full animate-ripple pointer-events-none"
               style={{
                 border: "1px solid rgba(236, 72, 153, 0.1)",
                 animationDelay: "3s",
@@ -385,7 +382,7 @@ export default function Hero() {
 
           {/* Enhanced Shine Effects */}
           <div
-            className="absolute bottom-0 left-0 w-full h-[40%] z-[2] rounded-b-[50%] animate-techSphereShineBottom"
+            className="absolute bottom-0 left-0 w-full h-[40%] z-[2] rounded-b-[50%] animate-techSphereShineBottom pointer-events-none"
             style={{ background: "linear-gradient(0deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%)" }}
           />
         </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef, useMemo } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import SkillCard from "./SkillCard"
 import "./skillCarou.css"
@@ -22,18 +22,6 @@ export default function SkillsCarousel() {
     const [isLoaded, setIsLoaded] = useState(false)
     const timerRef = useRef<NodeJS.Timeout | null>(null)
     const progressTimerRef = useRef<NodeJS.Timeout | null>(null)
-
-    // Refs for scroll animations
-    const sectionRef = useRef<HTMLElement>(null)
-    const titleRef = useRef<HTMLHeadingElement>(null)
-    const descriptionRef = useRef<HTMLDivElement>(null)
-    const carouselRef = useRef<HTMLDivElement>(null)
-
-    // Scroll detection hooks
-    const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
-    const isTitleInView = useInView(titleRef, { once: true, amount: 0.8 })
-    const isDescriptionInView = useInView(descriptionRef, { once: true, amount: 0.8 })
-    const isCarouselInView = useInView(carouselRef, { once: true, amount: 0.3 })
 
     // Use translation keys for all skills
     const skills = useMemo<Skill[]>(
@@ -61,6 +49,7 @@ export default function SkillsCarousel() {
     )
 
     // Determine how many cards to show based on screen size
+    // Adjusted for the fixed 20rem (320px) card size
     const cardsToShow = isMobile ? 1 : isTablet ? 2 : 3
     const totalSlides = Math.ceil(skills.length / cardsToShow)
 
@@ -82,7 +71,7 @@ export default function SkillsCarousel() {
     }, [])
 
     useEffect(() => {
-        if (!isPaused && isLoaded && isCarouselInView) {
+        if (!isPaused && isLoaded) {
             if (timerRef.current) clearTimeout(timerRef.current)
             if (progressTimerRef.current) clearInterval(progressTimerRef.current)
 
@@ -100,7 +89,7 @@ export default function SkillsCarousel() {
             if (timerRef.current) clearTimeout(timerRef.current)
             if (progressTimerRef.current) clearInterval(progressTimerRef.current)
         }
-    }, [currentIndex, isPaused, isLoaded, totalSlides, isCarouselInView])
+    }, [currentIndex, isPaused, isLoaded, totalSlides])
 
     const goToNextSlide = () => {
         setCurrentIndex((prev) => (prev + 1) % totalSlides)
@@ -118,140 +107,12 @@ export default function SkillsCarousel() {
         return skills.slice(startIdx, Math.min(startIdx + cardsToShow, skills.length))
     }
 
-    // Enhanced animation variants with scroll triggers
-    const sectionVariants = {
-        hidden: {
-            opacity: 0,
-            y: 100,
-            scale: 0.95,
-        },
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
         visible: {
             opacity: 1,
             y: 0,
-            scale: 1,
-            transition: {
-                duration: 0.8,
-                ease: "easeOut",
-                staggerChildren: 0.2,
-            },
-        },
-    }
-
-    const titleVariants = {
-        hidden: {
-            opacity: 0,
-            y: 50,
-            rotateX: -15,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            transition: {
-                duration: 0.8,
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 100,
-            },
-        },
-    }
-
-    const descriptionVariants = {
-        hidden: {
-            opacity: 0,
-            y: 30,
-            scale: 0.9,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut",
-                delay: 0.2,
-            },
-        },
-    }
-
-    const carouselVariants = {
-        hidden: {
-            opacity: 0,
-            y: 60,
-            rotateY: -10,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            rotateY: 0,
-            transition: {
-                duration: 0.8,
-                ease: "easeOut",
-                delay: 0.4,
-                staggerChildren: 0.1,
-            },
-        },
-    }
-
-    const cardWrapperVariants = {
-        hidden: {
-            opacity: 0,
-            y: 80,
-            scale: 0.8,
-            rotateY: -20,
-        },
-        visible: (index: number) => ({
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            rotateY: 0,
-            transition: {
-                delay: index * 0.15,
-                duration: 0.7,
-                ease: "easeOut",
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-            },
-        }),
-    }
-
-    const navigationVariants = {
-        hidden: {
-            opacity: 0,
-            scale: 0.5,
-            rotate: -180,
-        },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            rotate: 0,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut",
-                delay: 0.8,
-                type: "spring",
-                stiffness: 200,
-            },
-        },
-    }
-
-    const indicatorVariants = {
-        hidden: {
-            opacity: 0,
-            y: 20,
-            scaleX: 0,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            scaleX: 1,
-            transition: {
-                duration: 0.5,
-                ease: "easeOut",
-                delay: 1,
-                staggerChildren: 0.1,
-            },
+            transition: { duration: 0.6, ease: "easeOut" },
         },
     }
 
@@ -275,31 +136,16 @@ export default function SkillsCarousel() {
 
     return (
         <motion.section
-            ref={sectionRef}
             className="skills-section"
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            variants={sectionVariants}
-            viewport={{ once: true, amount: 0.2 }}
+            animate="visible"
+            viewport={{ once: true, amount: 0.3 }}
         >
             <div className="skills-container">
-                <motion.h2
-                    ref={titleRef}
-                    className="skills-title"
-                    initial="hidden"
-                    animate={isTitleInView ? "visible" : "hidden"}
-                    variants={titleVariants}
-                >
+                <motion.h2 className="skills-title" variants={itemVariants}>
                     {t("nav.skills", "My Skills")}
                 </motion.h2>
-
-                <motion.div
-                    ref={descriptionRef}
-                    className="skills-description"
-                    initial="hidden"
-                    animate={isDescriptionInView ? "visible" : "hidden"}
-                    variants={descriptionVariants}
-                >
+                <motion.div className="skills-description" variants={itemVariants}>
                     <p>
                         {t(
                             "skills_section_description",
@@ -307,19 +153,14 @@ export default function SkillsCarousel() {
                         )}
                     </p>
                 </motion.div>
-
                 <motion.div
-                    ref={carouselRef}
                     className="skills-carousel-container"
-                    initial="hidden"
-                    animate={isCarouselInView ? "visible" : "hidden"}
-                    variants={carouselVariants}
+                    variants={itemVariants}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
                     <motion.button
                         className="nav-button prev-button"
-                        variants={navigationVariants}
                         onClick={() => {
                             goToPrevSlide()
                             setIsPaused(false)
@@ -346,20 +187,13 @@ export default function SkillsCarousel() {
                                 <motion.div
                                     className="skill-card-wrapper"
                                     key={skill.id}
-                                    custom={index}
-                                    initial="hidden"
-                                    animate={isCarouselInView ? "visible" : "hidden"}
-                                    variants={cardWrapperVariants}
-                                    whileHover={
-                                        !isMobile
-                                            ? {
-                                                y: -10,
-                                                scale: 1.02,
-                                                rotateY: 5,
-                                                transition: { duration: 0.3 },
-                                            }
-                                            : {}
-                                    }
+                                    initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    transition={{
+                                        delay: index * 0.1,
+                                        duration: 0.6,
+                                        ease: "easeOut",
+                                    }}
                                 >
                                     <SkillCard
                                         name={t(`skills.${skill.key}.name`, skill.key)}
@@ -374,7 +208,6 @@ export default function SkillsCarousel() {
 
                     <motion.button
                         className="nav-button next-button"
-                        variants={navigationVariants}
                         onClick={() => {
                             goToNextSlide()
                             setIsPaused(false)
@@ -389,33 +222,15 @@ export default function SkillsCarousel() {
                     </motion.button>
                 </motion.div>
 
-                <motion.div
-                    className="slide-info"
-                    initial="hidden"
-                    animate={isCarouselInView ? "visible" : "hidden"}
-                    variants={indicatorVariants}
-                >
+                <motion.div className="slide-info" variants={itemVariants}>
                     <span className="slide-info-text">{totalSlides > 0 ? `${currentIndex + 1} of ${totalSlides}` : ""}</span>
                 </motion.div>
 
-                <motion.div
-                    className="timer-indicators"
-                    initial="hidden"
-                    animate={isCarouselInView ? "visible" : "hidden"}
-                    variants={indicatorVariants}
-                >
+                <motion.div className="timer-indicators" variants={itemVariants}>
                     {Array.from({ length: totalSlides }).map((_, idx) => (
                         <motion.div
                             key={idx}
                             className="timer-indicator-container"
-                            variants={{
-                                hidden: { opacity: 0, scaleX: 0 },
-                                visible: {
-                                    opacity: 1,
-                                    scaleX: 1,
-                                    transition: { delay: idx * 0.1 },
-                                },
-                            }}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                         >

@@ -439,14 +439,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: spherePulse 15s ease-in-out infinite;
+  pointer-events: none; /* Disable pointer events on container */
 }
 .dark .sphereGlassContainer {
   background: var(--glass-bg-dark);
   border: 1px solid var(--glass-border-dark);
   box-shadow: var(--glass-shadow-dark), 0 0 80px rgba(168, 85, 247, 0.15);
+}
+
+/* Enable pointer events on canvas and ensure it's above other elements */
+.sphereGlassContainer canvas {
+  pointer-events: auto !important;
+  cursor: pointer;
+  position: relative;
+  z-index: 15 !important;
 }
 
 .sphereGlassContainer::before {
@@ -458,6 +467,7 @@
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
   border-radius: 50%;
+  pointer-events: none;
 }
 .dark .sphereGlassContainer::before {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
@@ -816,25 +826,69 @@
     height: 50px;
     padding: 0 20px;
     border-radius: 25px;
+    max-width: 300px;
   }
 
   .buttonEffect {
     padding: 1rem 2rem;
     border-radius: 20px;
+    font-size: 0.9rem;
   }
 
   .sphereGlassContainer {
-    width: 350px;
-    height: 350px;
+    width: 380px; /* Increased from 250px to 380px */
+    height: 380px;
   }
 
   .tech-item {
-    width: 36px;
+    width: 36px; /* Increased from 28px to 36px */
     height: 36px;
-    border-radius: 12px;
+    border-radius: 10px;
   }
 
   .tech-item span {
+    font-size: 0.9rem;
+  }
+
+  /* Ensure hero content stacks properly on mobile */
+  .heroContainer main {
+    flex-direction: column-reverse;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  /* Adjust text sizes for mobile */
+  .subtitleText {
     font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Additional mobile-specific styles */
+@media (max-width: 480px) {
+  .sphereGlassContainer {
+    width: 320px; /* Increased from 200px to 320px */
+    height: 320px;
+  }
+
+  .nameGradient {
+    font-size: 2rem;
+  }
+
+  .buttonEffect {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+  }
+
+  .rotatingTextContainer {
+    max-width: 250px;
+    padding: 0 16px;
+  }
+
+  .tech-item {
+    width: 32px; /* Increased from 24px to 32px */
+    height: 32px;
+    border-radius: 8px;
   }
 }
