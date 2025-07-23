@@ -31,7 +31,7 @@ export default function Hero() {
   const [isTextChanging, setIsTextChanging] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
-  const [logoSphereKey, setLogoSphereKey] = useState(0) // Add key for force re-render if needed
+  const [logoSphereKey] = useState(0) // Add key for force re-render if needed
 
   const rotatingTexts = useMemo(() => t("rotatingTexts", { returnObjects: true }) as string[], [t])
 
