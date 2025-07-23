@@ -2,33 +2,26 @@
 
 import { useTranslation } from "react-i18next"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect, useCallback, useMemo } from "react"
+import { useState, useEffect, useCallback, useMemo, useRef } from "react"
 import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
+import dynamic from "next/dynamic"
 
 import "./Hero.css"
 
-
-
-import dynamic from 'next/dynamic';
-
-
+// Move the dynamic import outside the component to prevent re-creation
+const LogoSphere2 = dynamic(() => import("./LogoSphere2"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+    </div>
+  ),
+})
 
 export default function Hero() {
-
-
-
-
-const LogoSphere2 = dynamic(
-  () => import('./LogoSphere2'),
-  { ssr: false }
-);
-
-
-
-
-
   const { t } = useTranslation()
+  const logoSphereRef = useRef<HTMLDivElement>(null)
 
   const [isGithubHovered, setIsGithubHovered] = useState(false)
   const [isResumeHovered, setIsResumeHovered] = useState(false)
@@ -38,6 +31,7 @@ const LogoSphere2 = dynamic(
   const [isTextChanging, setIsTextChanging] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
   const [loadingProgress, setLoadingProgress] = useState(0)
+  const [logoSphereKey, setLogoSphereKey] = useState(0) // Add key for force re-render if needed
 
   const rotatingTexts = useMemo(() => t("rotatingTexts", { returnObjects: true }) as string[], [t])
 
@@ -56,20 +50,32 @@ const LogoSphere2 = dynamic(
     return () => clearInterval(loadingInterval)
   }, [])
 
-  // Optimized rotating text effect
+  // Optimized rotating text effect - prevent interference with LogoSphere
   useEffect(() => {
     if (!isLoaded) return
-    const interval = setInterval(() => {
-      setIsTextChanging(true)
-      setTimeout(() => {
-        setCurrentTextIndex((prevIndex) => (prevIndex + 1) % rotatingTexts.length)
-        setIsTextChanging(false)
-      }, 400)
-    }, 3500)
-    return () => clearInterval(interval)
+
+    let textInterval: NodeJS.Timeout
+
+    const startTextRotation = () => {
+      textInterval = setInterval(() => {
+        setIsTextChanging(true)
+        setTimeout(() => {
+          setCurrentTextIndex((prevIndex) => (prevIndex + 1) % rotatingTexts.length)
+          setIsTextChanging(false)
+        }, 400)
+      }, 3500)
+    }
+
+    // Delay the start to ensure LogoSphere is fully loaded
+    const delayTimer = setTimeout(startTextRotation, 1000)
+
+    return () => {
+      clearTimeout(delayTimer)
+      if (textInterval) clearInterval(textInterval)
+    }
   }, [rotatingTexts.length, isLoaded])
 
-  // Optimized button handlers
+  // Optimized button handlers with useCallback to prevent re-renders
   const handleGithubInteraction = useCallback((type: "hover" | "leave" | "down" | "up") => {
     switch (type) {
       case "hover":
@@ -105,6 +111,87 @@ const LogoSphere2 = dynamic(
         break
     }
   }, [])
+
+  // Memoize static elements to prevent unnecessary re-renders
+  const backgroundEffects = useMemo(
+    () => (
+      <>
+        {/* Enhanced Background Effects */}
+        <div
+          className="absolute top-0 left-0 w-[200%] h-full transform -skew-x-12 z-[1] animate-backgroundShine"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.04), rgba(236, 72, 153, 0.06), rgba(59, 130, 246, 0.04), transparent)",
+          }}
+        />
+
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[1]">
+          <div
+            className="absolute -top-1/2 -left-1/2 w-[150%] h-[150%] rounded-full animate-wave"
+            style={{
+              background: "radial-gradient(circle, rgba(168, 85, 247, 0.02) 0%, transparent 70%)",
+              animationDelay: "0s",
+            }}
+          />
+          <div
+            className="absolute -top-[30%] -right-1/2 w-[150%] h-[150%] rounded-full animate-wave"
+            style={{
+              background: "radial-gradient(circle, rgba(236, 72, 153, 0.02) 0%, transparent 70%)",
+              animationDelay: "10s",
+            }}
+          />
+          <div
+            className="absolute -bottom-1/2 -left-[30%] w-[150%] h-[150%] rounded-full animate-wave"
+            style={{
+              background: "radial-gradient(circle, rgba(16, 185, 129, 0.02) 0%, transparent 70%)",
+              animationDelay: "20s",
+            }}
+          />
+        </div>
+      </>
+    ),
+    [],
+  )
+
+  const floatingParticles = useMemo(
+    () => (
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[2]">
+        {[
+          { top: "10%", left: "10%", size: "3px", gradient: "linear-gradient(45deg, #a855f7, #ec4899)", delay: "0s" },
+          { top: "20%", right: "15%", size: "4px", gradient: "linear-gradient(45deg, #3b82f6, #a855f7)", delay: "4s" },
+          {
+            bottom: "30%",
+            left: "20%",
+            size: "2px",
+            gradient: "linear-gradient(45deg, #ec4899, #f59e0b)",
+            delay: "8s",
+          },
+          { top: "60%", right: "25%", size: "3px", gradient: "linear-gradient(45deg, #8b5cf6, #10b981)", delay: "2s" },
+          {
+            bottom: "15%",
+            right: "10%",
+            size: "2px",
+            gradient: "linear-gradient(45deg, #3b82f6, #ec4899)",
+            delay: "6s",
+          },
+          { top: "40%", left: "5%", size: "2px", gradient: "linear-gradient(45deg, #10b981, #3b82f6)", delay: "10s" },
+        ].map((particle, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full opacity-40 animate-float"
+            style={{
+              ...particle,
+              width: particle.size,
+              height: particle.size,
+              background: particle.gradient,
+              animationDelay: particle.delay,
+            }}
+          />
+        ))}
+      </div>
+    ),
+    [],
+  )
 
   if (!isLoaded) {
     return (
@@ -169,74 +256,8 @@ const LogoSphere2 = dynamic(
 
   return (
     <div className="heroContainer min-h-screen relative overflow-hidden font-inter w-screen m-0 p-0">
-      {/* Enhanced Background Effects */}
-      <div
-        className="absolute top-0 left-0 w-[200%] h-full transform -skew-x-12 z-[1] animate-backgroundShine"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.04), rgba(236, 72, 153, 0.06), rgba(59, 130, 246, 0.04), transparent)",
-        }}
-      />
-
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[1]">
-        <div
-          className="absolute -top-1/2 -left-1/2 w-[150%] h-[150%] rounded-full animate-wave"
-          style={{
-            background: "radial-gradient(circle, rgba(168, 85, 247, 0.02) 0%, transparent 70%)",
-            animationDelay: "0s",
-          }}
-        />
-        <div
-          className="absolute -top-[30%] -right-1/2 w-[150%] h-[150%] rounded-full animate-wave"
-          style={{
-            background: "radial-gradient(circle, rgba(236, 72, 153, 0.02) 0%, transparent 70%)",
-            animationDelay: "10s",
-          }}
-        />
-        <div
-          className="absolute -bottom-1/2 -left-[30%] w-[150%] h-[150%] rounded-full animate-wave"
-          style={{
-            background: "radial-gradient(circle, rgba(16, 185, 129, 0.02) 0%, transparent 70%)",
-            animationDelay: "20s",
-          }}
-        />
-      </div>
-
-      {/* Optimized Floating Particles */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[2]">
-        {[
-          { top: "10%", left: "10%", size: "3px", gradient: "linear-gradient(45deg, #a855f7, #ec4899)", delay: "0s" },
-          { top: "20%", right: "15%", size: "4px", gradient: "linear-gradient(45deg, #3b82f6, #a855f7)", delay: "4s" },
-          {
-            bottom: "30%",
-            left: "20%",
-            size: "2px",
-            gradient: "linear-gradient(45deg, #ec4899, #f59e0b)",
-            delay: "8s",
-          },
-          { top: "60%", right: "25%", size: "3px", gradient: "linear-gradient(45deg, #8b5cf6, #10b981)", delay: "2s" },
-          {
-            bottom: "15%",
-            right: "10%",
-            size: "2px",
-            gradient: "linear-gradient(45deg, #3b82f6, #ec4899)",
-            delay: "6s",
-          },
-          { top: "40%", left: "5%", size: "2px", gradient: "linear-gradient(45deg, #10b981, #3b82f6)", delay: "10s" },
-        ].map((particle, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full opacity-40 animate-float"
-            style={{
-              ...particle,
-              width: particle.size,
-              height: particle.size,
-              background: particle.gradient,
-              animationDelay: particle.delay,
-            }}
-          />
-        ))}
-      </div>
+      {backgroundEffects}
+      {floatingParticles}
 
       {/* Optimized Geometric Shapes */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-[1]">
@@ -360,7 +381,7 @@ const LogoSphere2 = dynamic(
           </div>
         </div>
 
-        {/* Right Side - Enhanced Tech Sphere */}
+        {/* Right Side - Enhanced Tech Sphere with stable rendering */}
         <div className="relative h-[500px] md:h-[550px] w-full max-w-[550px] flex flex-col items-center justify-center transform-gpu animate-slideInRight">
           {/* Black Pill Container with Instructions */}
           <div className="mb-6 px-6 py-3 bg-black/80 backdrop-blur-sm rounded-full border border-white/20 shadow-lg">
@@ -369,7 +390,7 @@ const LogoSphere2 = dynamic(
             </p>
           </div>
 
-          <div className="sphereGlassContainer animate-spherePulse">
+          <div className="sphereGlassContainer animate-spherePulse" ref={logoSphereRef}>
             <div
               className="absolute top-[10%] left-[10%] right-[10%] bottom-[10%] rounded-full animate-innerGlow pointer-events-none"
               style={{ background: "radial-gradient(circle, rgba(147, 51, 234, 0.08) 0%, transparent 70%)" }}
@@ -382,7 +403,12 @@ const LogoSphere2 = dynamic(
               className="absolute -top-[12px] -left-[12px] -right-[12px] -bottom-[12px] rounded-full animate-middleRing pointer-events-none"
               style={{ border: "1px solid rgba(236, 72, 153, 0.1)" }}
             />
-            <LogoSphere2 />
+
+            {/* Stable LogoSphere2 rendering with key for controlled re-renders */}
+            <div key={logoSphereKey} className="w-full h-full">
+              <LogoSphere2 />
+            </div>
+
             <div
               className="absolute -top-[20px] -left-[20px] -right-[20px] -bottom-[20px] rounded-full animate-ripple pointer-events-none"
               style={{
