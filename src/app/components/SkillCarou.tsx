@@ -40,7 +40,7 @@ export default function SkillsCarousel() {
             { id: 12, key: "framermotion", imageSrc: "/logos/framermotion.svg" },
             { id: 13, key: "figma", imageSrc: "/logos/figma.svg" },
             { id: 14, key: "vercel", imageSrc: "/logos/vercel.svg" },
-            { id: 15, key: "shadcn", imageSrc: "/logos/shadcn.svg" },
+            { id: 15, key: "shadecn", imageSrc: "/logos/shadecn.svg" },
             { id: 16, key: "bootstrap", imageSrc: "/logos/bootstrap.svg" },
             { id: 17, key: "material", imageSrc: "/logos/material.svg" },
             { id: 18, key: "vscode", imageSrc: "/logos/vscode.svg" },
